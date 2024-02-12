@@ -11,7 +11,7 @@ data class H2Config(val url: String,
                     val password: String)
 
 object Accounts : Table() {
-    val id = integer("id").autoIncrement()
+    val id = long("id").autoIncrement()
     val license = varchar("license", 36)
     val pin = varchar("pin", 7)
     val email = varchar("email", 128)
@@ -33,5 +33,15 @@ class Store {
         }
     }
 
-    fun listAccounts(): List<Account> = Accounts.selectAll().toList()
+    fun listAccounts(): List<Account> =
+        Accounts
+            .selectAll()
+            .map { row ->
+                Account(
+                    id = row[Accounts.id],
+                    license = row[Accounts.license],
+                    pin = row[Accounts.pin],
+                    email = row[Accounts.email]
+                )
+            }
 }
