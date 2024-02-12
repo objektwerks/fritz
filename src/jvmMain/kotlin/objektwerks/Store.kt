@@ -3,6 +3,7 @@ package objektwerks
 import com.sksamuel.hoplite.ConfigLoader
 
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
 
 data class H2Config(val url: String,
                     val driver: String,
@@ -26,5 +27,11 @@ class Store {
             user = config.user,
             password = config.password
         )
+        transaction {
+            addLogger(StdOutSqlLogger)
+            SchemaUtils.create( Accounts )
+        }
     }
+
+    fun listAccounts(): List<Account> = Accounts.selectAll().toList()
 }
