@@ -6,6 +6,10 @@ Build
 -----
 1. gradle clean build
 
+Test
+----
+1. gradle clean build test
+
 Run
 ---
 1. ./gradlew jsRun
