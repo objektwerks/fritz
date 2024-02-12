@@ -12,6 +12,7 @@ repositories {
 }
 
 val fritz2Version = "1.0-RC15"
+val ktorVersion = "2.3.8"
 
 kotlin {
     jvm()
@@ -27,6 +28,8 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
+                implementation("io.ktor:ktor-server-core:$ktorVersion")
+                implementation("io.ktor:ktor-server-netty:$ktorVersion")
             }
         }
         val jsMain by getting {
