@@ -18,7 +18,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("dev.fritz2:core:"1.0-RC15")
+                implementation("dev.fritz2:core:1.0-RC15")
             }
         }
         val jvmMain by getting {
@@ -33,7 +33,7 @@ kotlin {
 }
 
 dependencies {
-    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:$fritz2Version")
+    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC15")
 }
 kotlin.sourceSets.commonMain { kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin") }
 tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
