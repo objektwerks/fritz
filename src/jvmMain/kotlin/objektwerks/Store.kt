@@ -1,6 +1,8 @@
 package objektwerks
 
-import org.jetbrains.exposed.sql.Table
+import com.sksamuel.hoplite.ConfigLoader
+
+import org.jetbrains.exposed.sql.*
 
 data class H2Config(val url: String,
                     val driver: String,
@@ -16,4 +18,13 @@ object Accounts : Table() {
 }
 
 class Store {
+    init {
+        val config = ConfigLoader().loadConfigOrThrow<H2Config>("/store.yaml")
+        Database.connect(
+            url = config.url,
+            driver = config.driver,
+            user = config.user,
+            password = config.password
+        )
+    }
 }
