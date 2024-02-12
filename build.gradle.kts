@@ -13,6 +13,7 @@ repositories {
 
 val fritz2Version = "1.0-RC15"
 val ktorVersion = "2.3.8"
+val exposedVersion = "0.47.0"
 
 kotlin {
     jvm()
@@ -30,6 +31,10 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-server-core:$ktorVersion")
                 implementation("io.ktor:ktor-server-netty:$ktorVersion")
+
+                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
             }
         }
         val jsMain by getting {
