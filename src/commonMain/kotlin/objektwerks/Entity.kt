@@ -1,5 +1,7 @@
 package objektwerks
 
+import kotlinx.serialization.Serializable
+
 sealed interface Entity {
     val id: Id
 }
@@ -9,6 +11,7 @@ typealias License = String
 typealias Pin = String
 typealias Email = String
 
+@Serializable
 data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
