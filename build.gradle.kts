@@ -3,6 +3,7 @@ version = "0.0.1-SNAPSHOT"
 
 plugins {
     kotlin("multiplatform") version "1.9.22"
+    kotlin("plugin.serialization") version "1.9.22"
     id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
@@ -21,6 +22,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("dev.fritz2:core:$fritz2Version")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
             }
         }
         val jvmMain by getting {
