@@ -9,3 +9,7 @@ Build
 Run
 ---
 1. ./gradlew jsRun
+
+Resources
+---------
+* [Fritz Docs](https://www.fritz2.dev/docs/)
