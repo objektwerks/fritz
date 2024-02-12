@@ -14,6 +14,7 @@ repositories {
 val fritz2Version = "1.0-RC15"
 val ktorVersion = "2.3.8"
 val exposedVersion = "0.47.0"
+val hopliteVersion = "2.7.5"
 
 kotlin {
     jvm()
@@ -35,6 +36,9 @@ kotlin {
                 implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
                 implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
                 implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+
+                implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
+                implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
             }
         }
         val jsMain by getting {
