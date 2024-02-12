@@ -14,7 +14,7 @@ object Accounts : Table() {
     val license = varchar("license", 36)
     val pin = varchar("pin", 7)
     val email = varchar("email", 128)
-    override val primaryKey = PrimaryKey(id, name = "pk")
+    override val primaryKey = PrimaryKey(id, name = "id")
 }
 
 class Store {
