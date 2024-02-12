@@ -56,9 +56,11 @@ class Store {
         }
 
     fun updateAccount(account: Account): Int =
-        Accounts.update({ Accounts.id eq account.id }) {
-            it[license] = account.license
-            it[pin] = account.pin
-            it[email] = account.email
+        transaction {
+            Accounts.update({ Accounts.id eq account.id }) {
+                it[license] = account.license
+                it[pin] = account.pin
+                it[email] = account.email
+            }
         }
 }
