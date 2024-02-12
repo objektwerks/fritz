@@ -12,4 +12,5 @@ Run
 
 Resources
 ---------
-* [Fritz Docs](https://www.fritz2.dev/docs/)
+* [Fritz2 Github](https://github.com/jwstegemann/fritz2)
+* [Fritz2 Docs](https://www.fritz2.dev/docs/)
