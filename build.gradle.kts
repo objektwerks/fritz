@@ -10,6 +10,8 @@ repositories {
     mavenCentral()
 }
 
+val fritz2Version = "1.0-RC15"
+
 kotlin {
     jvm()
     js(IR) {
@@ -18,7 +20,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("dev.fritz2:core:1.0-RC15")
+                implementation("dev.fritz2:core:$fritz2Version")
             }
         }
         val jvmMain by getting {
@@ -33,7 +35,7 @@ kotlin {
 }
 
 dependencies {
-    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:1.0-RC15")
+    add("kspCommonMainMetadata", "dev.fritz2:lenses-annotation-processor:$fritz2Version")
 }
 kotlin.sourceSets.commonMain { kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin") }
 tasks.withType<org.jetbrains.kotlin.gradle.dsl.KotlinCompile<*>>().all {
