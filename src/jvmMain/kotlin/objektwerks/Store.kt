@@ -44,4 +44,12 @@ class Store {
                     email = row[Accounts.email]
                 )
             }
+
+    fun addAccount(account: Account): Id =
+        Accounts.insert {
+            it[id] = account.id
+            it[license] = account.license
+            it[pin] = account.pin
+            it[email] = account.email
+        } get Accounts.id
 }
