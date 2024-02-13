@@ -49,6 +49,9 @@ kotlin {
                 implementation("ch.qos.logback:logback-classic:1.4.14")
             }
         }
+        jvmTest.dependencies {
+            implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+        }
         val jsMain by getting {
             dependencies {
             }
