@@ -23,11 +23,9 @@ kotlin {
         browser()
     }.binaries.executable()
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation("dev.fritz2:core:$fritz2Version")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-            }
+        commonMain.dependencies {
+            implementation("dev.fritz2:core:$fritz2Version")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
         }
         commonTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
