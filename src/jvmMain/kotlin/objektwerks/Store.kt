@@ -35,6 +35,8 @@ class Store {
 
     fun register(email: String): Account = Account(0, "", "", "") // Todo
 
+    fun login(email: String, pin: String): Account = Account(0, "", "", "") // Todo
+
     fun listAccounts(): List<Account> =
         Accounts
             .selectAll()
