@@ -50,8 +50,6 @@ kotlin {
         }
         jsMain.dependencies {
         }
-        jsTest.dependencies {
-        }
     }
 }
 
