@@ -14,6 +14,11 @@ Run
 ---
 1. ./gradlew jsRun
 
+Logs
+----
+1. build/kotlin.log
+2. build/kotlin.test.log
+
 Resources
 ---------
 * [Fritz2 Github](https://github.com/jwstegemann/fritz2)
