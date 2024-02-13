@@ -28,9 +28,6 @@ kotlin {
             implementation("dev.fritz2:core:$fritz2Version")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
         }
-        commonTest.dependencies {
-            implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
-        }
         jvmMain.dependencies {
             implementation("io.ktor:ktor-server-core:$ktorVersion")
             implementation("io.ktor:ktor-server-netty:$ktorVersion")
