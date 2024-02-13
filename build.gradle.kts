@@ -30,22 +30,20 @@ kotlin {
         commonTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
         }
-        val jvmMain by getting {
-            dependencies {
-                implementation("io.ktor:ktor-server-core:$ktorVersion")
-                implementation("io.ktor:ktor-server-netty:$ktorVersion")
+        jvmMain.dependencies {
+            implementation("io.ktor:ktor-server-core:$ktorVersion")
+            implementation("io.ktor:ktor-server-netty:$ktorVersion")
 
-                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-                implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+            implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+            implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+            implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
 
-                implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
-                implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
+            implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
+            implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
 
-                implementation("com.h2database:h2:2.2.224")
+            implementation("com.h2database:h2:2.2.224")
 
-                implementation("ch.qos.logback:logback-classic:1.4.14")
-            }
+            implementation("ch.qos.logback:logback-classic:1.4.14")
         }
         jvmTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
