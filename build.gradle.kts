@@ -49,6 +49,7 @@ kotlin {
         }
         jvmTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+            implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
         }
         jsMain.dependencies {
         }
