@@ -9,3 +9,6 @@ data class Registered(val account: Account) : Event
 
 @Serializable
 data class LoggedIn(val account: Account) : Event
+
+@Serializable
+data class Fault(val error: String) : Event
