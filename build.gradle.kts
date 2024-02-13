@@ -32,11 +32,10 @@ kotlin {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
         }
         jvmMain.dependencies {
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
-
             implementation("io.ktor:ktor-server-core:$ktorVersion")
             implementation("io.ktor:ktor-server-netty:$ktorVersion")
             implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
             implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
             implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
