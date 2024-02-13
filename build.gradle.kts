@@ -48,9 +48,9 @@ kotlin {
         jvmTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
         }
-        val jsMain by getting {
-            dependencies {
-            }
+        jsMain.dependencies {
+        }
+        jsTest.dependencies {
         }
     }
 }
