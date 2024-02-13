@@ -22,7 +22,9 @@ fun main() {
             }
             post ("/command") {
                 val command = call.receive<Command>()
-
+                // TODO! dispatch command to event
+                val event = Login("", "") // placeholder!
+                call.respond(event)
             }
         }
     }.start(wait = true)
