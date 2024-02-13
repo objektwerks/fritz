@@ -14,6 +14,9 @@ fun main() {
             get ("/now") {
                 call.respondText("Datetime: ${Instant.now()}")
             }
+            post ("/command") {
+
+            }
         }
     }.start(wait = true)
 }
