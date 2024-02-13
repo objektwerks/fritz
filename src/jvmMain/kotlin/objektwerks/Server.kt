@@ -12,6 +12,9 @@ import io.ktor.server.routing.*
 import java.time.Instant
 
 fun main() {
+    val store = Store()
+    val handler = Handler(store)
+
     embeddedServer(Netty, port = 7979) {
         install(ContentNegotiation) {
             json()
@@ -22,8 +25,7 @@ fun main() {
             }
             post ("/command") {
                 val command = call.receive<Command>()
-                // TODO! dispatch command to event
-                val event = Login("", "") // placeholder!
+                val event = handler.handle(command)
                 call.respond(event)
             }
         }
