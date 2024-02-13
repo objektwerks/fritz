@@ -49,14 +49,16 @@ class Store {
                 )
             }
 
-    fun addAccount(account: Account): Id =
+    fun addAccount(account: Account): Account =
         transaction {
-            Accounts.insert {
-                it[id] = account.id
-                it[license] = account.license
-                it[pin] = account.pin
-                it[email] = account.email
-            } get Accounts.id
+            account.copy(id =
+                Accounts.insert {
+                    it[id] = account.id
+                    it[license] = account.license
+                    it[pin] = account.pin
+                    it[email] = account.email
+                } get Accounts.id
+            )
         }
 
     fun updateAccount(account: Account): Int =
