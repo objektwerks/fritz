@@ -33,7 +33,10 @@ class Store {
         }
     }
 
-    fun register(email: String): Account = Account(0, "", "", "") // Todo
+    fun register(email: String): Account =
+        addAccount(
+            Account(id = 0, license = "", pin = "", email = email)
+        )
 
     fun login(email: String, pin: String): Account = Account(0, "", "", "") // Todo
 
