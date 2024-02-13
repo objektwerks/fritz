@@ -6,6 +6,8 @@ version = "0.0.1-SNAPSHOT"
 plugins {
     kotlin("multiplatform") version "1.9.22"
     kotlin("plugin.serialization") version "1.9.22"
+    id("application")
+    id("com.adarshr.test-logger") version "4.0.0"
     id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
