@@ -1,6 +1,6 @@
 package objektwerks
 
-class Handler(val store: Store) {
+class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when( command ) {
             is Register -> Registered( store.register(command.email) )
