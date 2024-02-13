@@ -12,6 +12,7 @@ repositories {
 }
 
 val kotlinVersion = "1.9.22"
+val kotlinSerializationVersion = "1.6.2"
 val fritz2Version = "1.0-RC15"
 val ktorVersion = "2.3.8"
 val exposedVersion = "0.47.0"
@@ -25,14 +26,17 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation("dev.fritz2:core:$fritz2Version")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
         }
         commonTest.dependencies {
             implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
         }
         jvmMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
+
             implementation("io.ktor:ktor-server-core:$ktorVersion")
             implementation("io.ktor:ktor-server-netty:$ktorVersion")
+            implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
 
             implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
             implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
