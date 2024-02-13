@@ -1,7 +1,7 @@
 import com.google.devtools.ksp.gradle.KspTaskMetadata
 
 group = "objektwerks"
-version = "0.0.1-SNAPSHOT"
+version = "0.1-SNAPSHOT"
 
 plugins {
     kotlin("multiplatform") version "1.9.22"
