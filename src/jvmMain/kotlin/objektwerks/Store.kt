@@ -4,6 +4,7 @@ import com.sksamuel.hoplite.ConfigLoader
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.util.UUID
 
 data class H2Config(val url: String,
                     val driver: String,
@@ -35,7 +36,7 @@ class Store {
 
     fun register(email: String): Account =
         addAccount(
-            Account(id = 0, license = "", pin = "", email = email)
+            Account(id = 0, license = UUID.randomUUID().toString(), pin = "", email = email)
         )
 
     fun login(email: String, pin: String): Account = Account(0, "", "", "") // Todo
