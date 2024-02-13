@@ -11,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+val kotlinVersion = "1.9.22"
 val fritz2Version = "1.0-RC15"
 val ktorVersion = "2.3.8"
 val exposedVersion = "0.47.0"
@@ -27,6 +28,9 @@ kotlin {
                 implementation("dev.fritz2:core:$fritz2Version")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
             }
+        }
+        commonTest.dependencies {
+            implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
         }
         val jvmMain by getting {
             dependencies {
