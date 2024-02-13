@@ -5,6 +5,7 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
@@ -20,6 +21,7 @@ fun main() {
                 call.respondText("Datetime: ${Instant.now()}")
             }
             post ("/command") {
+                val command = call.receive<Command>()
 
             }
         }
