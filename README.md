@@ -12,7 +12,7 @@ Test
 
 Run
 ---
-1. ./gradlew jsRun
+1. gradle jsRun
 
 Logs
 ----
