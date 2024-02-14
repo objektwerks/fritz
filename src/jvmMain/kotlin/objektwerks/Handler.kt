@@ -3,7 +3,7 @@ package objektwerks
 class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when( command ) {
-            is Register -> Registered( store.register(command.email) )
+            is Register -> register(command)
             is Login -> LoggedIn( store.login(command.email, command.pin) )
         }
 
