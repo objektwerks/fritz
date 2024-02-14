@@ -8,4 +8,6 @@ class Handler(private val store: Store) {
         }
 
     fun register(register: Register): Event = TODO()
+
+    fun login(login: Login): Event = TODO()
 }
