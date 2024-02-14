@@ -10,8 +10,8 @@ Test
 ----
 1. gradle clean build test
 
-Run
----
+Run JS
+------
 1. gradle jsRun
 
 Logs
