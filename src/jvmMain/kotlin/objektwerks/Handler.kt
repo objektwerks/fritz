@@ -15,7 +15,7 @@ class Handler(private val store: Store) {
             { Fault(it.message ?: "Register failed!") }
         )
 
-    fun login(login: Login): Event =
+    private fun login(login: Login): Event =
         runCatching {
             store.login(login.email, login.pin)
         }.fold(
