@@ -11,10 +11,6 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.22-1.0.17"
 }
 
-application {
-    mainClass.set("objektwerks.Server")
-}
-
 repositories {
     mavenCentral()
 }
@@ -23,6 +19,10 @@ java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
     }
+}
+
+application {
+    mainClass.set("objektwerks.Server")
 }
 
 val kotlinVersion = "1.9.22"
@@ -38,34 +38,42 @@ kotlin {
         browser()
     }.binaries.executable()
     sourceSets {
-        commonMain.dependencies {
-            implementation("dev.fritz2:core:$fritz2Version")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
-            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+        val commonMain by getting {
+            dependencies {
+                implementation("dev.fritz2:core:$fritz2Version")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+            }
         }
-        jvmMain.dependencies {
-            implementation("io.ktor:ktor-server-core:$ktorVersion")
-            implementation("io.ktor:ktor-server-netty:$ktorVersion")
-            implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+        val jvmMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-server-core:$ktorVersion")
+                implementation("io.ktor:ktor-server-netty:$ktorVersion")
+                implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
-            implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-            implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-            implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
 
-            implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
-            implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
-            implementation("org.yaml:snakeyaml:2.2")
+                implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
+                implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
+                implementation("org.yaml:snakeyaml:2.2")
 
-            implementation("com.h2database:h2:2.2.224")
+                implementation("com.h2database:h2:2.2.224")
 
-            implementation("ch.qos.logback:logback-classic:1.4.14")
+                implementation("ch.qos.logback:logback-classic:1.4.14")
+            }
         }
-        jvmTest.dependencies {
-            implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
-            implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
+                implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+            }
         }
-        jsMain.dependencies {
+        val jsMain by getting {
+            dependencies {
+            }
         }
     }
 }
