@@ -16,7 +16,8 @@ Run JS
 
 Run JVM
 -------
-1. gradle jvmRun
+1. gradle jvmRun ( doesn't work! )
+>Right click Server > Run 'Server'
 
 Curl
 ----
