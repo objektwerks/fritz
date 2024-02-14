@@ -4,7 +4,7 @@ class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when( command ) {
             is Register -> register(command)
-            is Login -> LoggedIn( store.login(command.email, command.pin) )
+            is Login -> login(command)
         }
 
     private fun register(register: Register): Event =
