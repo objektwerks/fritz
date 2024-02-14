@@ -15,6 +15,12 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
 val kotlinVersion = "1.9.22"
 val kotlinSerializationVersion = "1.6.2"
 val fritz2Version = "1.0-RC15"
