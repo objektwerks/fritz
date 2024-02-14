@@ -7,7 +7,7 @@ class Handler(private val store: Store) {
             is Login -> LoggedIn( store.login(command.email, command.pin) )
         }
 
-    fun register(register: Register): Event =
+    private fun register(register: Register): Event =
         runCatching {
             store.register(register.email)
         }.fold(
