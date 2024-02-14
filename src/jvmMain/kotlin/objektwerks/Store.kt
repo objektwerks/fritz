@@ -39,7 +39,7 @@ class Store {
             Account(
                 id = 0,
                 license = UUID.randomUUID().toString(),
-                pin = UUID.randomUUID().toString().substring(0, 8),
+                pin = UUID.randomUUID().toString().substring(0, 7),
                 email = email
             )
         )
