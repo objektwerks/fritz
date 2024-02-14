@@ -37,6 +37,7 @@ kotlin {
         commonMain.dependencies {
             implementation("dev.fritz2:core:$fritz2Version")
             implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
         }
         jvmMain.dependencies {
             implementation("io.ktor:ktor-server-core:$ktorVersion")
