@@ -12,4 +12,4 @@ data class Registered(val account: Account) : Event
 data class LoggedIn(val account: Account) : Event
 
 @Serializable
-data class Fault(val datetime: Long = Clock.System.now().epochSeconds, val error: String) : Event
+data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event
