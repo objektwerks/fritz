@@ -14,6 +14,10 @@ Run JS
 ------
 1. gradle jsRun
 
+Run JVM
+-------
+1. gradle jvmRun
+
 Logs
 ----
 1. build/kotlin.log
