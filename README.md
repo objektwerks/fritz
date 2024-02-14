@@ -18,6 +18,10 @@ Run JVM
 -------
 1. gradle jvmRun
 
+Curl
+----
+1. curl -v http://localhost:7979/now
+
 Logs
 ----
 1. build/kotlin.log
