@@ -14,8 +14,11 @@ import java.time.Instant
 fun main() {
     val store = Store()
     val handler = Handler(store)
+    val instance = server(7979, handler)
+}
 
-    embeddedServer(Netty, port = 7979) {
+fun server(port: Int, handler: Handler): NettyApplicationEngine =
+    embeddedServer(Netty, port = port) {
         install(ContentNegotiation) {
             json()
         }
@@ -30,4 +33,3 @@ fun main() {
             }
         }
     }.start(wait = true)
-}
