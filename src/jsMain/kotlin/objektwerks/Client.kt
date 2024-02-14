@@ -3,8 +3,9 @@ package objektwerks
 import dev.fritz2.core.render
 
 fun main() {
-  render("#target") {
-      h1 { +"App" }
+  render("#content") {
+      h1 { +"Fritz" }
+      br {}
       div {
           p {
               +"Hello, Fritz2!"
