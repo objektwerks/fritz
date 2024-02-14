@@ -19,6 +19,7 @@ class Server {
             val store = Store()
             val handler = Handler(store)
             val instance = Server().run(7979, handler)
+            println("Server started!")
 
             Runtime.getRuntime().addShutdownHook(object : Thread() {
                 override fun run() = runBlocking {
