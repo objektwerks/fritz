@@ -44,18 +44,6 @@ class Store {
             )
         )
 
-    private fun addAccount(account: Account): Account =
-        transaction {
-            account.copy(id =
-                Accounts.insert {
-                    it[id] = account.id
-                    it[license] = account.license
-                    it[pin] = account.pin
-                    it[email] = account.email
-                } get Accounts.id
-            )
-        }
-
     fun login(email: String, pin: String): Account =
         Accounts
             .selectAll()
@@ -82,6 +70,18 @@ class Store {
                     email = row[Accounts.email]
                 )
             }
+
+    fun addAccount(account: Account): Account =
+        transaction {
+            account.copy(id =
+            Accounts.insert {
+                it[id] = account.id
+                it[license] = account.license
+                it[pin] = account.pin
+                it[email] = account.email
+            } get Accounts.id
+            )
+        }
 
     fun updateAccount(account: Account): Int =
         transaction {
