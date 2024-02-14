@@ -34,7 +34,7 @@ class Store {
         }
     }
 
-    private fun addAccount(account: Account): Account =
+    private fun registerAccount(account: Account): Account =
         transaction {
             account.copy(id =
             Accounts.insert {
@@ -47,7 +47,7 @@ class Store {
         }
 
     fun register(email: String): Account =
-        addAccount(
+        registerAccount(
             Account(
                 id = 0,
                 license = UUID.randomUUID().toString(),
