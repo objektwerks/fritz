@@ -36,7 +36,12 @@ class Store {
 
     fun register(email: String): Account =
         addAccount(
-            Account(id = 0, license = UUID.randomUUID().toString(), pin = "", email = email)
+            Account(
+                id = 0,
+                license = UUID.randomUUID().toString(),
+                pin = UUID.randomUUID().toString().substring(0,6),
+                email = email
+            )
         )
 
     fun login(email: String, pin: String): Account = Account(0, "", "", "") // Todo
