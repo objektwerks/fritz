@@ -55,6 +55,7 @@ kotlin {
 
             implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
             implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
+            implementation("org.yaml:snakeyaml:2.2")
 
             implementation("com.h2database:h2:2.2.224")
 
