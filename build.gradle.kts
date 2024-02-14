@@ -22,7 +22,7 @@ java {
 }
 
 val kotlinVersion = "1.9.22"
-val kotlinSerializationVersion = "1.6.2"
+val kotlinxSerializationVersion = "1.6.2"
 val fritz2Version = "1.0-RC15"
 val ktorVersion = "2.3.8"
 val exposedVersion = "0.47.0"
@@ -36,7 +36,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation("dev.fritz2:core:$fritz2Version")
-            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerializationVersion")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
         }
         jvmMain.dependencies {
