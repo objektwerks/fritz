@@ -58,7 +58,6 @@ class Store {
             }
             .single()
 
-
     fun listAccounts(): List<Account> =
         Accounts
             .selectAll()
