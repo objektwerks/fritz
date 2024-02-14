@@ -44,7 +44,32 @@ class Store {
             )
         )
 
-    fun login(email: String, pin: String): Account = Account(0, "", "", "") // Todo
+    private fun addAccount(account: Account): Account =
+        transaction {
+            account.copy(id =
+                Accounts.insert {
+                    it[id] = account.id
+                    it[license] = account.license
+                    it[pin] = account.pin
+                    it[email] = account.email
+                } get Accounts.id
+            )
+        }
+
+    fun login(email: String, pin: String): Account =
+        Accounts
+            .selectAll()
+            .where { (Accounts.email eq email) and (Accounts.pin eq pin) }
+            .map { row ->
+                Account(
+                    id = row[Accounts.id],
+                    license = row[Accounts.license],
+                    pin = row[Accounts.pin],
+                    email = row[Accounts.email]
+                )
+            }
+            .single()
+
 
     fun listAccounts(): List<Account> =
         Accounts
@@ -57,18 +82,6 @@ class Store {
                     email = row[Accounts.email]
                 )
             }
-
-    fun addAccount(account: Account): Account =
-        transaction {
-            account.copy(id =
-                Accounts.insert {
-                    it[id] = account.id
-                    it[license] = account.license
-                    it[pin] = account.pin
-                    it[email] = account.email
-                } get Accounts.id
-            )
-        }
 
     fun updateAccount(account: Account): Int =
         transaction {
