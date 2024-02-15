@@ -16,8 +16,10 @@ Run JS
 
 Run JVM
 -------
-1. gradle jvmRun ( doesn't work! )
->Right click Server > Run 'Server'
+1. gradle jvmRun ( fail: No main class specified and classpath is not an executable jar. )
+2. ./gradlew jvmRun ( fail: No main class specified and classpath is not an executable jar. )
+3. ./gradlew run ( fail: Could not find or load main class objektwerks.Server )
+4. Right click Server > Run 'Server' ( success )
 
 Curl
 ----
