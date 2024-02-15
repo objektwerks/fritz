@@ -16,13 +16,7 @@ Run JS
 
 Run JVM
 -------
-1. gradle jvmRun ( fail: No main class specified and classpath is not an executable jar. )
-2. ./gradlew jvmRun ( fail: No main class specified and classpath is not an executable jar. )
-3. ./gradlew run ( fail: Could not find or load main class objektwerks.Server )
-4. Right click Server > Run 'Server' ( success )
->See:
-* https://youtrack.jetbrains.com/issue/KT-50227/MPP-JVM-target-executable-application
-* https://github.com/JetBrains/compose-multiplatform/issues/3123
+1. gradle jvmRun
 
 Curl
 ----
