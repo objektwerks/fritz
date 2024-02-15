@@ -6,6 +6,7 @@ class IntegrationTest {
     @Test fun integration() {
         val store = Store()
         val handler = Handler(store)
-        Server().run(7676, handler)
+        val server = Server().run(7676, handler)
+
     }
 }
