@@ -2,6 +2,7 @@ package objektwerks
 
 import io.ktor.client.*
 import io.ktor.client.call.*
+import io.ktor.client.engine.java.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -13,14 +14,19 @@ import org.junit.Test
 
 class IntegrationTest {
     @Test fun integration() {
+        println("*** init starting")
         val store = Store()
+        println("*** store started")
         val handler = Handler(store)
-        val server = Server().run(7676, handler)
-        val client = HttpClient {
+        println("*** handler started")
+        val server = Server().run(7676, handler, false)
+        println("*** server started")
+        val client = HttpClient(Java) {
             install(ContentNegotiation) {
                 json()
             }
         }
+        println("*** client started")
         val url = "http://localhost:7676/command"
         println("*** init complete")
 

@@ -74,7 +74,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-clsient-curl:$ktorVersion")
+                implementation("io.ktor:ktor-client-java:$ktorVersion")
             }
         }
         val jsMain by getting {
