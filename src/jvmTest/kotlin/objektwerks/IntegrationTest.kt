@@ -30,9 +30,9 @@ class IntegrationTest {
                 setBody(register)
             }.body<Registered>()
         }
-        assert( registered.account.id > 0 )
-
         val account = registered.account
+        assert( account.id > 0 )
+
         val login = Login(account.email, account.pin)
         val loggedIn = runBlocking {
             client.post(url) {
