@@ -37,12 +37,12 @@ class Store {
     private fun registerAccount(account: Account): Account =
         transaction {
             account.copy(id =
-            Accounts.insert {
-                it[id] = account.id
-                it[license] = account.license
-                it[pin] = account.pin
-                it[email] = account.email
-            } get Accounts.id
+                Accounts.insert {
+                    it[id] = account.id
+                    it[license] = account.license
+                    it[pin] = account.pin
+                    it[email] = account.email
+                } get Accounts.id
             )
         }
 
