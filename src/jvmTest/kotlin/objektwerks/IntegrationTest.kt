@@ -22,6 +22,7 @@ class IntegrationTest {
             }
         }
         val url = "http://localhost:7676/command"
+        println("*** init complete")
 
         val register = Register("my@email.com")
         val registered = runBlocking {
@@ -32,6 +33,7 @@ class IntegrationTest {
         }
         val account = registered.account
         assert( account.id > 0 )
+        println("*** register pass")
 
         val login = Login(account.email, account.pin)
         val loggedIn = runBlocking {
@@ -41,7 +43,9 @@ class IntegrationTest {
             }.body<LoggedIn>()
         }
         assert( loggedIn.account.id > 0 )
+        println("*** login pass")
 
         server.stop(1000, 1000)
+        println("*** server stopped")
     }
 }
