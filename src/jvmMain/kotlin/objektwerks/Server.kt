@@ -16,11 +16,11 @@ class Server {
         @JvmStatic fun main(args: Array<String>) {
             val store = Store()
             val handler = Handler(store)
-            Server().run(7979, handler)
+            Server().run(7979, handler, true)
         }
     }
 
-    fun run (port: Int, handler: Handler): NettyApplicationEngine =
+    fun run (port: Int, handler: Handler, wait: Boolean): NettyApplicationEngine =
         embeddedServer(Netty, port = port) {
             install(ContentNegotiation) {
                 json()
@@ -35,5 +35,5 @@ class Server {
                     call.respond(event)
                 }
             }
-        }.start(wait = true)
+        }.start(wait = wait)
 }
