@@ -34,7 +34,7 @@ class IntegrationTest {
         val registered = runBlocking {
             client.post(url) {
                 contentType(ContentType.Application.Json)
-                setBody(register)
+                setBody<Register>(register)
             }.body<Registered>()
         }
         val account = registered.account
@@ -45,7 +45,7 @@ class IntegrationTest {
         val loggedIn = runBlocking {
             client.post(url) {
                 contentType(ContentType.Application.Json)
-                setBody(login)
+                setBody<Login>(login)
             }.body<LoggedIn>()
         }
         assert( loggedIn.account.id > 0 )

@@ -32,7 +32,7 @@ class Server {
                 post ("/command") {
                     val command = call.receive<Command>()
                     val event = handler.handle(command)
-                    call.respond(event)
+                    call.respond<Event>(event)
                 }
             }
         }.start(wait = wait)
