@@ -5,6 +5,7 @@ Fritz2 feature tests.
 Notes
 -----
 1. Fritz2 lenses do not work. Neither does Arrow lenses. Is it a Ksp configuration issue?
+2. Prefer Helidon, with virtual thread support, to Ktor and coroutines.
 
 Build
 -----
