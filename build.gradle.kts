@@ -73,6 +73,7 @@ kotlin {
                 implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
             }
         }
         val jsMain by getting {
