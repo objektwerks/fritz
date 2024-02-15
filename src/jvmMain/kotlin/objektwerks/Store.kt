@@ -23,9 +23,8 @@ object Accounts : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
-class Store {
+class Store(private val config: StoreConfig) {
     init {
-        val config = ConfigLoader().loadConfigOrThrow<StoreConfig>("/store.yaml")
         Database.connect(
             url = config.url,
             driver = config.driver,
