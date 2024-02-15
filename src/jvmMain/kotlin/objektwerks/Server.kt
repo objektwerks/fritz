@@ -14,7 +14,7 @@ import java.time.Instant
 class Server {
     companion object {
         @JvmStatic fun main(args: Array<String>) {
-            val store = Store()
+            val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
             Server().run(7979, handler)
         }
