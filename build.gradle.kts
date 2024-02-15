@@ -1,4 +1,5 @@
 import com.google.devtools.ksp.gradle.KspTaskMetadata
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 group = "objektwerks"
 version = "0.1-SNAPSHOT"
@@ -21,10 +22,6 @@ java {
     }
 }
 
-application {
-    mainClass.set("objektwerks.Server")
-}
-
 val kotlinVersion = "1.9.22"
 val kotlinxSerializationVersion = "1.6.2"
 val fritz2Version = "1.0-RC15"
@@ -33,7 +30,12 @@ val exposedVersion = "0.47.0"
 val hopliteVersion = "2.7.5"
 
 kotlin {
-    jvm()
+    jvm {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        mainRun {
+            mainClass.set("objektwerks.Server")
+        }
+    }
     js(IR) {
         browser()
     }.binaries.executable()
