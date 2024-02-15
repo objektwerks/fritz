@@ -2,9 +2,9 @@ Fritz
 -----
 Fritz2 feature tests.
 
-Note
-----
->Fritz2 lenses and validation don't work. Arrow lenses don't work either. Ksp configuration issue?
+Notes
+-----
+1. Fritz2 lenses do not work. Neither does Arrow lenses. Is it a Ksp configuration issue?
 
 Build
 -----
