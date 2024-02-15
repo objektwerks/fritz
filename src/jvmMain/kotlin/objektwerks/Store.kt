@@ -11,7 +11,7 @@ data class StoreConfig(val url: String,
                        val user: String,
                        val password: String) {
     companion object {
-        fun load(path: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(path)
+        fun load(resource: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(resource)
     }
 }
 
