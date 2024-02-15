@@ -1,5 +1,7 @@
 package objektwerks
 
+import dev.fritz2.core.Lenses
+
 import kotlinx.serialization.Serializable
 
 sealed interface Entity {
@@ -12,6 +14,7 @@ typealias Pin = String
 typealias Email = String
 
 @Serializable
+@Lenses
 data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
