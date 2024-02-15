@@ -12,10 +12,10 @@ data class H2Config(val url: String,
                     val password: String)
 
 object Accounts : Table() {
-    val id = long("id").autoIncrement()
-    val license = varchar("license", 36)
-    val pin = varchar("pin", 7)
-    val email = varchar("email", 128)
+    val id: Column<Id> = long("id").autoIncrement()
+    val license: Column<License> = varchar("license", 36)
+    val pin: Column<Pin> = varchar("pin", 7)
+    val email: Column<Email> = varchar("email", 128)
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
