@@ -9,6 +9,7 @@ class IntegrationTest {
 
         val register = Register("my@email.com")
         val registered = handler.handle(register) as Registered
+        println(registered)
         assert( registered.account.id > 0 )
 
         val account = registered.account
