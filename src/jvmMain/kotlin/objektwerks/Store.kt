@@ -74,16 +74,18 @@ class Store {
 
 
     fun listAccounts(): List<Account> =
-        Accounts
-            .selectAll()
-            .map { row ->
-                Account(
-                    id = row[Accounts.id],
-                    license = row[Accounts.license],
-                    pin = row[Accounts.pin],
-                    email = row[Accounts.email]
-                )
-            }
+        transaction {
+            Accounts
+                .selectAll()
+                .map { row ->
+                    Account(
+                        id = row[Accounts.id],
+                        license = row[Accounts.license],
+                        pin = row[Accounts.pin],
+                        email = row[Accounts.email]
+                    )
+                }
+        }
 
     fun updateAccount(account: Account): Int =
         transaction {
