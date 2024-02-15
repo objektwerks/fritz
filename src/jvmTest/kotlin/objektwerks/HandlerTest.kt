@@ -2,8 +2,8 @@ package objektwerks
 
 import org.junit.Test
 
-class IntegrationTest {
-    @Test fun integration() {
+class HandlerTest {
+    @Test fun handle() {
         val store = Store()
         val handler = Handler(store)
 
