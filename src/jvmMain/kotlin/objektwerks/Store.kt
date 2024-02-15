@@ -38,13 +38,13 @@ class Store {
         transaction {
             account.copy(id =
                 Accounts.insert {
-                    it[id] = account.id
                     it[license] = account.license
                     it[pin] = account.pin
                     it[email] = account.email
                 } get Accounts.id
             )
         }
+
 
     fun register(email: String): Account =
         registerAccount(
@@ -57,18 +57,21 @@ class Store {
         )
 
     fun login(email: String, pin: String): Account =
-        Accounts
-            .selectAll()
-            .where { (Accounts.email eq email) and (Accounts.pin eq pin) }
-            .map { row ->
-                Account(
-                    id = row[Accounts.id],
-                    license = row[Accounts.license],
-                    pin = row[Accounts.pin],
-                    email = row[Accounts.email]
-                )
-            }
-            .single()
+        transaction {
+            Accounts
+                .selectAll()
+                .where { (Accounts.email eq email) and (Accounts.pin eq pin) }
+                .map { row ->
+                    Account(
+                        id = row[Accounts.id],
+                        license = row[Accounts.license],
+                        pin = row[Accounts.pin],
+                        email = row[Accounts.email]
+                    )
+                }
+                .single()
+        }
+
 
     fun listAccounts(): List<Account> =
         Accounts
