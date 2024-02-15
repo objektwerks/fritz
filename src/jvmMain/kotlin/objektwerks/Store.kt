@@ -6,10 +6,10 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.UUID
 
-data class H2Config(val url: String,
-                    val driver: String,
-                    val user: String,
-                    val password: String)
+data class StoreConfig(val url: String,
+                       val driver: String,
+                       val user: String,
+                       val password: String)
 
 object Accounts : Table() {
     val id: Column<Id> = long("id").autoIncrement()
@@ -21,7 +21,7 @@ object Accounts : Table() {
 
 class Store {
     init {
-        val config = ConfigLoader().loadConfigOrThrow<H2Config>("/store.yaml")
+        val config = ConfigLoader().loadConfigOrThrow<StoreConfig>("/store.yaml")
         Database.connect(
             url = config.url,
             driver = config.driver,
