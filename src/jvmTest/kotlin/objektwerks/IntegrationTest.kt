@@ -24,13 +24,23 @@ class IntegrationTest {
         val url = "http://localhost:7676/command"
 
         val register = Register("my@email.com")
-        runBlocking {
-            val registered = client.post(url) {
+        val registered = runBlocking {
+            client.post(url) {
                 contentType(ContentType.Application.Json)
                 setBody(register)
             }.body<Registered>()
-            assert( registered.account.id > 0 )
         }
+        assert( registered.account.id > 0 )
+
+        val account = registered.account
+        val login = Login(account.email, account.pin)
+        val loggedIn = runBlocking {
+            client.post(url) {
+                contentType(ContentType.Application.Json)
+                setBody(login)
+            }.body<LoggedIn>()
+        }
+        assert( loggedIn.account.id > 0 )
 
         server.stop()
     }
