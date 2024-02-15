@@ -15,6 +15,6 @@ class IntegrationTest {
         val account = registered.account
         val login = Login(account.email, account.pin)
         val loggedIn = handler.handle(login) as LoggedIn
-        assert( loggedIn.account.id > 0 )
+        assert( loggedIn.account == registered.account )
     }
 }
