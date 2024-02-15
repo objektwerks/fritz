@@ -71,6 +71,8 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlin:kotlin-test:$kotlinVersion")
                 implementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-core-jvm:$ktorVersion")
             }
         }
         val jsMain by getting {
