@@ -9,7 +9,11 @@ import java.util.UUID
 data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
-                       val password: String)
+                       val password: String) {
+    companion object {
+        fun load(path: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(path)
+    }
+}
 
 object Accounts : Table() {
     val id: Column<Id> = long("id").autoIncrement()
