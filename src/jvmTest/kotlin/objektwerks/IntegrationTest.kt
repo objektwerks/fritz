@@ -42,6 +42,6 @@ class IntegrationTest {
         }
         assert( loggedIn.account.id > 0 )
 
-        server.stop()
+        server.stop(1000, 1000)
     }
 }
