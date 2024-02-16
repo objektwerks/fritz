@@ -81,4 +81,8 @@ kotlin {
 }
 
 dependencies.kspCommonMainMetadata("dev.fritz2:lenses-annotation-processor:$fritz2Version")
-kotlin.sourceSets.commonMain { tasks.withType<KspTaskMetadata> { kotlin.srcDir(destinationDirectory) } }
+kotlin.sourceSets.commonMain {
+    tasks.withType<KspTaskMetadata> {
+        kotlin.srcDir(destinationDirectory)
+    }
+}
