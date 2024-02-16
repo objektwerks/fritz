@@ -6,6 +6,9 @@ fun License.isLicense(): Boolean =
 fun Pin.isPin(): Boolean =
     length == 7
 
+fun Email.isEmail(): Boolean =
+    contains("@")
+
 fun Account.isValid(): Boolean =
     (id > 0) &&
     (license.length == 36) &&
