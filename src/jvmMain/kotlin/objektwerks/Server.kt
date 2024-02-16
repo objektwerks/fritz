@@ -31,12 +31,9 @@ class Server {
                 }
                 post ("/command") {
                     val command = call.receive<Command>()
-                    val event = when(val event = handler.handle(command)) {
-                        is Registered -> if (event.isValid()) event else Fault.fault("Invalid Registered", event)
-                        is LoggedIn -> if(event.isValid()) event else Fault.fault("Invalid LoggedIn", event)
-                        is Fault -> Fault.fault("Invalid Event", event)
-                    }
-                    call.respond<Event>(event)
+                    val event = handler.handle(command)
+                    if (event.isValid()) call.respond<Event>(event)
+                    else call.respond<Event>( Fault.fault("Invalid Event", event) )
                 }
             }
         }.start(wait = true)
