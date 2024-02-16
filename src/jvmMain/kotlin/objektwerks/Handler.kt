@@ -3,11 +3,9 @@ package objektwerks
 class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when(command) {
-            is Register -> if (command.isValid()) register(command) else fault("Invalid Register", command)
-            is Login -> if(command.isValid()) login(command) else fault("Invalid Login", command)
+            is Register -> if (command.isValid()) register(command) else Fault.fault("Invalid Register", command)
+            is Login -> if(command.isValid()) login(command) else Fault.fault("Invalid Login", command)
         }
-
-    private fun fault(error: String, command: Command): Fault = Fault("$error: $command")
 
     private fun register(register: Register): Event =
         runCatching {
