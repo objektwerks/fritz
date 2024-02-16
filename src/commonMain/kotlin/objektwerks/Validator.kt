@@ -31,8 +31,18 @@ fun Login.isValid(): Boolean =
     email.isEmail() &&
     pin.isPin()
 
+fun Event.isValid(): Boolean =
+    when(this) {
+        is Registered -> this.isValid()
+        is LoggedIn -> this.isValid()
+        is Fault -> this.isValid()
+    }
+
 fun Registered.isValid(): Boolean =
     account.isValid()
 
 fun LoggedIn.isValid(): Boolean =
     account.isValid()
+
+fun Fault.isValid(): Boolean =
+    (error.isNotEmpty())
