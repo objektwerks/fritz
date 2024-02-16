@@ -15,3 +15,6 @@ fun Login.isValid(): Boolean =
 
 fun Registered.isValid(): Boolean =
     account.isValid()
+
+fun LoggedIn.isValid(): Boolean =
+    account.isValid()
