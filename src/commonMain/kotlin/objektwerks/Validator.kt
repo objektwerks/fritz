@@ -12,3 +12,6 @@ fun Register.isValid(): Boolean =
 fun Login.isValid(): Boolean =
     (email.contains("@")) &&
     (pin.length == 7)
+
+fun Registered.isValid(): Boolean =
+    account.isValid()
