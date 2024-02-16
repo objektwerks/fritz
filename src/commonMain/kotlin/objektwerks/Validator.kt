@@ -18,6 +18,12 @@ fun Account.isValid(): Boolean =
     pin.isPin() &&
     email.isEmail()
 
+fun Command.isValid(): Boolean =
+    when(this) {
+        is Register -> this.isValid()
+        is Login -> this.isValid()
+    }
+
 fun Register.isValid(): Boolean =
     email.isEmail()
 
