@@ -4,7 +4,7 @@ Fritz2 feature tests.
 
 Notes
 -----
-1. Fritz2 lenses do not work. Neither does Arrow lenses. Is it a Ksp configuration issue?
+1. Fritz2 lenses do not work. Neither do Arrow lenses. Is it a Ksp configuration issue or defect?
 
 Build
 -----
