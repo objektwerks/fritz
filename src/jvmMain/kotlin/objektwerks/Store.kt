@@ -2,9 +2,10 @@ package objektwerks
 
 import com.sksamuel.hoplite.ConfigLoader
 
+import java.util.UUID
+
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.util.UUID
 
 data class StoreConfig(val url: String,
                        val driver: String,
