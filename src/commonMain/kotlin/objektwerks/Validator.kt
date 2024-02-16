@@ -1,5 +1,8 @@
 package objektwerks
 
+fun Id.isId(): Boolean =
+    this > 0
+
 fun License.isLicense(): Boolean =
     length == 36
 
