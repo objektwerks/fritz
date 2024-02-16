@@ -2,6 +2,10 @@ package objektwerks
 
 import kotlinx.serialization.Serializable
 
+enum class UOM {
+    gl, l, lb, kg, tablet
+}
+
 sealed interface Entity {
     val id: Id
 }
@@ -24,4 +28,4 @@ data class Pool(override val id: Long,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val unit: String) : Entity
+                val uom: UOM = UOM.gl) : Entity
