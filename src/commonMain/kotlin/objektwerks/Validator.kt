@@ -1,5 +1,8 @@
 package objektwerks
 
+fun String.isLicense(): Boolean =
+    length == 36
+
 fun Account.isValid(): Boolean =
     (id > 0) &&
     (license.length == 36) &&
