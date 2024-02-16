@@ -3,7 +3,7 @@ package objektwerks
 class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when(command) {
-            is Register -> register(command)
+            is Register -> if (command.isValid()) register(command) else Fault("Invalid Register: $command")
             is Login -> login(command)
         }
 
