@@ -29,8 +29,8 @@ Curl
 
 Logs
 ----
-1. build/kotlin.log
-2. build/kotlin.test.log
+1. build/fritz.log
+2. build/fritz.test.log
 
 Resources
 ---------
