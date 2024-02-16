@@ -4,7 +4,7 @@ class Handler(private val store: Store) {
     fun handle(command: Command): Event =
         when(command) {
             is Register -> if (command.isValid()) register(command) else Fault("Invalid Register: $command")
-            is Login -> login(command)
+            is Login -> if(command.isValid()) login(command) else Fault("Invalid Login: $command")
         }
 
     private fun register(register: Register): Event =
