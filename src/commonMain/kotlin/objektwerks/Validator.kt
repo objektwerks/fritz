@@ -5,3 +5,6 @@ fun Account.isValid(): Boolean =
     (license.length == 36) &&
     (pin.length == 7) &&
     (email.contains("@"))
+
+fun Register.isValid(): Boolean =
+    (email.contains("@"))
