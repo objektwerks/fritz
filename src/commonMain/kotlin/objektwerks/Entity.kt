@@ -3,7 +3,15 @@ package objektwerks
 import kotlinx.serialization.Serializable
 
 enum class UOM {
-    gl, l, lb, kg, tablet
+    gl, l, lb, kg, tablet;
+    companion object {
+        fun toList() = values().map { v -> v.toString() }
+        fun toPoolList() = listOf( gl.toString(), l.toString() )
+        fun gallonsToLiters(gallons: Double): Double = gallons * 3.785
+        fun litersToGallons(liters: Double): Double = liters * 0.264
+        fun poundsToKilograms(pounds: Double): Double = pounds * 0.454
+        fun kilogramsToPounds(kilograms: Double): Double = kilograms * 2.205
+    }
 }
 
 sealed interface Entity {
