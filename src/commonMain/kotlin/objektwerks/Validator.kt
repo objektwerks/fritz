@@ -1,7 +1,10 @@
 package objektwerks
 
-fun String.isLicense(): Boolean =
+fun License.isLicense(): Boolean =
     length == 36
+
+fun Pin.isPin(): Boolean =
+    length == 7
 
 fun Account.isValid(): Boolean =
     (id > 0) &&
