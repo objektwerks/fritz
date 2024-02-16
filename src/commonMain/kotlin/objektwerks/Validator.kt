@@ -13,17 +13,17 @@ fun Email.isEmail(): Boolean =
     contains("@")
 
 fun Account.isValid(): Boolean =
-    (id > 0) &&
-    (license.length == 36) &&
-    (pin.length == 7) &&
-    (email.contains("@"))
+    id.isId() &&
+    license.isLicense() &&
+    pin.isPin() &&
+    email.isEmail()
 
 fun Register.isValid(): Boolean =
-    (email.contains("@"))
+    email.isEmail()
 
 fun Login.isValid(): Boolean =
-    (email.contains("@")) &&
-    (pin.length == 7)
+    email.isEmail() &&
+    pin.isPin()
 
 fun Registered.isValid(): Boolean =
     account.isValid()
