@@ -15,10 +15,10 @@ typealias Email = String
 data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
-                   val email: Email) : Entity {
-    fun isValid(): Boolean =
-        (id > 0) &&
-        (license.length == 36) &&
-        (pin.length == 7) &&
-        (email.contains("@"))
-}
+                   val email: Email) : Entity
+
+fun Account.isValid(): Boolean =
+    (id > 0) &&
+    (license.length == 36) &&
+    (pin.length == 7) &&
+    (email.contains("@"))
