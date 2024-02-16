@@ -12,11 +12,20 @@ fun Pin.isPin(): Boolean =
 fun Email.isEmail(): Boolean =
     contains("@")
 
+fun Volume.isVolume(): Boolean =
+    this >= 100
+
 fun Account.isValid(): Boolean =
     id.isId() &&
     license.isLicense() &&
     pin.isPin() &&
     email.isEmail()
+
+fun Pool.isValid(): Boolean =
+    id.isId() &&
+    license.isLicense() &&
+    name.isNotEmpty() &&
+    volume.isVolume()
 
 fun Command.isValid(): Boolean =
     when(this) {
