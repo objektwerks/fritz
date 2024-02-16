@@ -10,6 +10,8 @@ typealias Id = Long
 typealias License = String
 typealias Pin = String
 typealias Email = String
+typealias Name = String
+typealias Volume = Int
 
 @Serializable
 data class Account(override val id: Id,
@@ -20,6 +22,6 @@ data class Account(override val id: Id,
 @Serializable
 data class Pool(override val id: Long,
                 val license: License,
-                val name: String,
-                val volume: Int,
+                val name: Name,
+                val volume: Volume,
                 val unit: String) : Entity
