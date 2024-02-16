@@ -34,7 +34,7 @@ class Server {
                     val event = when(val event = handler.handle(command)) {
                         is Registered -> if (event.isValid()) event else Fault.fault("Invalid Registered", event)
                         is LoggedIn -> if(event.isValid()) event else Fault.fault("Invalid LoggedIn", event)
-                        is Fault -> Fault("Invalid event!")
+                        is Fault -> Fault.fault("Invalid Event", event)
                     }
                     call.respond<Event>(event)
                 }
