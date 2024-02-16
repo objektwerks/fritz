@@ -28,4 +28,4 @@ data class Pool(override val id: Long,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val uom: UOM = UOM.gl) : Entity
+                val uom: String = UOM.gl.toString()) : Entity
