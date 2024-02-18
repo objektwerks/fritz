@@ -33,7 +33,7 @@ class Server {
                     val command = call.receive<Command>()
                     val event = handler.handle(command)
                     if (event.isValid()) call.respond<Event>(event)
-                    else call.respond<Event>( Fault.fault("Invalid Event", event) )
+                    else call.respond<Event>( Fault.build("Invalid Event", event) )
                 }
             }
         }.start(wait = true)
