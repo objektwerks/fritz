@@ -7,7 +7,7 @@ class Handler(private val store: Store) {
                 is Register -> register(command)
                 is Login -> login(command)
             }
-        else Fault.fault("Invalid Command", command)
+        else Fault.build("Invalid Command", command)
 
     private fun register(register: Register): Event =
         runCatching {
