@@ -72,6 +72,6 @@ data class Pool(override val id: Id,
                 val volume: Volume,
                 val uom: String = UOM.gl.toString()) : Entity {
     companion object {
-        val ordering = compareBy<Pool> { it.name }
+        val comparator = compareBy<Pool> { it.name }
     }
 }
