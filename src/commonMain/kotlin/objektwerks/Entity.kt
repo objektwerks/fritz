@@ -31,6 +31,17 @@ enum class TypeOfMeasurement(val display: String) {
     }
 }
 
+enum class TypeOfChemical(val display: String) {
+    LiquidChlorine("Liquid Chlorine"),
+    Trichlor("Trichlor"),
+    Dichlor("Dichlor"),
+    CalciumHypochlorite("Calcium Hypochlorite"),
+    Stabilizer("Stabilizer"),
+    Algaecide("Algaecide"),
+    MuriaticAcid("Muriatic Acid"),
+    Salt("Salt");
+}
+
 sealed interface Entity {
     val id: Id
 }
