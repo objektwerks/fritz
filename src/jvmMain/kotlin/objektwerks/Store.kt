@@ -21,7 +21,7 @@ object Accounts : Table() {
     val license: Column<License> = varchar("license", 36)
     val pin: Column<Pin> = varchar("pin", 7)
     val email: Column<Email> = varchar("email", 128)
-    val created: Column<Long> = long("created")
+    val created: Column<EpochSeconds> = long("created")
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
