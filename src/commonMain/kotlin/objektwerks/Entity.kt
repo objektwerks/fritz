@@ -75,7 +75,7 @@ data class Pool(override val id: Id,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val uom: String = UnitOfMeasure.gl.toString()) : Entity {
+                val unitOfMeasure: String = UnitOfMeasure.gl.toString()) : Entity {
     companion object {
         val comparator = compareBy<Pool> { it.name }
     }
