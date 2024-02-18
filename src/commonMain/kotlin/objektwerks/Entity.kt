@@ -1,5 +1,6 @@
 package objektwerks
 
+import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 
 enum class UOM {
@@ -61,7 +62,8 @@ typealias Volume = Int
 data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
-                   val email: Email) : Entity
+                   val email: Email,
+                   val created: Long = Clock.System.now().epochSeconds) : Entity
 
 @Serializable
 data class Pool(override val id: Long,
