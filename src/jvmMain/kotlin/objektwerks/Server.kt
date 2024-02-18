@@ -16,7 +16,8 @@ class Server {
         @JvmStatic fun main(args: Array<String>) {
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
-            Server().run(7979, handler)
+            val port = args[0].toIntOrNull() ?: 7979
+            Server().run(port, handler)
         }
     }
 
