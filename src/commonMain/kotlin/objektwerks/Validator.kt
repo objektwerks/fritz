@@ -18,6 +18,9 @@ fun Volume.isVolume(): Boolean =
 fun EpochSeconds.isEpochSeconds(): Boolean =
     this > 0
 
+fun UoM.isUoM(): Boolean =
+    this.isNotEmpty()
+
 fun Account.isValid(): Boolean =
     id.isId() &&
     license.isLicense() &&
@@ -30,7 +33,7 @@ fun Pool.isValid(): Boolean =
     license.isLicense() &&
     name.isNotEmpty() &&
     volume.isVolume() &&
-    unitOfMeasure.isNotEmpty()
+    uom.isUoM()
 
 fun Command.isValid(): Boolean =
     when(this) {
