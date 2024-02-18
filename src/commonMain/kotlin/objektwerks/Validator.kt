@@ -15,6 +15,9 @@ fun Email.isEmail(): Boolean =
 fun Volume.isVolume(): Boolean =
     this >= 100
 
+fun EpochSeconds.isEpochSeconds(): Boolean =
+    this > 0
+
 fun Account.isValid(): Boolean =
     id.isId() &&
     license.isLicense() &&
