@@ -46,6 +46,7 @@ class Store(private val config: StoreConfig) {
                     it[license] = account.license
                     it[pin] = account.pin
                     it[email] = account.email
+                    it[created] = account.created
                 } get Accounts.id
             )
         }
