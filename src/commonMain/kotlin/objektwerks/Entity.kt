@@ -66,7 +66,7 @@ data class Account(override val id: Id,
                    val created: Long = Clock.System.now().epochSeconds) : Entity
 
 @Serializable
-data class Pool(override val id: Long,
+data class Pool(override val id: Id,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
