@@ -14,7 +14,7 @@ data class LoggedIn(val account: Account) : Event
 @Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
-        fun fault(error: String, command: Command): Fault = Fault("$error: $command")
-        fun fault(error: String, event: Event): Fault = Fault("$error: $event")
+        fun build(error: String, command: Command): Fault = Fault("$error: $command")
+        fun build(error: String, event: Event): Fault = Fault("$error: $event")
     }
 }
