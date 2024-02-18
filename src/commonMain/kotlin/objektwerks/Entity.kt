@@ -57,6 +57,7 @@ typealias Pin = String
 typealias Email = String
 typealias Name = String
 typealias Volume = Int
+typealias UoM = String
 typealias EpochSeconds = Long
 
 @Serializable
@@ -75,7 +76,7 @@ data class Pool(override val id: Id,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val unitOfMeasure: String = UnitOfMeasure.gl.toString()) : Entity {
+                val uom: UoM = UnitOfMeasure.gl.toString()) : Entity {
     companion object {
         val comparator = compareBy<Pool> { it.name }
     }
