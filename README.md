@@ -20,7 +20,8 @@ Run JS
 
 Run JVM
 -------
-1. gradle jvmRun || gradle jvmRun --args="7676"
+>The default port is: 7979
+1. gradle jvmRun [--args="7676"]
 
 Curl
 ----
