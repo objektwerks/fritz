@@ -57,13 +57,14 @@ typealias Pin = String
 typealias Email = String
 typealias Name = String
 typealias Volume = Int
+typealias EpochSeconds = Long
 
 @Serializable
 data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
                    val email: Email,
-                   val created: Long = Clock.System.now().epochSeconds) : Entity {
+                   val created: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
     companion object {
         val comparator = compareBy<Account> { it.created }
     }
