@@ -70,4 +70,8 @@ data class Pool(override val id: Long,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val uom: String = UOM.gl.toString()) : Entity
+                val uom: String = UOM.gl.toString()) : Entity {
+    companion object {
+        val ordering = compareBy<Pool> { it.name }
+    }
+}
