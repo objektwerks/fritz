@@ -29,7 +29,8 @@ fun Pool.isValid(): Boolean =
     id.isId() &&
     license.isLicense() &&
     name.isNotEmpty() &&
-    volume.isVolume()
+    volume.isVolume() &&
+    unitOfMeasure.isNotEmpty()
 
 fun Command.isValid(): Boolean =
     when(this) {
