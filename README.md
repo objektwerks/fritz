@@ -20,7 +20,7 @@ Run JS
 
 Run JVM
 -------
-1. gradle jvmRun
+1. gradle jvmRun || gradle jvmRun --args="7676"
 
 Curl
 ----
