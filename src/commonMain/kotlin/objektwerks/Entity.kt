@@ -40,6 +40,10 @@ enum class TypeOfChemical(val display: String) {
     Algaecide("Algaecide"),
     MuriaticAcid("Muriatic Acid"),
     Salt("Salt");
+    companion object {
+        fun toEnum(display: String): TypeOfChemical = TypeOfChemical.valueOf( display.filterNot { it.isWhitespace() } )
+        fun toList(): List<String> = entries.map { toc -> toc.display }
+    }
 }
 
 sealed interface Entity {
