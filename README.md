@@ -1,6 +1,6 @@
 Fritz
 -----
-Fritz2 feature tests.
+>Fritz2 feature tests.
 
 Notes
 -----
