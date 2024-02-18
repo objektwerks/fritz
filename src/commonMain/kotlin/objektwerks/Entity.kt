@@ -14,6 +14,19 @@ enum class UOM {
     }
 }
 
+enum class TypeOfMeasurement(val display: String) {
+    TotalChlorine("Total Chlorine"),
+    FreeChlorine("Free Chlorine"),
+    CombinedChlorine("Combined Chlorine"),
+    Ph("Ph"),
+    CalciumHardness("Calcium Hardness"),
+    TotalAlkalinity("Total Alkalinity"),
+    CyanuricAcid("Cyanuric Acid"),
+    TotalBromine("Total Bromine"),
+    Salt("Salt"),
+    Temperature("Temperature")
+}
+
 sealed interface Entity {
     val id: Id
 }
