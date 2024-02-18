@@ -3,7 +3,7 @@ package objektwerks
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.server.cio.*
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -20,8 +20,8 @@ class Server {
         }
     }
 
-    fun run (port: Int, handler: Handler): NettyApplicationEngine =
-        embeddedServer(Netty, port = port) {
+    fun run (port: Int, handler: Handler): ApplicationEngine =
+        embeddedServer(CIO, port = port) {
             install(ContentNegotiation) {
                 json()
             }
