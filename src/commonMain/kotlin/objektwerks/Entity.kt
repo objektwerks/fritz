@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 enum class UOM {
     gl, l, lb, kg, tablet;
     companion object {
-        fun toList() = entries.map { v -> v.toString() }
-        fun toPoolList() = listOf( gl.toString(), l.toString() )
+        fun toList(): List<String> = entries.map { uom -> uom.toString() }
+        fun toPoolList(): List<String> = listOf( gl.toString(), l.toString() )
         fun gallonsToLiters(gallons: Double): Double = gallons * 3.785
         fun litersToGallons(liters: Double): Double = liters * 0.264
         fun poundsToKilograms(pounds: Double): Double = pounds * 0.454
@@ -24,7 +24,11 @@ enum class TypeOfMeasurement(val display: String) {
     CyanuricAcid("Cyanuric Acid"),
     TotalBromine("Total Bromine"),
     Salt("Salt"),
-    Temperature("Temperature")
+    Temperature("Temperature");
+    companion object {
+        fun toEnum(display: String): TypeOfMeasurement = TypeOfMeasurement.valueOf( display.filterNot { it.isWhitespace() } )
+        fun toList(): List<String> = entries.map { tom -> tom.display }
+    }
 }
 
 sealed interface Entity {
