@@ -23,7 +23,7 @@ fun Account.isValid(): Boolean =
     license.isLicense() &&
     pin.isPin() &&
     email.isEmail() &&
-    created > 0
+    created.isEpochSeconds()
 
 fun Pool.isValid(): Boolean =
     id.isId() &&
