@@ -63,7 +63,11 @@ data class Account(override val id: Id,
                    val license: License,
                    val pin: Pin,
                    val email: Email,
-                   val created: Long = Clock.System.now().epochSeconds) : Entity
+                   val created: Long = Clock.System.now().epochSeconds) : Entity {
+    companion object {
+        val comparator = compareBy<Account> { it.created }
+    }
+}
 
 @Serializable
 data class Pool(override val id: Id,
