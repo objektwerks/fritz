@@ -19,7 +19,8 @@ fun Account.isValid(): Boolean =
     id.isId() &&
     license.isLicense() &&
     pin.isPin() &&
-    email.isEmail()
+    email.isEmail() &&
+    created > 0
 
 fun Pool.isValid(): Boolean =
     id.isId() &&
