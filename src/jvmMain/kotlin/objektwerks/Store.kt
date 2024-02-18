@@ -89,7 +89,8 @@ class Store(private val config: StoreConfig) {
                         id = row[Accounts.id],
                         license = row[Accounts.license],
                         pin = row[Accounts.pin],
-                        email = row[Accounts.email]
+                        email = row[Accounts.email],
+                        created = row[Accounts.created]
                     )
                 }
         }
