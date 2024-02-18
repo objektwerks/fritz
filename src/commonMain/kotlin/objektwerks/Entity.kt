@@ -3,7 +3,7 @@ package objektwerks
 import kotlinx.datetime.Clock
 import kotlinx.serialization.Serializable
 
-enum class UOM {
+enum class UnitOfMeasure {
     gl, l, lb, kg, tablet;
     companion object {
         fun toList(): List<String> = entries.map { uom -> uom.toString() }
@@ -75,7 +75,7 @@ data class Pool(override val id: Id,
                 val license: License,
                 val name: Name,
                 val volume: Volume,
-                val uom: String = UOM.gl.toString()) : Entity {
+                val uom: String = UnitOfMeasure.gl.toString()) : Entity {
     companion object {
         val comparator = compareBy<Pool> { it.name }
     }
