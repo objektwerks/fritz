@@ -49,6 +49,7 @@ enum class TypeOfChemical(val display: String) {
 
 sealed interface Entity {
     val id: Id
+    fun display(): String
 }
 
 typealias Id = Long
@@ -66,6 +67,7 @@ data class Account(override val id: Id,
                    val pin: Pin,
                    val email: Email,
                    val created: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
+    override fun display() = email
     companion object {
         val comparator = compareBy<Account> { it.created }
     }
@@ -77,6 +79,7 @@ data class Pool(override val id: Id,
                 val name: Name,
                 val volume: Volume,
                 val uom: UoM = UnitOfMeasure.gl.toString()) : Entity {
+    override fun display() = name
     companion object {
         val comparator = compareBy<Pool> { it.name }
     }
