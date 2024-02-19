@@ -82,6 +82,7 @@ data class Pool(override val id: Id,
                 val uom: UoM = UnitOfMeasure.gl.toString()) : Entity {
     override fun display() = name
     companion object {
+        fun empty(): Pool = Pool(0, "", "", 100)
         val comparator = compareBy<Pool> { it.name }
     }
 }
