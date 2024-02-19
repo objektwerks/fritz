@@ -126,7 +126,7 @@ class Store(config: StoreConfig) {
                 }
         }
 
-    private fun addPool(pool: Pool): Pool =
+    fun addPool(pool: Pool): Pool =
         transaction {
             pool.copy(id =
                 Pools.insert {
