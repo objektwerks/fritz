@@ -15,6 +15,9 @@ data class LoggedIn(val account: Account) : Event
 data class PoolsListed(val pools: List<Pool>) : Event
 
 @Serializable
+data class PoolSaved(val pool: Pool) : Event
+
+@Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
         fun build(error: String, command: Command): Fault = Fault("$error: $command")
