@@ -69,8 +69,8 @@ data class Account(override val id: Id,
                    val created: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
     override fun display() = email
     companion object {
-        fun empty(): Account = Account(0, "", "", "")
         val comparator = compareBy<Account> { it.created }
+        fun empty(): Account = Account(0, "", "", "")
     }
 }
 
