@@ -12,13 +12,13 @@ data class Registered(val account: Account) : Event
 data class LoggedIn(val account: Account) : Event
 
 @Serializable
+data class Updated(val count: Int) : Event
+
+@Serializable
 data class PoolsListed(val pools: List<Pool>) : Event
 
 @Serializable
 data class PoolAdded(val pool: Pool) : Event
-
-@Serializable
-data class PoolUpdated(val pool: Pool) : Event
 
 @Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
