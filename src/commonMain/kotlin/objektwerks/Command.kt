@@ -13,3 +13,6 @@ data class Register(val email: Email) : Command
 
 @Serializable
 data class Login(val email: Email, val pin: Pin) : Command
+
+@Serializable
+data class ListPools(override val license: String) : Command, Licensed
