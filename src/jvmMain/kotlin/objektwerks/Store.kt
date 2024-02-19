@@ -137,4 +137,13 @@ class Store(config: StoreConfig) {
                 } get Accounts.id
             )
         }
+
+    fun updatePool(pool: Pool): Int =
+        transaction {
+            Pools.update({ Pools.id eq pool.id }) {
+                it[name] = pool.name
+                it[volume] = pool.volume
+                it[uom] = pool.uom
+            }
+        }
 }
