@@ -35,4 +35,12 @@ class Handler(private val store: Store) {
             { PoolsListed(it) },
             { Fault(it.message ?: "List pools failed!") }
         )
+
+    private fun addPool(pool: Pool): Event =
+        runCatching {
+            store.addPool(pool)
+        }.fold(
+            { PoolAdded(it) },
+            { Fault(it.message ?: "Add pool failed!") }
+        )
 }
