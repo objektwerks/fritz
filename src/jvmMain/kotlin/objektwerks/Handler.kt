@@ -25,7 +25,7 @@ class Handler(private val store: Store) {
             store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
-            { Fault("Loging failed: ${it.message}" ?: "Login failed!") }
+            { Fault(it.message ?: "Login failed!") }
         )
 
     private fun listPools(): Event =
