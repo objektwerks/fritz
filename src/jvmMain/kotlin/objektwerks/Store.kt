@@ -25,6 +25,15 @@ object Accounts : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
+object Pools : Table() {
+    val id: Column<Id> = long("id").autoIncrement()
+    val license: Column<License> = varchar("license", 36)
+    val name: Column<Name> = varchar("name", 128)
+    val volume: Column<Volume> = integer("volume")
+    val uom: Column<UoM> = varchar("created", 6)
+    override val primaryKey = PrimaryKey(id, name = "id")
+}
+
 class Store(private val config: StoreConfig) {
     init {
         Database.connect(
