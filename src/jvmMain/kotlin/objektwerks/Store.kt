@@ -44,7 +44,7 @@ class Store(private val config: StoreConfig) {
         )
         transaction {
             addLogger(StdOutSqlLogger)
-            SchemaUtils.create( Accounts )
+            SchemaUtils.create( Accounts, Pools )
         }
     }
 
