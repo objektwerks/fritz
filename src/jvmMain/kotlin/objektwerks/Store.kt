@@ -125,4 +125,16 @@ class Store(config: StoreConfig) {
                     )
                 }
         }
+
+    private fun addPool(pool: Pool): Pool =
+        transaction {
+            pool.copy(id =
+                Pools.insert {
+                    it[license] = pool.license
+                    it[name] = pool.name
+                    it[volume] = pool.volume
+                    it[uom] = pool.uom
+                } get Accounts.id
+            )
+        }
 }
