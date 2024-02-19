@@ -110,4 +110,19 @@ class Store(config: StoreConfig) {
                 it[email] = account.email
             }
         }
+
+    fun listPools(): List<Pool> =
+        transaction {
+            Pools
+                .selectAll()
+                .map { row ->
+                    Pool(
+                        id = row[Pools.id],
+                        license = row[Pools.license],
+                        name = row[Pools.name],
+                        volume = row[Pools.volume],
+                        uom = row[Pools.uom]
+                    )
+                }
+        }
 }
