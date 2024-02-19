@@ -6,7 +6,7 @@ class Handler(private val store: Store) {
             when(command) {
                 is Register -> register(command)
                 is Login -> login(command)
-                is ListPools -> TODO()
+                is ListPools -> listPools()
                 is AddPool -> TODO()
                 is UpdatePool -> TODO()
             }
