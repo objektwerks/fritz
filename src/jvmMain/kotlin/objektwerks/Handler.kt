@@ -7,7 +7,7 @@ class Handler(private val store: Store) {
                 is Register -> register(command)
                 is Login -> login(command)
                 is ListPools -> listPools()
-                is AddPool -> TODO()
+                is AddPool -> addPool(command.pool)
                 is UpdatePool -> TODO()
             }
         else Fault.build("Invalid Command", command)
