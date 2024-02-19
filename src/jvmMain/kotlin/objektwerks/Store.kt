@@ -34,7 +34,7 @@ object Pools : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
-class Store(private val config: StoreConfig) {
+class Store(config: StoreConfig) {
     init {
         Database.connect(
             url = config.url,
