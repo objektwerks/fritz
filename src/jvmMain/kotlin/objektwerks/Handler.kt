@@ -27,4 +27,12 @@ class Handler(private val store: Store) {
             { LoggedIn(it) },
             { Fault(it.message ?: "Login failed!") }
         )
+
+    private fun listPools(): Event =
+        runCatching {
+            store.listPools()
+        }.fold(
+            { PoolsListed(it) },
+            { Fault(it.message ?: "List pools failed!") }
+        )
 }
