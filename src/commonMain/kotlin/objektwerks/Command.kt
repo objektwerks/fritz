@@ -18,4 +18,4 @@ data class Login(val email: Email, val pin: Pin) : Command
 data class ListPools(override val license: String) : Command, Licensed
 
 @Serializable
-data class AddPool(override val license: String, val pool: Pool) : Command, Licensed
+data class SavePool(override val license: String, val pool: Pool) : Command, Licensed
