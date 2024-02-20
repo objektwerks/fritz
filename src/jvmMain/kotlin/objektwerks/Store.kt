@@ -120,7 +120,7 @@ class Store(config: StoreConfig) {
 
     fun updateAccount(account: Account): Int =
         transaction {
-            Accounts.update({ Accounts.id eq account.id }) {
+            Accounts.update( { Accounts.id eq account.id } ) {
                 it[email] = account.email
             }
         }
@@ -154,7 +154,7 @@ class Store(config: StoreConfig) {
 
     fun updatePool(pool: Pool): Int =
         transaction {
-            Pools.update({ Pools.id eq pool.id }) {
+            Pools.update( { Pools.id eq pool.id } ) {
                 it[name] = pool.name
                 it[volume] = pool.volume
                 it[uom] = pool.uom
@@ -195,5 +195,18 @@ class Store(config: StoreConfig) {
                     it[cleaned] = cleaning.cleaned
                 } get Accounts.id
             )
+        }
+
+    fun updateCleaning(cleaning: Cleaning): Int =
+        transaction {
+            Cleanings.update( { Pools.id eq cleaning.poolId } ) {
+                it[brush] = cleaning.brush
+                it[net] = cleaning.net
+                it[skimmerBasket] = cleaning.skimmerBasket
+                it[pumpBasket] = cleaning.pumpBasket
+                it[pumpFilter] = cleaning.pumpFilter
+                it[vacuum] = cleaning.vacuum
+                it[cleaned] = cleaning.cleaned
+            }
         }
 }
