@@ -14,9 +14,8 @@ class Handler(private val store: Store) {
 
     private fun nonFatal(throwable: Throwable): Boolean =
         when(throwable) {
+            is Error -> false
             is InterruptedException -> false
-            is LinkageError -> false
-            is VirtualMachineError -> false
             else -> true
         }
 
@@ -41,7 +40,7 @@ class Handler(private val store: Store) {
             store.listPools()
         }.fold(
             { PoolsListed(it) },
-            { Fault(it.message ?: "List pools failed!") }
+            { if( nonFatal(it) )  Fault(it.message ?: "List pools failed!") else throw it }
         )
 
     private fun addPool(pool: Pool): Event =
