@@ -34,6 +34,30 @@ object Pools : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
+/*
+    val poolId: Long = 0,
+    val brush: Boolean = true,
+    val net: Boolean = true,
+    val skimmerBasket: Boolean = true,
+    val pumpBasket: Boolean = false,
+    val pumpFilter: Boolean = false,
+    val vacuum: Boolean = false,
+    val cleaned: EpochSeconds
+ */
+
+object Cleanings : Table() {
+    val id: Column<Id> = long("id").autoIncrement()
+    val poolId: Column<Id> = long("poolId")
+    val brush: Column<Boolean> = bool("brush")
+    val net: Column<Boolean> = bool("net")
+    val skimmerBasket: Column<Boolean> = bool("skimmerBasket")
+    val pumpBasket: Column<Boolean> = bool("pumpBasket")
+    val pumpFilter: Column<Boolean> = bool("pumpFilter")
+    val vacuum: Column<Boolean> = bool("vacuum")
+    val cleaned: Column<EpochSeconds> = long("cleaned")
+    override val primaryKey = PrimaryKey(id, name = "id")
+}
+
 class Store(config: StoreConfig) {
     init {
         Database.connect(
