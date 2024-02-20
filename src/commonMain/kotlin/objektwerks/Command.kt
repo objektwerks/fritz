@@ -34,3 +34,6 @@ data class UpdateCleaning(override val license: String, val cleaning: Cleaning) 
 
 @Serializable
 data class ListChemicals(override val license: String, val poolId: Id) : Command, Licensed
+
+@Serializable
+data class AddChemical(override val license: String, val chemical: Chemical) : Command, Licensed
