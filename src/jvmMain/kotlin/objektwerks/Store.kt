@@ -163,7 +163,7 @@ class Store(config: StoreConfig) {
     fun listCleanings(poolId: Id): List<Cleaning> =
         transaction {
             Cleanings
-                .selectAll()
+                .selectAll() // where?
                 .map { row ->
                     Cleaning(
                         id = row[Cleanings.id],
@@ -174,8 +174,24 @@ class Store(config: StoreConfig) {
                         pumpBasket = row[Cleanings.pumpBasket],
                         pumpFilter = row[Cleanings.pumpFilter],
                         vacuum = row[Cleanings.vacuum],
-                        cleaned = row[Cleanings.cleaned],
+                        cleaned = row[Cleanings.cleaned]
                     )
                 }
+        }
+
+    fun addCleaning(cleaning: Cleaning): Cleaning =
+        transaction {
+            cleaning.copy(id =
+                Cleanings.insert {
+                    it[poolId] = cleaning.poolId
+                    it[brush] = cleaning.brush
+                    it[net] = cleaning.net
+                    it[skimmerBasket] = cleaning.skimmerBasket
+                    it[pumpBasket] = cleaning.pumpBasket
+                    it[pumpFilter] = cleaning.pumpFilter
+                    it[vacuum] = cleaning.vacuum
+                    it[cleaned] = cleaning.cleaned
+                } get Accounts.id
+            )
         }
 }
