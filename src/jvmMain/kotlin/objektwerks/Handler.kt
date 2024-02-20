@@ -12,6 +12,14 @@ class Handler(private val store: Store) {
             }
         else Fault.build("Invalid Command", command)
 
+    fun nonFatal(throwable: Throwable): Boolean =
+        when(throwable) {
+            is VirtualMachineError -> false
+            is InterruptedException -> false
+            is LinkageError -> false
+            else -> true
+        }
+
     private fun register(register: Register): Event =
         runCatching {
             store.register(register.email)
