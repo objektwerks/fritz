@@ -25,3 +25,6 @@ data class UpdatePool(override val license: String, val pool: Pool) : Command, L
 
 @Serializable
 data class ListCleanings(override val license: String) : Command, Licensed
+
+@Serializable
+data class AddCleaning(override val license: String, val cleaning: Cleaning) : Command, Licensed
