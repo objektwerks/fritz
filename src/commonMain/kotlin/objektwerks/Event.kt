@@ -30,6 +30,9 @@ data class CleaningAdded(val cleaning: Cleaning) : Event
 data class ChemicalsListed(val chemicals: List<Chemical>) : Event
 
 @Serializable
+data class ChemicalAdded(val chemical: Chemical) : Event
+
+@Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
         fun build(error: String, command: Command): Fault = Fault("$error: $command")
