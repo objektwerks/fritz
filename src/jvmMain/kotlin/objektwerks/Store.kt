@@ -247,4 +247,14 @@ class Store(config: StoreConfig,
                 } get Chemicals.id
             )
         }
+
+    fun updateChemical(chemical: Chemical): Int =
+        transaction {
+            Chemicals.update( { Pools.id eq chemical.poolId } ) {
+                it[additive] = chemical.additive
+                it[amount] = chemical.amount
+                it[uom] = chemical.uom
+                it[added] = chemical.added
+            }
+        }
 }
