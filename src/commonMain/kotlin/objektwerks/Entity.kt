@@ -70,7 +70,6 @@ data class Account(override val id: Id,
     override fun display() = email
     companion object {
         val comparator = compareBy<Account> { it.created }
-        fun empty(): Account = Account(0, "", "", "")
     }
 }
 
