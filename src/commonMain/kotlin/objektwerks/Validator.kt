@@ -49,6 +49,9 @@ fun Command.isValid(): Boolean =
         is ListCleanings -> isListCleanings()
         is AddCleaning -> isAddCleaning()
         is UpdateCleaning -> isUpdateCleaning()
+        is ListChemicals -> TODO()
+        is AddChemical -> TODO()
+        is UpdateChemical -> TODO()
     }
 
 fun Register.isRegister(): Boolean =
@@ -91,7 +94,10 @@ fun Event.isValid(): Boolean =
         is PoolAdded -> isPoolAdded()
         is CleaningsListed -> isCleaningsListed()
         is CleaningAdded -> isCleaingsAdded()
+        is ChemicalsListed -> TODO()
+        is ChemicalAdded -> TODO()
         is Fault -> isFault()
+
     }
 
 fun Registered.isRegistered(): Boolean =
