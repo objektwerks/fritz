@@ -48,7 +48,7 @@ object Cleanings : Table() {
 object Chemicals : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
-    val chemical: Column<Additive> = varchar("chemical")
+    val additive: Column<Additive> = varchar("additive", 16)
     val amount: Column<Amount> = double( "amount")
     val uom: Column<UoM> = varchar("uom", 6)
     val added: Column<EpochSeconds> = long("added")
