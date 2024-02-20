@@ -37,8 +37,8 @@ fun Pool.isPool(): Boolean =
 
 fun Command.isValid(): Boolean =
     when(this) {
-        is Register -> this.isRegister()
-        is Login -> this.isLogin()
+        is Register -> isRegister()
+        is Login -> isLogin()
         is ListPools -> TODO()
         is AddPool -> TODO()
         is UpdatePool -> TODO()
