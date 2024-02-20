@@ -36,7 +36,8 @@ fun Pool.isPool(): Boolean =
     uom.isUoM()
 
 fun Cleaning.isCleaning(): Boolean =
-    id.isId()
+    id.isId() &&
+    cleaned.isEpochSeconds()
 
 fun Command.isValid(): Boolean =
     when(this) {
