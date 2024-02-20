@@ -107,7 +107,7 @@ fun Event.isValid(): Boolean =
         is PoolAdded -> isPoolAdded()
         is CleaningsListed -> isCleaningsListed()
         is CleaningAdded -> isCleaingsAdded()
-        is ChemicalsListed -> TODO()
+        is ChemicalsListed -> isChemicalsListed()
         is ChemicalAdded -> TODO()
         is Fault -> isFault()
 
@@ -133,6 +133,9 @@ fun CleaningsListed.isCleaningsListed(): Boolean =
 
 fun CleaningAdded.isCleaingsAdded(): Boolean =
     cleaning.isCleaning()
+
+fun ChemicalsListed.isChemicalsListed(): Boolean =
+    chemicals.size >= 0
 
 fun Fault.isFault(): Boolean =
     error.isNotEmpty()
