@@ -47,7 +47,8 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
-class Store(config: StoreConfig) {
+class Store(config: StoreConfig,
+            cache: Set<License> = emptySet()) {
     init {
         Database.connect(
             url = config.url,
