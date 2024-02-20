@@ -7,15 +7,6 @@ import java.util.UUID
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-data class StoreConfig(val url: String,
-                       val driver: String,
-                       val user: String,
-                       val password: String) {
-    companion object {
-        fun load(resource: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(resource)
-    }
-}
-
 object Accounts : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val license: Column<License> = varchar("license", 36)
@@ -45,6 +36,15 @@ object Cleanings : Table() {
     val vacuum: Column<Boolean> = bool("vacuum")
     val cleaned: Column<EpochSeconds> = long("cleaned")
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
+}
+
+data class StoreConfig(val url: String,
+                       val driver: String,
+                       val user: String,
+                       val password: String) {
+    companion object {
+        fun load(resource: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(resource)
+    }
 }
 
 class Store(config: StoreConfig,
