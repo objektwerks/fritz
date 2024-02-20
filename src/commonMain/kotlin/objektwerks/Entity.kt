@@ -98,7 +98,7 @@ data class Cleaning(override val id: Id,
                           val pumpFilter: Boolean = false,
                           val vacuum: Boolean = false,
                           val cleaned: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
-    override fun display() = Instant.fromEpochSeconds(cleaned).toLocalDateTime(TimeZone.currentSystemDefault()).toString()
+    override fun display() = toLocalDateTime(cleaned)
     companion object {
         val comparator = compareBy<Cleaning> { it.cleaned }.reversed()
     }
