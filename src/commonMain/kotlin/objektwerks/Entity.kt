@@ -90,14 +90,14 @@ data class Pool(override val id: Id,
 
 @Serializable
 data class Cleaning(override val id: Id,
-                          val poolId: Long = 0,
-                          val brush: Boolean = true,
-                          val net: Boolean = true,
-                          val skimmerBasket: Boolean = true,
-                          val pumpBasket: Boolean = false,
-                          val pumpFilter: Boolean = false,
-                          val vacuum: Boolean = false,
-                          val cleaned: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
+                    val poolId: Long = 0,
+                    val brush: Boolean = true,
+                    val net: Boolean = true,
+                    val skimmerBasket: Boolean = true,
+                    val pumpBasket: Boolean = false,
+                    val pumpFilter: Boolean = false,
+                    val vacuum: Boolean = false,
+                    val cleaned: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
     override fun display() = toLocalDateTime(cleaned)
     companion object {
         val comparator = compareBy<Cleaning> { it.cleaned }.reversed()
