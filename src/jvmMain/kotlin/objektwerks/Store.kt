@@ -22,7 +22,7 @@ object Accounts : Table() {
     val pin: Column<Pin> = varchar("pin", 7)
     val email: Column<Email> = varchar("email", 128)
     val created: Column<EpochSeconds> = long("created")
-    override val primaryKey = PrimaryKey(id, name = "id")
+    override val primaryKey = PrimaryKey(id, name = "accountPk")
 }
 
 object Pools : Table() {
@@ -31,7 +31,7 @@ object Pools : Table() {
     val name: Column<Name> = varchar("name", 128)
     val volume: Column<Volume> = integer("volume")
     val uom: Column<UoM> = varchar("uom", 6)
-    override val primaryKey = PrimaryKey(id, name = "id")
+    override val primaryKey = PrimaryKey(id, name = "poolPk")
 }
 
 object Cleanings : Table() {
@@ -44,7 +44,7 @@ object Cleanings : Table() {
     val pumpFilter: Column<Boolean> = bool("pumpFilter")
     val vacuum: Column<Boolean> = bool("vacuum")
     val cleaned: Column<EpochSeconds> = long("cleaned")
-    override val primaryKey = PrimaryKey(id, name = "id")
+    override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
 class Store(config: StoreConfig,
