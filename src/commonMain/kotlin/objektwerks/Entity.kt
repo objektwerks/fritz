@@ -110,7 +110,7 @@ data class Chemical(override val id: Id = 0,
                     val poolId: Id = 0,
                     val chemical: Additive = TypeOfChemical.LiquidChlorine.toString(),
                     val amount: Amount = 1.0,
-                    val unit: UoM = UnitOfMeasure.gl.toString(),
+                    val uom: UoM = UnitOfMeasure.gl.toString(),
                     val added: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
     override fun display() = toLocalDateTime(added)
     companion object {
