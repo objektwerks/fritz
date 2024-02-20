@@ -14,9 +14,9 @@ class Handler(private val store: Store) {
 
     private fun nonFatal(throwable: Throwable): Boolean =
         when(throwable) {
-            is VirtualMachineError -> false
             is InterruptedException -> false
             is LinkageError -> false
+            is VirtualMachineError -> false
             else -> true
         }
 
@@ -33,7 +33,7 @@ class Handler(private val store: Store) {
             store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
-            { Fault(it.message ?: "Login failed!") }
+            { if( nonFatal(it) )  Fault(it.message ?: "Login failed!") else throw it }
         )
 
     private fun listPools(): Event =
