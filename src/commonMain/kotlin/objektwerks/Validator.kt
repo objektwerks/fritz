@@ -39,7 +39,7 @@ fun Command.isValid(): Boolean =
     when(this) {
         is Register -> isRegister()
         is Login -> isLogin()
-        is ListPools -> TODO()
+        is ListPools -> isListPools()
         is AddPool -> TODO()
         is UpdatePool -> TODO()
     }
@@ -50,6 +50,9 @@ fun Register.isRegister(): Boolean =
 fun Login.isLogin(): Boolean =
     email.isEmail() &&
     pin.isPin()
+
+fun ListPools.isListPools(): Boolean =
+    license.isLicense()
 
 fun Event.isValid(): Boolean =
     when(this) {
