@@ -5,7 +5,6 @@ import com.sksamuel.hoplite.ConfigLoader
 import java.util.UUID
 
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 
 data class StoreConfig(val url: String,
