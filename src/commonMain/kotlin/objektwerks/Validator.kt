@@ -39,6 +39,10 @@ fun Cleaning.isCleaning(): Boolean =
     id.isId() &&
     cleaned.isEpochSeconds()
 
+fun Chemical.isChemical(): Boolean =
+    id.isId() &&
+    added.isEpochSeconds() // TODO!
+
 fun Command.isValid(): Boolean =
     when(this) {
         is Register -> isRegister()
@@ -106,9 +110,9 @@ fun Event.isValid(): Boolean =
         is PoolsListed -> isPoolsListed()
         is PoolAdded -> isPoolAdded()
         is CleaningsListed -> isCleaningsListed()
-        is CleaningAdded -> isCleaingsAdded()
+        is CleaningAdded -> isCleaingAdded()
         is ChemicalsListed -> isChemicalsListed()
-        is ChemicalAdded -> TODO()
+        is ChemicalAdded -> isChemicalAdded()
         is Fault -> isFault()
 
     }
@@ -131,11 +135,14 @@ fun PoolAdded.isPoolAdded(): Boolean =
 fun CleaningsListed.isCleaningsListed(): Boolean =
     cleanings.size >= 0
 
-fun CleaningAdded.isCleaingsAdded(): Boolean =
+fun CleaningAdded.isCleaingAdded(): Boolean =
     cleaning.isCleaning()
 
 fun ChemicalsListed.isChemicalsListed(): Boolean =
     chemicals.size >= 0
+
+fun ChemicalAdded.isChemicalAdded(): Boolean =
+    chemical.isChemical()
 
 fun Fault.isFault(): Boolean =
     error.isNotEmpty()
