@@ -61,6 +61,8 @@ typealias Email = String
 typealias Name = String
 typealias Volume = Int
 typealias UoM = String
+typealias Additive = String
+typealias Amount = Double
 typealias EpochSeconds = Long
 
 @Serializable
@@ -100,5 +102,18 @@ data class Cleaning(override val id: Id = 0,
     override fun display() = toLocalDateTime(cleaned)
     companion object {
         val comparator = compareBy<Cleaning> { it.cleaned }.reversed()
+    }
+}
+
+@Serializable
+data class Chemical(override val id: Id = 0,
+                    val poolId: Id = 0,
+                    val chemical: Additive = TypeOfChemical.LiquidChlorine.toString(),
+                    val amount: Amount = 1.0,
+                    val unit: UoM = UnitOfMeasure.gl.toString(),
+                    val added: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
+    override fun display() = toLocalDateTime(added)
+    companion object {
+        val comparator = compareBy<Chemical> { it.added }.reversed()
     }
 }
