@@ -37,3 +37,6 @@ data class ListChemicals(override val license: String, val poolId: Id) : Command
 
 @Serializable
 data class AddChemical(override val license: String, val chemical: Chemical) : Command, Licensed
+
+@Serializable
+data class UpdateChemical(override val license: String, val chemical: Chemical) : Command, Licensed
