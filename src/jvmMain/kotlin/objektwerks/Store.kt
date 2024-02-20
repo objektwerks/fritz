@@ -157,7 +157,7 @@ class Store(config: StoreConfig,
                     it[name] = pool.name
                     it[volume] = pool.volume
                     it[uom] = pool.uom
-                } get Accounts.id
+                } get Pools.id
             )
         }
 
@@ -202,7 +202,7 @@ class Store(config: StoreConfig,
                     it[pumpFilter] = cleaning.pumpFilter
                     it[vacuum] = cleaning.vacuum
                     it[cleaned] = cleaning.cleaned
-                } get Accounts.id
+                } get Cleanings.id
             )
         }
 
@@ -233,5 +233,18 @@ class Store(config: StoreConfig,
                         added = row[Chemicals.added]
                     )
                 }
+        }
+
+    fun addChemical(chemical: Chemical): Chemical =
+        transaction {
+            chemical.copy(id =
+                Chemicals.insert {
+                    it[poolId] = chemical.poolId
+                    it[additive] = chemical.additive
+                    it[amount] = chemical.amount
+                    it[uom] = chemical.uom
+                    it[added] = chemical.added
+                } get Chemicals.id
+            )
         }
 }
