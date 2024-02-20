@@ -72,7 +72,7 @@ fun Event.isValid(): Boolean =
         is Updated -> isUpdated()
         is PoolsListed -> isPoolsListed()
         is PoolAdded -> isPoolAdded()
-        is CleaningsListed -> TODO()
+        is CleaningsListed -> isCleaningsListed()
         is CleaningAdded -> TODO()
         is Fault -> isFault()
     }
@@ -91,6 +91,9 @@ fun PoolsListed.isPoolsListed(): Boolean =
 
 fun PoolAdded.isPoolAdded(): Boolean =
     pool.isPool()
+
+fun CleaningsListed.isCleaningsListed(): Boolean =
+    cleanings.size >= 0
 
 fun Fault.isFault(): Boolean =
     error.isNotEmpty()
