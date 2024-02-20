@@ -34,17 +34,6 @@ object Pools : Table() {
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
-/*
-    val poolId: Long = 0,
-    val brush: Boolean = true,
-    val net: Boolean = true,
-    val skimmerBasket: Boolean = true,
-    val pumpBasket: Boolean = false,
-    val pumpFilter: Boolean = false,
-    val vacuum: Boolean = false,
-    val cleaned: EpochSeconds
- */
-
 object Cleanings : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
@@ -169,5 +158,24 @@ class Store(config: StoreConfig) {
                 it[volume] = pool.volume
                 it[uom] = pool.uom
             }
+        }
+
+    fun listCleanings(poolId: Id): List<Cleaning> =
+        transaction {
+            Cleanings
+                .selectAll()
+                .map { row ->
+                    Cleaning(
+                        id = row[Cleanings.id],
+                        poolId = row[Cleanings.poolId],
+                        brush = row[Cleanings.brush],
+                        net = row[Cleanings.net],
+                        skimmerBasket = row[Cleanings.skimmerBasket],
+                        pumpBasket = row[Cleanings.pumpBasket],
+                        pumpFilter = row[Cleanings.pumpFilter],
+                        vacuum = row[Cleanings.vacuum],
+                        cleaned = row[Cleanings.cleaned],
+                    )
+                }
         }
 }
