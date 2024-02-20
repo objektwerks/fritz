@@ -53,12 +53,12 @@ fun Login.isLogin(): Boolean =
 
 fun Event.isValid(): Boolean =
     when(this) {
-        is Registered -> this.isRegistered()
-        is LoggedIn -> this.isLoggedIn()
-        is Updated -> this.isUpdated()
-        is PoolsListed -> this.isPoolsListed()
-        is PoolAdded -> this.isPoolAdded()
-        is Fault -> this.isFault()
+        is Registered -> isRegistered()
+        is LoggedIn -> isLoggedIn()
+        is Updated -> isUpdated()
+        is PoolsListed -> isPoolsListed()
+        is PoolAdded -> isPoolAdded()
+        is Fault -> isFault()
     }
 
 fun Registered.isRegistered(): Boolean =
