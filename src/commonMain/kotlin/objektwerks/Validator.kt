@@ -57,7 +57,7 @@ fun Event.isValid(): Boolean =
         is LoggedIn -> this.isLoggedIn()
         is Updated -> this.isUpdated()
         is PoolsListed -> this.isPoolsListed()
-        is PoolAdded -> TODO()
+        is PoolAdded -> this.isPoolAdded()
         is Fault -> this.isFault()
     }
 
@@ -72,6 +72,9 @@ fun Updated.isUpdated(): Boolean =
 
 fun PoolsListed.isPoolsListed(): Boolean =
     pools.size >= 0
+
+fun PoolAdded.isPoolAdded(): Boolean =
+    pool.isPool()
 
 fun Fault.isFault(): Boolean =
     error.isNotEmpty()
