@@ -46,7 +46,7 @@ fun Command.isValid(): Boolean =
         is ListPools -> isListPools()
         is AddPool -> isAddPool()
         is UpdatePool -> isUpdatePool()
-        is ListCleanings -> TODO()
+        is ListCleanings -> isListCleanings()
         is AddCleaning -> TODO()
         is UpdateCleaning -> TODO()
     }
@@ -68,6 +68,9 @@ fun AddPool.isAddPool(): Boolean =
 fun UpdatePool.isUpdatePool(): Boolean =
     license.isLicense() &&
     pool.id >= 1
+
+fun ListCleanings.isListCleanings(): Boolean =
+    license.isLicense()
 
 fun Event.isValid(): Boolean =
     when(this) {
