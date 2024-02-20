@@ -12,7 +12,7 @@ class Handler(private val store: Store) {
             }
         else Fault.build("Invalid Command", command)
 
-    fun nonFatal(throwable: Throwable): Boolean =
+    private fun nonFatal(throwable: Throwable): Boolean =
         when(throwable) {
             is VirtualMachineError -> false
             is InterruptedException -> false
@@ -25,7 +25,7 @@ class Handler(private val store: Store) {
             store.register(register.email)
         }.fold(
             { Registered(it) },
-            { Fault(it.message ?: "Register failed!") }
+            { if( nonFatal(it) ) Fault(it.message ?: "Register failed!") else throw it }
         )
 
     private fun login(login: Login): Event =
