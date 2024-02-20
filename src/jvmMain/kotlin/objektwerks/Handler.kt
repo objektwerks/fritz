@@ -56,6 +56,6 @@ class Handler(private val store: Store) {
             store.updatePool(pool)
         }.fold(
             { Updated(it) },
-            { Fault(it.message ?: "Update pool failed!") }
+            { if( nonFatal(it) )  Fault(it.message ?: "Update pool failed!") else throw it }
         )
 }
