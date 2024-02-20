@@ -38,13 +38,6 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
-/*
-    val chemical: Additive = TypeOfChemical.LiquidChlorine.toString(),
-    val amount: Amount = 1.0,
-    val uom: UoM = UnitOfMeasure.gl.toString(),
-    val added: EpochSeconds
- */
-
 object Chemicals : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
@@ -224,5 +217,21 @@ class Store(config: StoreConfig,
                 it[vacuum] = cleaning.vacuum
                 it[cleaned] = cleaning.cleaned
             }
+        }
+
+    fun listChemicals(): List<Chemical> =
+        transaction {
+            Chemicals
+                .selectAll()
+                .map { row ->
+                    Chemical(
+                        id = row[Chemicals.id],
+                        poolId = row[Chemicals.poolId],
+                        additive = row[Chemicals.additive],
+                        amount = row[Chemicals.amount],
+                        uom = row[Chemicals.uom],
+                        added = row[Chemicals.added]
+                    )
+                }
         }
 }
