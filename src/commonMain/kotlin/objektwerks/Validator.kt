@@ -39,6 +39,9 @@ fun Command.isValid(): Boolean =
     when(this) {
         is Register -> this.isValid()
         is Login -> this.isValid()
+        is AddPool -> TODO()
+        is ListPools -> TODO()
+        is UpdatePool -> TODO()
     }
 
 fun Register.isValid(): Boolean =
@@ -53,6 +56,9 @@ fun Event.isValid(): Boolean =
         is Registered -> this.isValid()
         is LoggedIn -> this.isValid()
         is Fault -> this.isValid()
+        is PoolAdded -> TODO()
+        is PoolsListed -> TODO()
+        is Updated -> TODO()
     }
 
 fun Registered.isValid(): Boolean =
