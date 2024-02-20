@@ -10,12 +10,12 @@ class HandlerTest {
         val register = Register("my@email.com")
         val registered = handler.handle(register) as Registered
         println(registered)
-        assert( registered.account.isValid() )
+        assert( registered.account.isAccount() )
 
         val account = registered.account
         val login = Login(account.email, account.pin)
         val loggedIn = handler.handle(login) as LoggedIn
-        assert( loggedIn.account.isValid() )
+        assert( loggedIn.account.isAccount() )
         assert( loggedIn.account == registered.account )
     }
 }
