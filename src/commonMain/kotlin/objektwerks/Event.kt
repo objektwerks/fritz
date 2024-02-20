@@ -24,6 +24,9 @@ data class PoolAdded(val pool: Pool) : Event
 data class CleaningsListed(val cleanings: List<Cleaning>) : Event
 
 @Serializable
+data class CleaningAdded(val cleaning: Cleaning) : Event
+
+@Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
         fun build(error: String, command: Command): Fault = Fault("$error: $command")
