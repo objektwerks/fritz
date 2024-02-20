@@ -45,7 +45,7 @@ fun Cleaning.isCleaning(): Boolean =
 fun Chemical.isChemical(): Boolean =
     id.isId() &&
     poolId > 0 &&
-    chemical.isAdditive() &&
+    additive.isAdditive() &&
     amount > 0.00 &&
     uom.isUoM() &&
     added.isEpochSeconds()

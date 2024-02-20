@@ -38,6 +38,22 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
+/*
+    val chemical: Additive = TypeOfChemical.LiquidChlorine.toString(),
+    val amount: Amount = 1.0,
+    val uom: UoM = UnitOfMeasure.gl.toString(),
+    val added: EpochSeconds
+ */
+
+object Chemicals : Table() {
+    val id: Column<Id> = long("id").autoIncrement()
+    val poolId: Column<Id> = long("poolId").references(Pools.id)
+    val chemical: Column<Additive> = varchar("chemical")
+    val amount: Column<Amount> = double( "amount")
+    val uom: Column<UoM> = varchar("uom", 6)
+    val added: Column<EpochSeconds> = long("added")
+}
+
 data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
