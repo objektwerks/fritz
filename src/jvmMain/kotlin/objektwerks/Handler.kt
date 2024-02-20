@@ -48,7 +48,7 @@ class Handler(private val store: Store) {
             store.addPool(pool)
         }.fold(
             { PoolAdded(it) },
-            { Fault(it.message ?: "Add pool failed!") }
+            { if( nonFatal(it) )  Fault(it.message ?: "Add pool failed!") else throw it }
         )
 
     private fun updatePool(pool: Pool): Event =
