@@ -28,3 +28,6 @@ data class ListCleanings(override val license: String) : Command, Licensed
 
 @Serializable
 data class AddCleaning(override val license: String, val cleaning: Cleaning) : Command, Licensed
+
+@Serializable
+data class UpdateCleaning(override val license: String, val cleaning: Cleaning) : Command, Licensed
