@@ -76,20 +76,19 @@ data class Account(override val id: Id,
 }
 
 @Serializable
-data class Pool(override val id: Id,
-                val license: License,
-                val name: Name,
-                val volume: Volume,
+data class Pool(override val id: Id = 0,
+                val license: License = "",
+                val name: Name = "",
+                val volume: Volume = 100,
                 val uom: UoM = UnitOfMeasure.gl.toString()) : Entity {
     override fun display() = name
     companion object {
         val comparator = compareBy<Pool> { it.name }
-        fun empty(): Pool = Pool(0, "", "", 100)
     }
 }
 
 @Serializable
-data class Cleaning(override val id: Id,
+data class Cleaning(override val id: Id = 0,
                     val poolId: Long = 0,
                     val brush: Boolean = true,
                     val net: Boolean = true,
