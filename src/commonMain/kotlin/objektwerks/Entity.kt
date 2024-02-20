@@ -1,6 +1,6 @@
 package objektwerks
 
-import kotlinx.datetime.Clock
+import kotlinx.datetime.*
 import kotlinx.serialization.Serializable
 
 enum class UnitOfMeasure {
@@ -84,4 +84,17 @@ data class Pool(override val id: Id,
         val comparator = compareBy<Pool> { it.name }
         fun empty(): Pool = Pool(0, "", "", 100)
     }
+}
+
+@Serializable
+data class Cleaning(override val id: Id,
+                          val poolId: Long = 0,
+                          val brush: Boolean = true,
+                          val net: Boolean = true,
+                          val skimmerBasket: Boolean = true,
+                          val pumpBasket: Boolean = false,
+                          val pumpFilter: Boolean = false,
+                          val vacuum: Boolean = false,
+                          val cleaned: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
+    override fun display() = Instant.fromEpochSeconds(cleaned).toLocalDateTime(TimeZone.currentSystemDefault()).toString()
 }
