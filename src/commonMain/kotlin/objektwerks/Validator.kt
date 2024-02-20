@@ -16,7 +16,10 @@ fun Volume.isVolume(): Boolean =
     this >= 100
 
 fun UoM.isUoM(): Boolean =
-    this.isNotEmpty()
+    isNotEmpty()
+
+fun Additive.isAdditive(): Boolean =
+    isNotEmpty()
 
 fun EpochSeconds.isEpochSeconds(): Boolean =
     this > 0
@@ -41,7 +44,11 @@ fun Cleaning.isCleaning(): Boolean =
 
 fun Chemical.isChemical(): Boolean =
     id.isId() &&
-    added.isEpochSeconds() // TODO!
+    poolId > 0 &&
+    chemical.isAdditive() &&
+    amount > 0.00 &&
+    uom.isUoM() &&
+    added.isEpochSeconds()
 
 fun Command.isValid(): Boolean =
     when(this) {
