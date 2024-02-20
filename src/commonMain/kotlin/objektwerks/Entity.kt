@@ -50,6 +50,8 @@ enum class TypeOfChemical(val display: String) {
 sealed interface Entity {
     val id: Id
     fun display(): String
+    fun toLocalDateTime(epochSeconds: EpochSeconds): String =
+        Instant.fromEpochSeconds(epochSeconds).toLocalDateTime(TimeZone.currentSystemDefault()).toString()
 }
 
 typealias Id = Long
