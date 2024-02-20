@@ -10,7 +10,7 @@ class Handler(private val store: Store) {
                 is AddPool -> addPool(command.pool)
                 is UpdatePool -> updatePool(command.pool)
                 is ListCleanings -> listCleanings(command.poolId)
-                is AddCleaning -> TODO()
+                is AddCleaning -> addCleaning(command.cleaning)
                 is UpdateCleaning -> TODO()
             }
         else Fault.build("Invalid Command", command)
@@ -68,5 +68,13 @@ class Handler(private val store: Store) {
         }.fold(
             { CleaningsListed(it) },
             { if( nonFatal(it) )  Fault(it.message ?: "List cleanings failed!") else throw it }
+        )
+
+    private fun addCleaning(cleaning: Cleaning): Event =
+        runCatching {
+            store.addCleaning(cleaning)
+        }.fold(
+            { CleaningAdded(it) },
+            { if( nonFatal(it) )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 }
