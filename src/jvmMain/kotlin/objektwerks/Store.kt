@@ -30,7 +30,7 @@ object Pools : Table() {
     val license: Column<License> = varchar("license", 36)
     val name: Column<Name> = varchar("name", 128)
     val volume: Column<Volume> = integer("volume")
-    val uom: Column<UoM> = varchar("created", 6)
+    val uom: Column<UoM> = varchar("uom", 6)
     override val primaryKey = PrimaryKey(id, name = "id")
 }
 
