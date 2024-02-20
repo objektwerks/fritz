@@ -47,7 +47,7 @@ object Pools : Table() {
 
 object Cleanings : Table() {
     val id: Column<Id> = long("id").autoIncrement()
-    val poolId: Column<Id> = long("poolId")
+    val poolId: Column<Id> = long("poolId").references(Pools.id)
     val brush: Column<Boolean> = bool("brush")
     val net: Column<Boolean> = bool("net")
     val skimmerBasket: Column<Boolean> = bool("skimmerBasket")
