@@ -219,10 +219,11 @@ class Store(config: StoreConfig,
             }
         }
 
-    fun listChemicals(): List<Chemical> =
+    fun listChemicals(poolId: Id): List<Chemical> =
         transaction {
             Chemicals
                 .selectAll()
+                .where { Pools.id eq poolId }
                 .map { row ->
                     Chemical(
                         id = row[Chemicals.id],
