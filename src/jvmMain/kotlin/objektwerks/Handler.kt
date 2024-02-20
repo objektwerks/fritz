@@ -12,7 +12,7 @@ class Handler(private val store: Store) {
                 is ListCleanings -> listCleanings(command.poolId)
                 is AddCleaning -> addCleaning(command.cleaning)
                 is UpdateCleaning -> updateCleaning(command.cleaning)
-                is ListChemicals -> TODO()
+                is ListChemicals -> listChemicals(command.poolId)
                 is AddChemical -> TODO()
                 is UpdateChemical -> TODO()
             }
@@ -87,5 +87,13 @@ class Handler(private val store: Store) {
         }.fold(
             { Updated(it) },
             { if( nonFatal(it) )  Fault(it.message ?: "Update cleaning failed!") else throw it }
+        )
+
+    private fun listChemicals(poolId: Id): Event =
+        runCatching {
+            store.listChemicals(poolId)
+        }.fold(
+            { ChemicalsListed(it) },
+            { if( nonFatal(it) )  Fault(it.message ?: "List chemicals failed!") else throw it }
         )
 }
