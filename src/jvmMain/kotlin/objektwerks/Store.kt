@@ -67,7 +67,7 @@ class Store(config: StoreConfig,
         )
         transaction {
             addLogger(StdOutSqlLogger)
-            SchemaUtils.create( Accounts, Pools )
+            SchemaUtils.create( Accounts, Pools, Cleanings, Chemicals )
         }
     }
 
