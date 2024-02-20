@@ -35,6 +35,9 @@ fun Pool.isPool(): Boolean =
     volume.isVolume() &&
     uom.isUoM()
 
+fun Cleaning.isCleaning(): Boolean =
+    id.isId()
+
 fun Command.isValid(): Boolean =
     when(this) {
         is Register -> isRegister()
@@ -73,7 +76,7 @@ fun Event.isValid(): Boolean =
         is PoolsListed -> isPoolsListed()
         is PoolAdded -> isPoolAdded()
         is CleaningsListed -> isCleaningsListed()
-        is CleaningAdded -> TODO()
+        is CleaningAdded -> isCleaingsAdded()
         is Fault -> isFault()
     }
 
@@ -94,6 +97,9 @@ fun PoolAdded.isPoolAdded(): Boolean =
 
 fun CleaningsListed.isCleaningsListed(): Boolean =
     cleanings.size >= 0
+
+fun CleaningAdded.isCleaingsAdded(): Boolean =
+    cleaning.isCleaning()
 
 fun Fault.isFault(): Boolean =
     error.isNotEmpty()
