@@ -122,6 +122,8 @@ data class Measurement(override val id: Id = 0,
     override fun display() = toLocalDateTime(measured)
     companion object {
         val comparator = compareBy<Measurement> { it.measured }.reversed()
+        val totalChlorineRange = IntRange(1, 5)
+
     }
 }
 
