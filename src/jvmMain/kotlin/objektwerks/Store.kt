@@ -259,6 +259,26 @@ class Store(config: StoreConfig,
                 }
         }
 
+    fun addMeasurement(measurement: Measurement): Measurement =
+        transaction {
+            measurement.copy(id =
+                Measurements.insert {
+                    it[poolId] = measurement.poolId
+                    it[totalChlorine] = measurement.totalChlorine
+                    it[freeChlorine] = measurement.freeChlorine
+                    it[combinedChlorine] = measurement.combinedChlorine
+                    it[ph] = measurement.ph
+                    it[calciumHardness] = measurement.calciumHardness
+                    it[totalAlkalinity] = measurement.totalAlkalinity
+                    it[cyanuricAcid] = measurement.cyanuricAcid
+                    it[totalBromine] = measurement.totalBromine
+                    it[salt] = measurement.salt
+                    it[temperature] = measurement.temperature
+                    it[measured] = measurement.measured
+                } get Chemicals.id
+            )
+        }
+
     fun listChemicals(poolId: Id): List<Chemical> =
         transaction {
             Chemicals
