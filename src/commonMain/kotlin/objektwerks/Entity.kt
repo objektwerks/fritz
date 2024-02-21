@@ -131,7 +131,7 @@ data class Measurement(override val id: Id = 0,
         val cyanuricAcidRange = IntRange(30, 100)
         val totalBromineRange = IntRange(2, 10)
         val saltRange = IntRange(2700, 3400)
-
+        val temperatureRange = IntRange(50, 100)
     }
 }
 
