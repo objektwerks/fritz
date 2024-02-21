@@ -129,6 +129,7 @@ data class Measurement(override val id: Id = 0,
         val calciumHardnessRange = IntRange(250, 500)
         val totalAlkalinityRange = IntRange(80, 120)
         val cyanuricAcidRange = IntRange(30, 100)
+        val totalBromineRange = IntRange(2, 10)
 
     }
 }
