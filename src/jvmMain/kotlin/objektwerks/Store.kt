@@ -38,22 +38,6 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
-/* Measurement
-   override val id: Id = 0,
-   val poolId: Id = 0,
-   val totalChlorine: TotalChlorine = 3,
-   val freeChlorine: FreeChlorine = 3,
-   val combinedChlorine: CombinedChlorine = 0.0,
-   val ph: Ph = 7.4,
-   val calciumHardness: CalciumHardness = 375,
-   val totalAlkalinity: TotalAlkalinity = 100,
-   val cyanuricAcid: CyanuricAcid = 50,
-   val totalBromine: TotalBromine = 5,
-   val salt: Salt = 3200,
-   val temperature: Temperature = 85,
-   val measured: EpochSeconds
- */
-
 object Measurements : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
@@ -249,6 +233,46 @@ class Store(config: StoreConfig,
                 it[vacuum] = cleaning.vacuum
                 it[cleaned] = cleaning.cleaned
             }
+        }
+
+    /* Measurement
+       override val id: Id = 0,
+       val poolId: Id = 0,
+       val totalChlorine: TotalChlorine = 3,
+       val freeChlorine: FreeChlorine = 3,
+       val combinedChlorine: CombinedChlorine = 0.0,
+       val ph: Ph = 7.4,
+       val calciumHardness: CalciumHardness = 375,
+       val totalAlkalinity: TotalAlkalinity = 100,
+       val cyanuricAcid: CyanuricAcid = 50,
+       val totalBromine: TotalBromine = 5,
+       val salt: Salt = 3200,
+       val temperature: Temperature = 85,
+       val measured: EpochSeconds
+     */
+
+    fun listMeasurements(poolId: Id): List<Measurement> =
+        transaction {
+            Measurements
+                .selectAll()
+                .where { Pools.id eq poolId }
+                .map { row ->
+                    Measurement(
+                        id = row[Measurements.id],
+                        poolId = row[Measurements.poolId],
+                        totalChlorine = row[Measurements.totalChlorine],
+                        freeChlorine = row[Measurements.freeChlorine],
+                        combinedChlorine = row[Measurements.combinedChlorine],
+                        ph = row[Measurements.ph],
+                        calciumHardness = row[Measurements.calciumHardness],
+                        totalAlkalinity = row[Measurements.totalAlkalinity],
+                        cyanuricAcid = row[Measurements.cyanuricAcid],
+                        totalBromine = row[Measurements.totalBromine],
+                        salt = row[Measurements.salt],
+                        temperature = row[Measurements.temperature],
+                        measured = row[Measurements.measured]
+                    )
+                }
         }
 
     fun listChemicals(poolId: Id): List<Chemical> =
