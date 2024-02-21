@@ -78,6 +78,9 @@ fun Command.isValid(): Boolean =
         is ListChemicals -> isListChemicals()
         is AddChemical -> isAddChemical()
         is UpdateChemical -> isUpdateChemical()
+        is ListMeasurements -> isListMeasurements()
+        is AddMeasurement -> isAddMeasurement()
+        is UpdateMeasurement -> isUpdateMeasurement()
     }
 
 fun Register.isRegister(): Boolean =
@@ -110,6 +113,19 @@ fun UpdateCleaning.isUpdateCleaning(): Boolean =
     license.isLicense() &&
     cleaning.id > 0 &&
     cleaning.poolId > 0
+
+fun ListMeasurements.isListMeasurements(): Boolean =
+    license.isLicense()
+
+fun AddMeasurement.isAddMeasurement(): Boolean =
+    license.isLicense() &&
+    measurement.id == 0L &&
+    measurement.poolId > 0
+
+fun UpdateMeasurement.isUpdateMeasurement(): Boolean =
+    license.isLicense() &&
+    measurement.id > 0 &&
+    measurement.poolId > 0
 
 fun ListChemicals.isListChemicals(): Boolean =
     license.isLicense()
