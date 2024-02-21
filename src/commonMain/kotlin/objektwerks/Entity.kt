@@ -106,6 +106,26 @@ data class Cleaning(override val id: Id = 0,
 }
 
 @Serializable
+data class Measurement(override val id: Id = 0,
+                       val poolId: Id = 0,
+                       val totalChlorine: Int = 3,
+                       val freeChlorine: Int = 3,
+                       val combinedChlorine: Double = 0.0,
+                       val ph: Double = 7.4,
+                       val calciumHardness: Int = 375,
+                       val totalAlkalinity: Int = 100,
+                       val cyanuricAcid: Int = 50,
+                       val totalBromine: Int = 5,
+                       val salt: Int = 3200,
+                       val temperature: Int = 85,
+                       val measured: Long) : Entity {
+    override fun display() = toLocalDateTime(measured)
+    companion object {
+        val comparator = compareBy<Measurement> { it.measured }.reversed()
+    }
+}
+
+@Serializable
 data class Chemical(override val id: Id = 0,
                     val poolId: Id = 0,
                     val additive: Additive = TypeOfChemical.LiquidChlorine.toString(),
