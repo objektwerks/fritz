@@ -123,6 +123,7 @@ data class Measurement(override val id: Id = 0,
     companion object {
         val comparator = compareBy<Measurement> { it.measured }.reversed()
         val totalChlorineRange = IntRange(1, 5)
+        val freeChlorineRange = IntRange(1, 5)
 
     }
 }
