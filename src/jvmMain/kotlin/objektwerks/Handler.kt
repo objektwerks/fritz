@@ -100,6 +100,14 @@ class Handler(private val store: Store) {
             { if( nonFatal(it) )  Fault(it.message ?: "List measurements failed!") else throw it }
         )
 
+    private fun addMeasurement(measurement: Measurement): Event =
+        runCatching {
+            store.addMeasurement(measurement)
+        }.fold(
+            { MeasurementAdded(it) },
+            { if( nonFatal(it) )  Fault(it.message ?: "Add measurement failed!") else throw it }
+        )
+
     private fun listChemicals(poolId: Id): Event =
         runCatching {
             store.listChemicals(poolId)
