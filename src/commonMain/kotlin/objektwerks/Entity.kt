@@ -71,7 +71,6 @@ typealias CyanuricAcid = Int
 typealias TotalBromine = Int
 typealias Salt = Int
 typealias Temperature = Int
-typealias Measured = Long
 typealias Additive = String
 typealias Amount = Double
 typealias EpochSeconds = Long
@@ -119,17 +118,17 @@ data class Cleaning(override val id: Id = 0,
 @Serializable
 data class Measurement(override val id: Id = 0,
                        val poolId: Id = 0,
-                       val totalChlorine: Int = 3,
-                       val freeChlorine: Int = 3,
-                       val combinedChlorine: Double = 0.0,
-                       val ph: Double = 7.4,
-                       val calciumHardness: Int = 375,
-                       val totalAlkalinity: Int = 100,
-                       val cyanuricAcid: Int = 50,
-                       val totalBromine: Int = 5,
-                       val salt: Int = 3200,
-                       val temperature: Int = 85,
-                       val measured: Long) : Entity {
+                       val totalChlorine: TotalChlorine = 3,
+                       val freeChlorine: FreeChlorine = 3,
+                       val combinedChlorine: CombinedChlorine = 0.0,
+                       val ph: Ph = 7.4,
+                       val calciumHardness: CalciumHardness = 375,
+                       val totalAlkalinity: TotalAlkalinity = 100,
+                       val cyanuricAcid: CyanuricAcid = 50,
+                       val totalBromine: TotalBromine = 5,
+                       val salt: Salt = 3200,
+                       val temperature: Temperature = 85,
+                       val measured: EpochSeconds) : Entity {
     override fun display() = toLocalDateTime(measured)
     companion object {
         val comparator = compareBy<Measurement> { it.measured }.reversed()
