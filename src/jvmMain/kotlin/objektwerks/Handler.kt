@@ -15,6 +15,9 @@ class Handler(private val store: Store) {
                 is ListChemicals -> listChemicals(command.poolId)
                 is AddChemical -> addChemical(command.chemical)
                 is UpdateChemical -> updateChemical(command.chemical)
+                is ListMeasurements -> TODO()
+                is AddMeasurement -> TODO()
+                is UpdateMeasurement -> TODO()
             }
         else Fault.build("Invalid Command", command)
 
