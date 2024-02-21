@@ -27,6 +27,12 @@ data class CleaningsListed(val cleanings: List<Cleaning>) : Event
 data class CleaningAdded(val cleaning: Cleaning) : Event
 
 @Serializable
+data class MeasurementsListed(val measurements: List<Measurement>) : Event
+
+@Serializable
+data class MeasurementAdded(val measurement: Measurement) : Event
+
+@Serializable
 data class ChemicalsListed(val chemicals: List<Chemical>) : Event
 
 @Serializable
