@@ -33,6 +33,15 @@ data class AddCleaning(override val license: String, val cleaning: Cleaning) : C
 data class UpdateCleaning(override val license: String, val cleaning: Cleaning) : Command, Licensed
 
 @Serializable
+data class ListMeasurements(override val license: String, val poolId: Id) : Command, Licensed
+
+@Serializable
+data class AddMeasurement(override val license: String, val measurement: Measurement) : Command, Licensed
+
+@Serializable
+data class UpdateMeasurement(override val license: String, val measurement: Measurement) : Command, Licensed
+
+@Serializable
 data class ListChemicals(override val license: String, val poolId: Id) : Command, Licensed
 
 @Serializable
