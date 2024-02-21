@@ -42,6 +42,21 @@ fun Cleaning.isCleaning(): Boolean =
     id.isId() &&
     cleaned.isEpochSeconds()
 
+fun Measurement.isMeasurement(): Boolean =
+    id >= 0 &&
+    poolId > 0 &&
+    Measurements.totalChlorineRange.contains(totalChlorine) &&
+    Measurements.freeChlorineRange.contains(freeChlorine) &&
+    Measurements.combinedChlorineRange.contains(combinedChlorine) &&
+    Measurements.phRange.contains(ph) &&
+    Measurements.calciumHardnessRange.contains(calciumHardness) &&
+    Measurements.totalAlkalinityRange.contains(totalAlkalinity) &&
+    Measurements.cyanuricAcidRange.contains(cyanuricAcid) &&
+    Measurements.totalBromineRange.contains(totalBromine) &&
+    Measurements.saltRange.contains(salt) &&
+    Measurements.temperatureRange.contains(temperature) &&
+    measured.isEpochSeconds()
+
 fun Chemical.isChemical(): Boolean =
     id.isId() &&
     poolId > 0 &&
