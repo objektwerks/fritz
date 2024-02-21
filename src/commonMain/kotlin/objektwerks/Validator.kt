@@ -45,16 +45,16 @@ fun Cleaning.isCleaning(): Boolean =
 fun Measurement.isMeasurement(): Boolean =
     id >= 0 &&
     poolId > 0 &&
-    Measurements.totalChlorineRange.contains(totalChlorine) &&
-    Measurements.freeChlorineRange.contains(freeChlorine) &&
-    Measurements.combinedChlorineRange.contains(combinedChlorine) &&
-    Measurements.phRange.contains(ph) &&
-    Measurements.calciumHardnessRange.contains(calciumHardness) &&
-    Measurements.totalAlkalinityRange.contains(totalAlkalinity) &&
-    Measurements.cyanuricAcidRange.contains(cyanuricAcid) &&
-    Measurements.totalBromineRange.contains(totalBromine) &&
-    Measurements.saltRange.contains(salt) &&
-    Measurements.temperatureRange.contains(temperature) &&
+    RangeOfMeasurement.totalChlorineRange.contains(totalChlorine) &&
+    RangeOfMeasurement.freeChlorineRange.contains(freeChlorine) &&
+    RangeOfMeasurement.combinedChlorineRange.contains(combinedChlorine) &&
+    RangeOfMeasurement.phRange.contains(ph) &&
+    RangeOfMeasurement.calciumHardnessRange.contains(calciumHardness) &&
+    RangeOfMeasurement.totalAlkalinityRange.contains(totalAlkalinity) &&
+    RangeOfMeasurement.cyanuricAcidRange.contains(cyanuricAcid) &&
+    RangeOfMeasurement.totalBromineRange.contains(totalBromine) &&
+    RangeOfMeasurement.saltRange.contains(salt) &&
+    RangeOfMeasurement.temperatureRange.contains(temperature) &&
     measured.isEpochSeconds()
 
 fun Chemical.isChemical(): Boolean =
