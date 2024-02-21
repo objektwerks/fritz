@@ -151,8 +151,9 @@ fun Event.isValid(): Boolean =
         is CleaningAdded -> isCleaingAdded()
         is ChemicalsListed -> isChemicalsListed()
         is ChemicalAdded -> isChemicalAdded()
+        is MeasurementsListed -> isMeasurementsListed()
+        is MeasurementAdded -> isMeasurementAdded()
         is Fault -> isFault()
-
     }
 
 fun Registered.isRegistered(): Boolean =
@@ -175,6 +176,12 @@ fun CleaningsListed.isCleaningsListed(): Boolean =
 
 fun CleaningAdded.isCleaingAdded(): Boolean =
     cleaning.isCleaning()
+
+fun MeasurementsListed.isMeasurementsListed(): Boolean =
+    measurements.size >= 0
+
+fun MeasurementAdded.isMeasurementAdded(): Boolean =
+    measurement.isMeasurement()
 
 fun ChemicalsListed.isChemicalsListed(): Boolean =
     chemicals.size >= 0
