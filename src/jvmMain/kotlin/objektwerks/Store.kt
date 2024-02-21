@@ -38,6 +38,38 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
+/* Measurement
+   override val id: Id = 0,
+   val poolId: Id = 0,
+   val totalChlorine: TotalChlorine = 3,
+   val freeChlorine: FreeChlorine = 3,
+   val combinedChlorine: CombinedChlorine = 0.0,
+   val ph: Ph = 7.4,
+   val calciumHardness: CalciumHardness = 375,
+   val totalAlkalinity: TotalAlkalinity = 100,
+   val cyanuricAcid: CyanuricAcid = 50,
+   val totalBromine: TotalBromine = 5,
+   val salt: Salt = 3200,
+   val temperature: Temperature = 85,
+   val measured: EpochSeconds
+ */
+
+object Measurements : Table() {
+    val id: Column<Id> = long("id").autoIncrement()
+    val poolId: Column<Id> = long("poolId").references(Pools.id)
+    val totalChlorine: Column<TotalChlorine> = integer("totalChlorine")
+    val freeChlorine: Column<FreeChlorine> = integer("freeChlorine")
+    val combinedChlorine: Column<CombinedChlorine> = double("combinedChlorine")
+    val ph: Column<Ph> = double("ph")
+    val calciumHardness: Column<CalciumHardness> = integer("calciumHardness")
+    val totalAlkalinity: Column<TotalAlkalinity> = integer("totalAlkalinity")
+    val cyanuricAcid: Column<CyanuricAcid> = integer("cyanuricAcid")
+    val totalBromine: Column<TotalBromine> = integer("totalBromine")
+    val salt: Column<Salt> = integer("salt")
+    val temperature: Column<Temperature> = integer("temperature")
+    val measured: Column<EpochSeconds> = long("measured")
+}
+
 object Chemicals : Table() {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
@@ -218,22 +250,6 @@ class Store(config: StoreConfig,
                 it[cleaned] = cleaning.cleaned
             }
         }
-
-    /* Measurement
-       override val id: Id = 0,
-       val poolId: Id = 0,
-       val totalChlorine: TotalChlorine = 3,
-       val freeChlorine: FreeChlorine = 3,
-       val combinedChlorine: CombinedChlorine = 0.0,
-       val ph: Ph = 7.4,
-       val calciumHardness: CalciumHardness = 375,
-       val totalAlkalinity: TotalAlkalinity = 100,
-       val cyanuricAcid: CyanuricAcid = 50,
-       val totalBromine: TotalBromine = 5,
-       val salt: Salt = 3200,
-       val temperature: Temperature = 85,
-       val measured: EpochSeconds
-     */
 
     fun listChemicals(poolId: Id): List<Chemical> =
         transaction {
