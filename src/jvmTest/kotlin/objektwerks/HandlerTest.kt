@@ -3,7 +3,8 @@ package objektwerks
 import org.junit.Test
 
 class HandlerTest {
-    @Test fun handle() {
+    @Test
+    fun handle() {
         val store = Store( StoreConfig.load("/store.yaml") )
         val handler = Handler(store)
 
