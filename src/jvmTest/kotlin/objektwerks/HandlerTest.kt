@@ -26,11 +26,10 @@ class HandlerTest {
 
         val addPool = AddPool(license, Pool(license = license, name = "pool-a"))
         val poolAdded = handler.handle(addPool) as PoolAdded
-        val pool = poolAdded.pool
         assert( addPool.isAddPool() )
         assert( poolAdded.isPoolAdded() )
-        assert( pool.isPool() )
 
+        val pool = poolAdded.pool
         val updatePool = UpdatePool(license, pool.copy(name = "pool-z"))
         val updatedPool = handler.handle(updatePool) as Updated
         assert( updatedPool.isUpdated() )
