@@ -127,22 +127,6 @@ class Store(config: StoreConfig,
                 .single()
         }
 
-
-    fun listAccounts(): List<Account> =
-        transaction {
-            Accounts
-                .selectAll()
-                .map { row ->
-                    Account(
-                        id = row[Accounts.id],
-                        license = row[Accounts.license],
-                        pin = row[Accounts.pin],
-                        email = row[Accounts.email],
-                        created = row[Accounts.created]
-                    )
-                }
-        }
-
     fun updateAccount(account: Account): Int =
         transaction {
             Accounts.update( { Accounts.id eq account.id } ) {
