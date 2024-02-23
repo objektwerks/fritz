@@ -50,6 +50,11 @@ class HandlerTest {
         val updatedCleaning = handler.handle(updateCleaning) as Updated
         assert( updatedCleaning.isUpdated() )
 
+        val listCleanings = ListCleanings(license, pool.id)
+        val cleaningsListed = handler.handle(listCleanings) as CleaningsListed
+        assert( cleaningsListed.isCleaningsListed() )
+        assert( cleaningsListed.cleanings.size == 1 )
+
         val measurement = Measurement(poolId = pool.id)
         val addMeasurement = AddMeasurement(license, measurement)
         val measurementAdded = handler.handle(addMeasurement) as MeasurementAdded
