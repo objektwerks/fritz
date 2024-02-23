@@ -40,11 +40,12 @@ fun Pool.isPool(): Boolean =
 
 fun Cleaning.isCleaning(): Boolean =
     id.isId() &&
+    poolId.isId() &&
     cleaned.isEpochSeconds()
 
 fun Measurement.isMeasurement(): Boolean =
     id.isId() &&
-    poolId > 0 &&
+    poolId.isId() &&
     RangeOfMeasurement.totalChlorineRange.contains(totalChlorine) &&
     RangeOfMeasurement.freeChlorineRange.contains(freeChlorine) &&
     RangeOfMeasurement.combinedChlorineRange.contains(combinedChlorine) &&
@@ -59,7 +60,7 @@ fun Measurement.isMeasurement(): Boolean =
 
 fun Chemical.isChemical(): Boolean =
     id.isId() &&
-    poolId > 0 &&
+    poolId.isId() &&
     additive.isAdditive() &&
     amount > 0.00 &&
     uom.isUoM() &&
