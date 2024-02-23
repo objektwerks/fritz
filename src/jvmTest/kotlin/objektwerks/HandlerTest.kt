@@ -34,6 +34,7 @@ class HandlerTest {
         val cleaning = Cleaning(poolId = pool.id)
         val addCleaning = AddCleaning(license, cleaning)
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
+        assert( addCleaning.isAddCleaning() )
         assert( cleaningAdded.isCleaingAdded() )
 
         val measurement = Measurement(poolId = pool.id)

@@ -108,12 +108,12 @@ fun ListCleanings.isListCleanings(): Boolean =
 fun AddCleaning.isAddCleaning(): Boolean =
     license.isLicense() &&
     cleaning.id == 0L &&
-    cleaning.poolId > 0
+    cleaning.poolId.isId()
 
 fun UpdateCleaning.isUpdateCleaning(): Boolean =
     license.isLicense() &&
-    cleaning.id > 0 &&
-    cleaning.poolId > 0
+    cleaning.id.isId() &&
+    cleaning.poolId.isId()
 
 fun ListMeasurements.isListMeasurements(): Boolean =
     license.isLicense()
@@ -121,12 +121,12 @@ fun ListMeasurements.isListMeasurements(): Boolean =
 fun AddMeasurement.isAddMeasurement(): Boolean =
     license.isLicense() &&
     measurement.id == 0L &&
-    measurement.poolId > 0
+    measurement.poolId.isId()
 
 fun UpdateMeasurement.isUpdateMeasurement(): Boolean =
     license.isLicense() &&
-    measurement.id > 0 &&
-    measurement.poolId > 0
+    measurement.id.isId() &&
+    measurement.poolId.isId()
 
 fun ListChemicals.isListChemicals(): Boolean =
     license.isLicense()
@@ -134,12 +134,12 @@ fun ListChemicals.isListChemicals(): Boolean =
 fun AddChemical.isAddChemical(): Boolean =
     license.isLicense() &&
     chemical.id == 0L &&
-    chemical.poolId > 0
+    chemical.poolId.isId()
 
 fun UpdateChemical.isUpdateChemical(): Boolean =
     license.isLicense() &&
-    chemical.id > 0 &&
-    chemical.poolId > 0
+    chemical.id.isId() &&
+    chemical.poolId.isId()
 
 fun Event.isValid(): Boolean =
     when(this) {
