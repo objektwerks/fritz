@@ -104,13 +104,6 @@ class Store(config: StoreConfig,
             )
         }
 
-    fun updateAccount(account: Account): Int =
-        transaction {
-            Accounts.update( { Accounts.id eq account.id } ) {
-                it[email] = account.email
-            }
-        }
-
     fun register(email: String): Account =
         registerAccount(
             Account(
