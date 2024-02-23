@@ -1,5 +1,6 @@
 package objektwerks
 
+import org.h2.command.dml.Update
 import org.junit.Test
 
 class HandlerTest {
@@ -70,10 +71,14 @@ class HandlerTest {
         assert( measurementsListed.isMeasurementsListed() )
         assert( measurementsListed.measurements.size == 1 )
 
-        val chemical = Chemical(poolId = pool.id)
-        val addChemical = AddChemical(license, chemical)
+        val addChemical = AddChemical(license, Chemical(poolId = pool.id))
         val chemicalAdded = handler.handle(addChemical) as ChemicalAdded
         assert( addChemical.isAddChemical() )
         assert( chemicalAdded.isChemicalAdded() )
+
+        val chemical = chemicalAdded.chemical
+        val updateChemical = UpdateChemical(license, chemical.copy(amount = 2.0))
+        val updatedChemical = handler.handle(updateChemical) as Updated
+        assert( updatedChemical.isUpdated() )
     }
 }
