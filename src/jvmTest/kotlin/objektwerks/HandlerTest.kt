@@ -32,19 +32,23 @@ class HandlerTest {
         assert( pool.isPool() )
 
         val updatePool = UpdatePool(license, pool.copy(name = "pool-z"))
-        val updated = handler.handle(updatePool) as Updated
-        assert( updated.isUpdated() )
+        val updatedPool = handler.handle(updatePool) as Updated
+        assert( updatedPool.isUpdated() )
 
         val listPools = ListPools(license)
         val poolsListed = handler.handle(listPools)as PoolsListed
         assert( poolsListed.isPoolsListed() )
         assert( poolsListed.pools.size == 1 )
 
-        val cleaning = Cleaning(poolId = pool.id)
-        val addCleaning = AddCleaning(license, cleaning)
+        val addCleaning = AddCleaning(license, Cleaning(poolId = pool.id))
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
         assert( addCleaning.isAddCleaning() )
         assert( cleaningAdded.isCleaingAdded() )
+
+        val cleaning = cleaningAdded.cleaning
+        val updateCleaning = UpdateCleaning(license, cleaning.copy(vacuum = true))
+        val updatedCleaning = handler.handle(updateCleaning) as Updated
+        assert( updatedCleaning.isUpdated() )
 
         val measurement = Measurement(poolId = pool.id)
         val addMeasurement = AddMeasurement(license, measurement)
