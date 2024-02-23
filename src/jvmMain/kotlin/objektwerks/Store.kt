@@ -74,6 +74,10 @@ data class StoreConfig(val url: String,
 
 class Store(config: StoreConfig,
             cache: Set<License> = emptySet()) {
+    companion object {
+        fun newLicense(): String = UUID.randomUUID().toString()
+    }
+
     init {
         Database.connect(
             url = config.url,
@@ -110,7 +114,7 @@ class Store(config: StoreConfig,
         registerAccount(
             Account(
                 id = 0,
-                license = UUID.randomUUID().toString(),
+                license = newLicense(),
                 pin = UUID.randomUUID().toString().substring(0, 7),
                 email = email
             )
