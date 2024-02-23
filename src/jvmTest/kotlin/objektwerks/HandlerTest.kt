@@ -20,7 +20,8 @@ class HandlerTest {
 
         val login = Login(account.email, account.pin)
         val loggedIn = handler.handle(login) as LoggedIn
-        assert( loggedIn.account.isAccount() )
+        assert( login.isLogin() )
+        assert( loggedIn.isLoggedIn() )
         assert( loggedIn.account == account )
 
         val addPool = AddPool(license, Pool(license = license, name = "pool-a"))
