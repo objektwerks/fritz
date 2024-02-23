@@ -31,6 +31,10 @@ class HandlerTest {
         assert( poolAdded.isPoolAdded() )
         assert( pool.isPool() )
 
+        val updatePool = UpdatePool(license, pool.copy(name = "pool-z"))
+        val updated = handler.handle(updatePool) as Updated
+        assert( updated.isUpdated() )
+
         val cleaning = Cleaning(poolId = pool.id)
         val addCleaning = AddCleaning(license, cleaning)
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
