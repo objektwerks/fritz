@@ -43,7 +43,7 @@ fun Cleaning.isCleaning(): Boolean =
     cleaned.isEpochSeconds()
 
 fun Measurement.isMeasurement(): Boolean =
-    id >= 0 &&
+    id.isId() &&
     poolId > 0 &&
     RangeOfMeasurement.totalChlorineRange.contains(totalChlorine) &&
     RangeOfMeasurement.freeChlorineRange.contains(freeChlorine) &&
