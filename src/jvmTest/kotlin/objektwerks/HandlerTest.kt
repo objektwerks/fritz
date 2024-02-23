@@ -10,7 +10,6 @@ class HandlerTest {
 
         val register = Register("my@email.com")
         val registered = handler.handle(register) as Registered
-        println(registered)
         assert( registered.account.isAccount() )
 
         val account = registered.account
