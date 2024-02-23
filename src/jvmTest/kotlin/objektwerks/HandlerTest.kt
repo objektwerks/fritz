@@ -14,6 +14,7 @@ class HandlerTest {
         assert( registered.account.isAccount() )
 
         val account = registered.account
+
         val login = Login(account.email, account.pin)
         val loggedIn = handler.handle(login) as LoggedIn
         assert( loggedIn.account.isAccount() )
