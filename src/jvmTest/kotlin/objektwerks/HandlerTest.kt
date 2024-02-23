@@ -46,6 +46,7 @@ class HandlerTest {
         val chemical = Chemical(poolId = pool.id)
         val addChemical = AddChemical(license, chemical)
         val chemicalAdded = handler.handle(addChemical) as ChemicalAdded
+        assert( addChemical.isAddChemical() )
         assert( chemicalAdded.isChemicalAdded() )
     }
 }
