@@ -141,7 +141,7 @@ data class Measurement(override val id: Id = 0,
                        val totalBromine: TotalBromine = 5,
                        val salt: Salt = 3200,
                        val temperature: Temperature = 85,
-                       val measured: EpochSeconds) : Entity {
+                       val measured: EpochSeconds = Clock.System.now().epochSeconds) : Entity {
     override fun display() = toLocalDateTime(measured)
     companion object {
         val comparator = compareBy<Measurement> { it.measured }.reversed()
