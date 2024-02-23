@@ -99,6 +99,12 @@ class Store(config: StoreConfig,
             )
         }
 
+    fun updateAccount(account: Account): Int =
+        transaction {
+            Accounts.update( { Accounts.id eq account.id } ) {
+                it[email] = account.email
+            }
+        }
 
     fun register(email: String): Account =
         registerAccount(
@@ -125,13 +131,6 @@ class Store(config: StoreConfig,
                     )
                 }
                 .single()
-        }
-
-    fun updateAccount(account: Account): Int =
-        transaction {
-            Accounts.update( { Accounts.id eq account.id } ) {
-                it[email] = account.email
-            }
         }
 
     fun listPools(): List<Pool> =
