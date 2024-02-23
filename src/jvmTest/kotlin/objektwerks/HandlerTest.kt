@@ -18,5 +18,11 @@ class HandlerTest {
         val loggedIn = handler.handle(login) as LoggedIn
         assert( loggedIn.account.isAccount() )
         assert( loggedIn.account == registered.account )
+
+        val license = account.license
+        val pool = Pool(license = license, name = "pool-a")
+        val addPool = AddPool(license, pool)
+        val poolAdded = handler.handle(addPool)
+        assert( poolAdded.isValid() )
     }
 }
