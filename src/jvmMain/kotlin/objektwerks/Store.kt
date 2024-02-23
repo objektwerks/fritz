@@ -76,6 +76,7 @@ class Store(config: StoreConfig,
             cache: Set<License> = emptySet()) {
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
+        fun newPin(): String = UUID.randomUUID().toString().substring(0, 7)
     }
 
     init {
@@ -115,7 +116,7 @@ class Store(config: StoreConfig,
             Account(
                 id = 0,
                 license = newLicense(),
-                pin = UUID.randomUUID().toString().substring(0, 7),
+                pin = newPin(),
                 email = email
             )
         )
