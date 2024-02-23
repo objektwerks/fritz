@@ -171,7 +171,7 @@ class Store(config: StoreConfig,
         transaction {
             Cleanings
                 .selectAll()
-                .where { Pools.id eq poolId }
+                .where { Cleanings.poolId eq poolId }
                 .map { row ->
                     Cleaning(
                         id = row[Cleanings.id],
@@ -220,7 +220,7 @@ class Store(config: StoreConfig,
         transaction {
             Measurements
                 .selectAll()
-                .where { Pools.id eq poolId }
+                .where { Measurements.poolId eq poolId }
                 .map { row ->
                     Measurement(
                         id = row[Measurements.id],
@@ -281,7 +281,7 @@ class Store(config: StoreConfig,
         transaction {
             Chemicals
                 .selectAll()
-                .where { Pools.id eq poolId }
+                .where { Chemicals.poolId eq poolId }
                 .map { row ->
                     Chemical(
                         id = row[Chemicals.id],
