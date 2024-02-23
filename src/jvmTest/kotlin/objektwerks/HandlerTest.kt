@@ -23,11 +23,16 @@ class HandlerTest {
         val addPool = AddPool(license, Pool(license = license, name = "pool-a"))
         val poolAdded = handler.handle(addPool) as PoolAdded
         val pool = poolAdded.pool
-        assert( poolAdded.isValid() )
+        assert( poolAdded.isPoolAdded() )
 
         val cleaning = Cleaning(poolId = pool.id)
         val addCleaning = AddCleaning(license, cleaning)
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
-        assert( cleaningAdded.isValid() )
+        assert( cleaningAdded.isCleaingAdded() )
+
+        val measurement = Measurement(poolId = pool.id)
+        val addMeasurement = AddMeasurement(license, measurement)
+        val measurementAdded = handler.handle(addMeasurement) as MeasurementAdded
+        assert( measurementAdded.isMeasurementAdded() )
     }
 }
