@@ -65,6 +65,11 @@ class HandlerTest {
         val updatedMeasurement = handler.handle(updateMeasurement) as Updated
         assert( updatedMeasurement.isUpdated() )
 
+        val listMeasurements = ListMeasurements(license, pool.id)
+        val measurementsListed = handler.handle(listMeasurements) as MeasurementsListed
+        assert( measurementsListed.isMeasurementsListed() )
+        assert( measurementsListed.measurements.size == 1 )
+
         val chemical = Chemical(poolId = pool.id)
         val addChemical = AddChemical(license, chemical)
         val chemicalAdded = handler.handle(addChemical) as ChemicalAdded
