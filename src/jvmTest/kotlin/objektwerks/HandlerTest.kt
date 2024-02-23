@@ -1,6 +1,5 @@
 package objektwerks
 
-import org.h2.command.dml.Update
 import org.junit.Test
 
 class HandlerTest {
