@@ -263,7 +263,7 @@ class Store(config: StoreConfig,
                     it[salt] = measurement.salt
                     it[temperature] = measurement.temperature
                     it[measured] = measurement.measured
-                } get Chemicals.id
+                } get Measurements.id
             )
         }
 
