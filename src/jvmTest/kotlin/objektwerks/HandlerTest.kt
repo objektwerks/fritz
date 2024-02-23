@@ -80,5 +80,10 @@ class HandlerTest {
         val updateChemical = UpdateChemical(license, chemical.copy(amount = 2.0))
         val updatedChemical = handler.handle(updateChemical) as Updated
         assert( updatedChemical.isUpdated() )
+
+        val listChemicals = ListChemicals(license, pool.id)
+        val chemicalsListed = handler.handle(listChemicals) as ChemicalsListed
+        assert( chemicalsListed.isChemicalsListed() )
+        assert( chemicalsListed.chemicals.size == 1 )
     }
 }
