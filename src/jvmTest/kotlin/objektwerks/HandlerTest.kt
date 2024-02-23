@@ -22,9 +22,9 @@ class HandlerTest {
         val license = account.license
         val addPool = AddPool(license, Pool(license = license, name = "pool-a"))
         val poolAdded = handler.handle(addPool) as PoolAdded
+        val pool = poolAdded.pool
         assert( poolAdded.isValid() )
 
-        val pool = poolAdded.pool
         val cleaning = Cleaning(poolId = pool.id)
         val addCleaning = AddCleaning(license, cleaning)
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
