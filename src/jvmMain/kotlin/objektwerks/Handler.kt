@@ -21,8 +21,8 @@ class Handler(private val store: Store) {
             }
         else Fault.build("Invalid Command", command)
 
-    private fun nonFatal(throwable: Throwable): Boolean =
-        when(throwable) {
+    private fun Throwable.nonFatal(): Boolean =
+        when(this) {
             is Error -> false
             is InterruptedException -> false
             else -> true
@@ -33,7 +33,7 @@ class Handler(private val store: Store) {
             store.register(register.email)
         }.fold(
             { Registered(it) },
-            { if( nonFatal(it) ) Fault(it.message ?: "Register failed!") else throw it }
+            { if( it.nonFatal() ) Fault(it.message ?: "Register failed!") else throw it }
         )
 
     private fun login(login: Login): Event =
@@ -41,7 +41,7 @@ class Handler(private val store: Store) {
             store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Login failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Login failed!") else throw it }
         )
 
     private fun listPools(): Event =
@@ -49,7 +49,7 @@ class Handler(private val store: Store) {
             store.listPools()
         }.fold(
             { PoolsListed(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "List pools failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "List pools failed!") else throw it }
         )
 
     private fun addPool(pool: Pool): Event =
@@ -57,7 +57,7 @@ class Handler(private val store: Store) {
             store.addPool(pool)
         }.fold(
             { PoolAdded(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Add pool failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Add pool failed!") else throw it }
         )
 
     private fun updatePool(pool: Pool): Event =
@@ -65,7 +65,7 @@ class Handler(private val store: Store) {
             store.updatePool(pool)
         }.fold(
             { Updated(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Update pool failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Update pool failed!") else throw it }
         )
 
     private fun listCleanings(poolId: Id): Event =
@@ -73,7 +73,7 @@ class Handler(private val store: Store) {
             store.listCleanings(poolId)
         }.fold(
             { CleaningsListed(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "List cleanings failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "List cleanings failed!") else throw it }
         )
 
     private fun addCleaning(cleaning: Cleaning): Event =
@@ -81,7 +81,7 @@ class Handler(private val store: Store) {
             store.addCleaning(cleaning)
         }.fold(
             { CleaningAdded(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Add cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 
     private fun updateCleaning(cleaning: Cleaning): Event =
@@ -89,7 +89,7 @@ class Handler(private val store: Store) {
             store.updateCleaning(cleaning)
         }.fold(
             { Updated(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Update cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Update cleaning failed!") else throw it }
         )
 
     private fun listMeasurements(poolId: Id): Event =
@@ -97,7 +97,7 @@ class Handler(private val store: Store) {
             store.listMeasurements(poolId)
         }.fold(
             { MeasurementsListed(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "List measurements failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "List measurements failed!") else throw it }
         )
 
     private fun addMeasurement(measurement: Measurement): Event =
@@ -105,7 +105,7 @@ class Handler(private val store: Store) {
             store.addMeasurement(measurement)
         }.fold(
             { MeasurementAdded(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Add measurement failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Add measurement failed!") else throw it }
         )
 
     private fun updateMeasurement(measurement: Measurement): Event =
@@ -113,7 +113,7 @@ class Handler(private val store: Store) {
             store.updateMeasurement(measurement)
         }.fold(
             { Updated(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Update measurement failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Update measurement failed!") else throw it }
         )
 
     private fun listChemicals(poolId: Id): Event =
@@ -121,7 +121,7 @@ class Handler(private val store: Store) {
             store.listChemicals(poolId)
         }.fold(
             { ChemicalsListed(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "List chemicals failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "List chemicals failed!") else throw it }
         )
 
     private fun addChemical(chemical: Chemical): Event =
@@ -129,7 +129,7 @@ class Handler(private val store: Store) {
             store.addChemical(chemical)
         }.fold(
             { ChemicalAdded(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Add cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 
     private fun updateChemical(chemical: Chemical): Event =
@@ -137,6 +137,6 @@ class Handler(private val store: Store) {
             store.updateChemical(chemical)
         }.fold(
             { Updated(it) },
-            { if( nonFatal(it) )  Fault(it.message ?: "Update chemical failed!") else throw it }
+            { if( it.nonFatal() )  Fault(it.message ?: "Update chemical failed!") else throw it }
         )
 }
