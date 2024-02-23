@@ -205,7 +205,7 @@ class Store(config: StoreConfig,
 
     fun updateCleaning(cleaning: Cleaning): Int =
         transaction {
-            Cleanings.update( { Pools.id eq cleaning.poolId } ) {
+            Cleanings.update( { Cleanings.poolId eq cleaning.poolId } ) {
                 it[brush] = cleaning.brush
                 it[net] = cleaning.net
                 it[skimmerBasket] = cleaning.skimmerBasket
@@ -262,7 +262,7 @@ class Store(config: StoreConfig,
 
     fun updateMeasurement(measurement: Measurement): Int =
         transaction {
-            Measurements.update( { Pools.id eq measurement.poolId } ) {
+            Measurements.update( { Measurements.poolId eq measurement.poolId } ) {
                 it[totalChlorine] = measurement.totalChlorine
                 it[freeChlorine] = measurement.freeChlorine
                 it[combinedChlorine] = measurement.combinedChlorine
@@ -309,7 +309,7 @@ class Store(config: StoreConfig,
 
     fun updateChemical(chemical: Chemical): Int =
         transaction {
-            Chemicals.update( { Pools.id eq chemical.poolId } ) {
+            Chemicals.update( { Chemicals.poolId eq chemical.poolId } ) {
                 it[additive] = chemical.additive
                 it[amount] = chemical.amount
                 it[uom] = chemical.uom
