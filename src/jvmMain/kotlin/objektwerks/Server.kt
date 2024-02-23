@@ -13,7 +13,8 @@ import java.time.Instant
 
 class Server {
     companion object {
-        @JvmStatic fun main(args: Array<String>) {
+        @JvmStatic
+        fun main(args: Array<String>) {
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
             val port = args[0].toIntOrNull() ?: 7979
