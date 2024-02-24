@@ -63,7 +63,7 @@ object Chemicals : Table() {
     val added: Column<EpochSeconds> = long("added")
 }
 
-data class StoreConfig(val url: String,
+class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
                        val password: String) {
@@ -72,8 +72,9 @@ data class StoreConfig(val url: String,
     }
 }
 
-class Store(config: StoreConfig,
-            cache: Set<License> = emptySet()) {
+class Store(config: StoreConfig) {
+    private val licenses: MutableSet<License> = mutableSetOf()
+
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
         fun newPin(): String = UUID.randomUUID().toString().substring(0, 7)
@@ -91,6 +92,10 @@ class Store(config: StoreConfig,
             SchemaUtils.create( Accounts, Pools, Cleanings, Measurements, Chemicals )
         }
     }
+
+    fun isLicensed(license: String): Boolean =
+        if ( licenses.contains(license) ) true
+        else licenses.add(license)
 
     private fun registerAccount(account: Account): Account =
         transaction {
