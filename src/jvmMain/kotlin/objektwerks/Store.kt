@@ -7,7 +7,7 @@ import java.util.UUID
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-object Accounts : Table() {
+object Accounts : Table("accounts") {
     val id: Column<Id> = long("id").autoIncrement()
     val license: Column<License> = varchar("license", 36)
     val pin: Column<Pin> = varchar("pin", 7)
@@ -16,7 +16,7 @@ object Accounts : Table() {
     override val primaryKey = PrimaryKey(id, name = "accountPk")
 }
 
-object Pools : Table() {
+object Pools : Table("pools") {
     val id: Column<Id> = long("id").autoIncrement()
     val license: Column<License> = varchar("license", 36)
     val name: Column<Name> = varchar("name", 128)
@@ -25,7 +25,7 @@ object Pools : Table() {
     override val primaryKey = PrimaryKey(id, name = "poolPk")
 }
 
-object Cleanings : Table() {
+object Cleanings : Table("cleanings") {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
     val brush: Column<Boolean> = bool("brush")
@@ -38,7 +38,7 @@ object Cleanings : Table() {
     override val primaryKey = PrimaryKey(id, name = "cleaningPk")
 }
 
-object Measurements : Table() {
+object Measurements : Table("measurements") {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
     val totalChlorine: Column<TotalChlorine> = integer("totalChlorine")
@@ -54,7 +54,7 @@ object Measurements : Table() {
     val measured: Column<EpochSeconds> = long("measured")
 }
 
-object Chemicals : Table() {
+object Chemicals : Table("chemicals") {
     val id: Column<Id> = long("id").autoIncrement()
     val poolId: Column<Id> = long("poolId").references(Pools.id)
     val additive: Column<Additive> = varchar("additive", 16)
@@ -63,7 +63,7 @@ object Chemicals : Table() {
     val added: Column<EpochSeconds> = long("added")
 }
 
-class StoreConfig(val url: String,
+data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
                        val password: String) {
