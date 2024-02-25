@@ -56,7 +56,6 @@ kotlin {
 
                 implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
                 implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-                implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
 
                 implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
                 implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
