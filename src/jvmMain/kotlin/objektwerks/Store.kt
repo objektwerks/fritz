@@ -142,6 +142,7 @@ class Store(config: StoreConfig) {
         transaction {
             Pools
                 .selectAll()
+                .orderBy(Pools.name to SortOrder.ASC)
                 .map { row ->
                     Pool(
                         id = row[Pools.id],
@@ -179,6 +180,7 @@ class Store(config: StoreConfig) {
             Cleanings
                 .selectAll()
                 .where { Cleanings.poolId eq poolId }
+                .orderBy(Cleanings.cleaned to SortOrder.DESC)
                 .map { row ->
                     Cleaning(
                         id = row[Cleanings.id],
@@ -228,6 +230,7 @@ class Store(config: StoreConfig) {
             Measurements
                 .selectAll()
                 .where { Measurements.poolId eq poolId }
+                .orderBy(Measurements.measured to SortOrder.DESC)
                 .map { row ->
                     Measurement(
                         id = row[Measurements.id],
@@ -289,6 +292,7 @@ class Store(config: StoreConfig) {
             Chemicals
                 .selectAll()
                 .where { Chemicals.poolId eq poolId }
+                .orderBy(Chemicals.added to SortOrder.DESC)
                 .map { row ->
                     Chemical(
                         id = row[Chemicals.id],
