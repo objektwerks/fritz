@@ -131,7 +131,7 @@ class Store(config: StoreConfig) {
             )
         )
 
-    fun login(email: String, pin: String): Account =
+    fun login(email: Email, pin: Pin): Account =
         transaction {
             Accounts
                 .selectAll()
