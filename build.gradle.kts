@@ -2,7 +2,7 @@ import com.google.devtools.ksp.gradle.KspTaskMetadata
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 group = "objektwerks"
-version = "0.1"
+version = "0.2-SNAPSHOT"
 
 plugins {
     kotlin("multiplatform") version "2.0.0-Beta4"
