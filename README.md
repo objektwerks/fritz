@@ -2,6 +2,10 @@ Fritz
 -----
 >Fritz2 web app using Ktor, Exposed, H2 and the like.
 
+Todo
+----
+1. Build Fritz2 jsMain.
+
 Notes
 -----
 1. Fritz2 lenses do not work. Neither do Arrow lenses. Is it a Ksp configuration issue or defect?
