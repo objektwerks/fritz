@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 object Accounts : Table("accounts") {
     val id: Column<Id> = long("id").autoIncrement()
-    val license: Column<License> = varchar("license", 36)
+    val license: Column<License> = varchar("license", 36).uniqueIndex("license_idx")
     val pin: Column<Pin> = varchar("pin", 7)
     val email: Column<Email> = varchar("email", 128)
     val created: Column<EpochSeconds> = long("created")
