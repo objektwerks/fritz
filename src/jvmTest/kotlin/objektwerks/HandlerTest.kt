@@ -84,6 +84,7 @@ class HandlerTest {
         assert( chemicalsListed.isChemicalsListed() )
         assert( chemicalsListed.chemicals.size == 1 )
 
-        store.ddl().forEach(::println)
+        store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
+        listOf("A", "B", "C").map { it.lowercase() }.forEach { println(it) } // lowercase works! Why?
     }
 }
