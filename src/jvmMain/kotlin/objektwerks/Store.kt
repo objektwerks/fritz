@@ -3,6 +3,7 @@ package objektwerks
 import com.sksamuel.hoplite.ConfigLoader
 
 import java.util.UUID
+import java.util.concurrent.ConcurrentHashMap
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -75,7 +76,7 @@ data class StoreConfig(val url: String,
 }
 
 class Store(config: StoreConfig) {
-    private val licenseCache: MutableSet<License> = mutableSetOf()
+    private val licenseCache = ConcurrentHashMap.newKeySet<License>()
 
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
