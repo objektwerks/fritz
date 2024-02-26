@@ -2,7 +2,7 @@ package objektwerks
 
 class Handler(private val store: Store) {
     fun handle(command: Command): Event =
-        if (command.isValid())
+        if (command.isValid() && command.isLicensed())
             when(command) {
                 is Register -> register(command)
                 is Login -> login(command)
@@ -26,6 +26,13 @@ class Handler(private val store: Store) {
             is Error -> false
             is InterruptedException -> false
             else -> true
+        }
+
+    private fun Command.isLicensed(): Boolean =
+        when(this) {
+            is Licensed -> store.isLicensed(this.license)
+            is Register -> true
+            is Login -> true
         }
 
     private fun register(register: Register): Event =
