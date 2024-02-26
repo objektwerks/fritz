@@ -83,5 +83,7 @@ class HandlerTest {
         val chemicalsListed = handler.handle(listChemicals) as ChemicalsListed
         assert( chemicalsListed.isChemicalsListed() )
         assert( chemicalsListed.chemicals.size == 1 )
+
+        store.ddl().forEach(::println)
     }
 }
