@@ -1,6 +1,6 @@
 Fritz
 -----
->Fritz2 feature tests.
+>Fritz2 web app using Ktor, Exposed, H2 and the like.
 
 Notes
 -----
