@@ -98,7 +98,9 @@ class Store(config: StoreConfig) {
 
     fun ddl(): List<String> =
         transaction {
-            SchemaUtils.statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
+            SchemaUtils
+                .statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
+                .map { it.lowercase() }
         }
 
     fun isLicensed(license: License): Boolean =
