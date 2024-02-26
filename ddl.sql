@@ -1,7 +1,14 @@
-SELECT SETTING_VALUE FROM INFORMATION_SCHEMA.SETTINGS WHERE SETTING_NAME = 'MODE'
-CREATE TABLE IF NOT EXISTS ACCOUNTS (ID BIGINT AUTO_INCREMENT, LICENSE VARCHAR(36) NOT NULL, PIN VARCHAR(7) NOT NULL, EMAIL VARCHAR(128) NOT NULL, CREATED BIGINT NOT NULL, CONSTRAINT account_pk PRIMARY KEY (ID))
-ALTER TABLE ACCOUNTS ADD CONSTRAINT license_idx UNIQUE (LICENSE)
-CREATE TABLE IF NOT EXISTS POOLS (ID BIGINT AUTO_INCREMENT, LICENSE VARCHAR(36) NOT NULL, "name" VARCHAR(128) NOT NULL, VOLUME INT NOT NULL, UOM VARCHAR(6) NOT NULL, CONSTRAINT pool_pk PRIMARY KEY (ID))
-CREATE TABLE IF NOT EXISTS CLEANINGS (ID BIGINT AUTO_INCREMENT, POOL_ID BIGINT NOT NULL, BRUSH BOOLEAN NOT NULL, NET BOOLEAN NOT NULL, SKIMMER_BASKET BOOLEAN NOT NULL, PUMP_BASKET BOOLEAN NOT NULL, PUMP_FILTER BOOLEAN NOT NULL, VACUUM BOOLEAN NOT NULL, CLEANED BIGINT NOT NULL, CONSTRAINT cleaning_pk PRIMARY KEY (ID), CONSTRAINT FK_CLEANINGS_POOL_ID__ID FOREIGN KEY (POOL_ID) REFERENCES POOLS(ID) ON DELETE RESTRICT ON UPDATE RESTRICT)
-CREATE TABLE IF NOT EXISTS MEASUREMENTS (ID BIGINT AUTO_INCREMENT, POOL_ID BIGINT NOT NULL, TOTAL_CHLORINE INT NOT NULL, FREE_CHLORINE INT NOT NULL, COMBINED_CHLORINE DOUBLE PRECISION NOT NULL, PH DOUBLE PRECISION NOT NULL, CALCIUM_HARDNESS INT NOT NULL, TOTAL_ALKALINITY INT NOT NULL, CYANURIC_ACID INT NOT NULL, TOTAL_BROMINE INT NOT NULL, SALT INT NOT NULL, TEMPERATURE INT NOT NULL, MEASURED BIGINT NOT NULL, CONSTRAINT measurement_pk PRIMARY KEY (ID), CONSTRAINT FK_MEASUREMENTS_POOL_ID__ID FOREIGN KEY (POOL_ID) REFERENCES POOLS(ID) ON DELETE RESTRICT ON UPDATE RESTRICT)
-CREATE TABLE IF NOT EXISTS CHEMICALS (ID BIGINT AUTO_INCREMENT, POOL_ID BIGINT NOT NULL, ADDITIVE VARCHAR(16) NOT NULL, AMOUNT DOUBLE PRECISION NOT NULL, UOM VARCHAR(6) NOT NULL, ADDED BIGINT NOT NULL, CONSTRAINT chemical_pk PRIMARY KEY (ID), CONSTRAINT FK_CHEMICALS_POOL_ID__ID FOREIGN KEY (POOL_ID) REFERENCES POOLS(ID) ON DELETE RESTRICT ON UPDATE RESTRICT)
+select setting_value from information_schema.settings where setting_name = 'mode'
+create table if not exists accounts (
+    id bigint auto_increment,
+    license varchar(36) not null,
+    pin varchar(7) not null,
+    email varchar(128) not null,
+    created bigint not null,
+    constraint account_pk primary key (id)
+)
+alter table accounts add constraint license_idx unique (license)
+create table if not exists pools (id bigint auto_increment, license varchar(36) not null, "name" varchar(128) not null, volume int not null, uom varchar(6) not null, constraint pool_pk primary key (id))
+create table if not exists cleanings (id bigint auto_increment, pool_id bigint not null, brush boolean not null, net boolean not null, skimmer_basket boolean not null, pump_basket boolean not null, pump_filter boolean not null, vacuum boolean not null, cleaned bigint not null, constraint cleaning_pk primary key (id), constraint fk_cleanings_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict)
+create table if not exists measurements (id bigint auto_increment, pool_id bigint not null, total_chlorine int not null, free_chlorine int not null, combined_chlorine double precision not null, ph double precision not null, calcium_hardness int not null, total_alkalinity int not null, cyanuric_acid int not null, total_bromine int not null, salt int not null, temperature int not null, measured bigint not null, constraint measurement_pk primary key (id), constraint fk_measurements_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict)
+create table if not exists chemicals (id bigint auto_increment, pool_id bigint not null, additive varchar(16) not null, amount double precision not null, uom varchar(6) not null, added bigint not null, constraint chemical_pk primary key (id), constraint fk_chemicals_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict)
