@@ -96,7 +96,7 @@ class Store(config: StoreConfig) {
         }
     }
 
-    fun isLicensed(license: String): Boolean =
+    fun isLicensed(license: License): Boolean =
         if ( licenseCache.contains(license) ) true
         else if ( hasLicense(license) == 1L ) licenseCache.add(license)
         else false
