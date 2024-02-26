@@ -100,7 +100,7 @@ class Store(config: StoreConfig) {
         transaction {
             SchemaUtils
                 .statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
-                .map { it.lowercase() }
+                .map { it.lowercase() } // lowercase fails!!!
         }
 
     fun isLicensed(license: License): Boolean =
