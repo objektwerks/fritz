@@ -19,7 +19,7 @@ class Handler(private val store: Store) {
                 is AddMeasurement -> addMeasurement(command.measurement)
                 is UpdateMeasurement -> updateMeasurement(command.measurement)
             }
-        else Fault.build("Invalid Command", command)
+        else Fault.build("Invalid Command or License", command)
 
     private fun Throwable.nonFatal(): Boolean =
         when(this) {
