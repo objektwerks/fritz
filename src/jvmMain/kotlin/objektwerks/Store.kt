@@ -98,9 +98,7 @@ class Store(config: StoreConfig) {
 
     fun ddl(): List<String> =
         transaction {
-            SchemaUtils
-                .statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
-                .map { it.lowercase() } // lowercase fails!!!
+            SchemaUtils.statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
         }
 
     fun isLicensed(license: License): Boolean =
