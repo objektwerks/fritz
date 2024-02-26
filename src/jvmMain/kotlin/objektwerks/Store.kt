@@ -5,6 +5,7 @@ import com.sksamuel.hoplite.ConfigLoader
 import java.util.UUID
 
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object Accounts : Table("accounts") {
@@ -98,6 +99,14 @@ class Store(config: StoreConfig) {
     fun isLicensed(license: String): Boolean =
         if ( licenses.contains(license) ) true
         else licenses.add(license)
+
+    fun hasLicense(license: License): Long =
+        transaction {
+            Accounts
+                .select(Accounts.license)
+                .where { Accounts.license eq license }
+                .count()
+        }
 
     private fun registerAccount(account: Account): Account =
         transaction {
