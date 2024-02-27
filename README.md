@@ -1,6 +1,6 @@
 Fritz
 -----
->Fritz2 web app using Ktor, Exposed, H2 and the like.
+>Fritz2 web app using Ktor, Exposed, H2 and Kotlin 2.0.
 
 Todo
 ----
