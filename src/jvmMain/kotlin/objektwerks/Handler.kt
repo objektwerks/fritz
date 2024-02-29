@@ -98,9 +98,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "List cleanings failed!") else throw it }
         )
 
-    private fun addCleaning(cleaning: Cleaning): Event =
+    private suspend fun addCleaning(cleaning: Cleaning): Event =
         runCatching {
-            store.addCleaning(cleaning)
+            withContext(Dispatchers.IO) {
+                store.addCleaning(cleaning)
+            }
         }.fold(
             { CleaningAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
