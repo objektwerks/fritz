@@ -168,9 +168,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 
-    private fun updateChemical(chemical: Chemical): Event =
+    private suspend fun updateChemical(chemical: Chemical): Event =
         runCatching {
-            store.updateChemical(chemical)
+            withContext(Dispatchers.IO) {
+                store.updateChemical(chemical)
+            }
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update chemical failed!") else throw it }
