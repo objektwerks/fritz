@@ -48,9 +48,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() ) Fault(it.message ?: "Register failed!") else throw it }
         )
 
-    private fun login(login: Login): Event =
+    private suspend fun login(login: Login): Event =
         runCatching {
-            store.login(login.email, login.pin)
+            withContext(Dispatchers.IO) {
+                store.login(login.email, login.pin)
+            }
         }.fold(
             { LoggedIn(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Login failed!") else throw it }
