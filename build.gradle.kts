@@ -61,6 +61,8 @@ kotlin {
                 implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
                 implementation("org.yaml:snakeyaml:2.2")
 
+                implementation("com.sksamuel.aedile:aedile-core:1.3.1")
+
                 implementation("com.h2database:h2:2.2.224")
 
                 implementation("ch.qos.logback:logback-classic:1.5.0")
