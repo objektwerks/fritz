@@ -118,9 +118,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Update cleaning failed!") else throw it }
         )
 
-    private fun listMeasurements(poolId: Id): Event =
+    private suspend fun listMeasurements(poolId: Id): Event =
         runCatching {
-            store.listMeasurements(poolId)
+            withContext(Dispatchers.IO) {
+                store.listMeasurements(poolId)
+            }
         }.fold(
             { MeasurementsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List measurements failed!") else throw it }
