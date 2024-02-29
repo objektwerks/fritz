@@ -148,9 +148,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Update measurement failed!") else throw it }
         )
 
-    private fun listChemicals(poolId: Id): Event =
+    private suspend fun listChemicals(poolId: Id): Event =
         runCatching {
-            store.listChemicals(poolId)
+            withContext(Dispatchers.IO) {
+                store.listChemicals(poolId)
+            }
         }.fold(
             { ChemicalsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List chemicals failed!") else throw it }
