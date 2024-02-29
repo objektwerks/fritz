@@ -68,9 +68,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "List pools failed!") else throw it }
         )
 
-    private fun addPool(pool: Pool): Event =
+    private suspend fun addPool(pool: Pool): Event =
         runCatching {
-            store.addPool(pool)
+            withContext(Dispatchers.IO) {
+                store.addPool(pool)
+            }
         }.fold(
             { PoolAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add pool failed!") else throw it }
