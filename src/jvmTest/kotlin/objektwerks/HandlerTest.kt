@@ -1,10 +1,17 @@
 package objektwerks
 
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 class HandlerTest {
     @Test
     fun handle() {
+        runBlocking {
+            test()
+        }
+    }
+
+    private suspend fun test() {
         val store = Store( StoreConfig.load("/store.yaml") )
         val handler = Handler(store)
 
