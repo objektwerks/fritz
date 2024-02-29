@@ -1,7 +1,10 @@
 package objektwerks
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
 class Handler(private val store: Store) {
-    fun handle(command: Command): Event =
+    suspend fun handle(command: Command): Event =
         if (command.isValid() && command.isLicensed())
             when(command) {
                 is Register -> register(command)
@@ -35,9 +38,11 @@ class Handler(private val store: Store) {
             is Login -> true
         }
 
-    private fun register(register: Register): Event =
+    private suspend fun register(register: Register): Event =
         runCatching {
-            store.register(register.email)
+            withContext(Dispatchers.IO) {
+                store.register(register.email)
+            }
         }.fold(
             { Registered(it) },
             { if( it.nonFatal() ) Fault(it.message ?: "Register failed!") else throw it }
