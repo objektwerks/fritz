@@ -58,9 +58,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Login failed!") else throw it }
         )
 
-    private fun listPools(): Event =
+    private suspend fun listPools(): Event =
         runCatching {
-            store.listPools()
+            withContext(Dispatchers.IO) {
+                store.listPools()
+            }
         }.fold(
             { PoolsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List pools failed!") else throw it }
