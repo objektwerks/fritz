@@ -128,9 +128,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "List measurements failed!") else throw it }
         )
 
-    private fun addMeasurement(measurement: Measurement): Event =
+    private suspend fun addMeasurement(measurement: Measurement): Event =
         runCatching {
-            store.addMeasurement(measurement)
+            withContext(Dispatchers.IO) {
+                store.addMeasurement(measurement)
+            }
         }.fold(
             { MeasurementAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add measurement failed!") else throw it }
