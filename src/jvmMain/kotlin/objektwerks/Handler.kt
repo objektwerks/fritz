@@ -138,9 +138,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Add measurement failed!") else throw it }
         )
 
-    private fun updateMeasurement(measurement: Measurement): Event =
+    private suspend fun updateMeasurement(measurement: Measurement): Event =
         runCatching {
-            store.updateMeasurement(measurement)
+            withContext(Dispatchers.IO) {
+                store.updateMeasurement(measurement)
+            }
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update measurement failed!") else throw it }
