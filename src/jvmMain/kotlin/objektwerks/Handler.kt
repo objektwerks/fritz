@@ -88,9 +88,11 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault(it.message ?: "Update pool failed!") else throw it }
         )
 
-    private fun listCleanings(poolId: Id): Event =
+    private suspend fun listCleanings(poolId: Id): Event =
         runCatching {
-            store.listCleanings(poolId)
+            withContext(Dispatchers.IO) {
+                store.listCleanings(poolId)
+            }
         }.fold(
             { CleaningsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List cleanings failed!") else throw it }
