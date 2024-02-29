@@ -1,9 +1,9 @@
 package objektwerks
 
+import com.sksamuel.aedile.core.cacheBuilder
 import com.sksamuel.hoplite.ConfigLoader
 
 import java.util.UUID
-import java.util.concurrent.ConcurrentHashMap
 
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -76,7 +76,7 @@ data class StoreConfig(val url: String,
 }
 
 class Store(config: StoreConfig) {
-    private val licenseCache = ConcurrentHashMap.newKeySet<License>()
+    private val licenseCache = cacheBuilder<License, License>().build()
 
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
@@ -101,9 +101,9 @@ class Store(config: StoreConfig) {
             SchemaUtils.statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
         }
 
-    fun isLicensed(license: License): Boolean =
+    suspend fun isLicensed(license: License): Boolean =
         if ( licenseCache.contains(license) ) true
-        else if ( hasLicense(license) == 1L ) licenseCache.add(license)
+        else if ( hasLicense(license) == 1L ) licenseCache.put(license, license).let { true }
         else false
 
     private fun hasLicense(license: License): Long =

@@ -31,7 +31,7 @@ class Handler(private val store: Store) {
             else -> true
         }
 
-    private fun Command.isLicensed(): Boolean =
+    private suspend fun Command.isLicensed(): Boolean =
         when(this) {
             is Licensed -> store.isLicensed(this.license)
             is Register -> true
