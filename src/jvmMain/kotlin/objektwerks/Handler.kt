@@ -77,7 +77,7 @@ class Handler(private val store: Store) {
             store.updatePool(pool)
         }.fold(
             { Updated(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Update pool failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Update pool", it) else throw it }
         )
 
     private fun listCleanings(poolId: Id): Event =
