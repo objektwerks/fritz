@@ -1,8 +1,5 @@
 package objektwerks
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
 class Handler(private val store: Store) {
     suspend fun handle(command: Command): Event =
         if (command.isValid() && command.isLicensed())
@@ -38,141 +35,113 @@ class Handler(private val store: Store) {
             is Login -> true
         }
 
-    private suspend fun register(register: Register): Event =
+    private fun register(register: Register): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.register(register.email)
-            }
+            store.register(register.email)
         }.fold(
             { Registered(it) },
             { if( it.nonFatal() ) Fault(it.message ?: "Register failed!") else throw it }
         )
 
-    private suspend fun login(login: Login): Event =
+    private fun login(login: Login): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.login(login.email, login.pin)
-            }
+            store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Login failed!") else throw it }
         )
 
-    private suspend fun listPools(): Event =
+    private fun listPools(): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.listPools()
-            }
+            store.listPools()
         }.fold(
             { PoolsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List pools failed!") else throw it }
         )
 
-    private suspend fun addPool(pool: Pool): Event =
+    private fun addPool(pool: Pool): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.addPool(pool)
-            }
+            store.addPool(pool)
         }.fold(
             { PoolAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add pool failed!") else throw it }
         )
 
-    private suspend fun updatePool(pool: Pool): Event =
+    private fun updatePool(pool: Pool): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.updatePool(pool)
-            }
+            store.updatePool(pool)
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update pool failed!") else throw it }
         )
 
-    private suspend fun listCleanings(poolId: Id): Event =
+    private fun listCleanings(poolId: Id): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.listCleanings(poolId)
-            }
+            store.listCleanings(poolId)
         }.fold(
             { CleaningsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List cleanings failed!") else throw it }
         )
 
-    private suspend fun addCleaning(cleaning: Cleaning): Event =
+    private fun addCleaning(cleaning: Cleaning): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.addCleaning(cleaning)
-            }
+            store.addCleaning(cleaning)
         }.fold(
             { CleaningAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 
-    private suspend fun updateCleaning(cleaning: Cleaning): Event =
+    private fun updateCleaning(cleaning: Cleaning): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.updateCleaning(cleaning)
-            }
+            store.updateCleaning(cleaning)
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update cleaning failed!") else throw it }
         )
 
-    private suspend fun listMeasurements(poolId: Id): Event =
+    private fun listMeasurements(poolId: Id): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.listMeasurements(poolId)
-            }
+            store.listMeasurements(poolId)
         }.fold(
             { MeasurementsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List measurements failed!") else throw it }
         )
 
-    private suspend fun addMeasurement(measurement: Measurement): Event =
+    private fun addMeasurement(measurement: Measurement): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.addMeasurement(measurement)
-            }
+            store.addMeasurement(measurement)
         }.fold(
             { MeasurementAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add measurement failed!") else throw it }
         )
 
-    private suspend fun updateMeasurement(measurement: Measurement): Event =
+    private fun updateMeasurement(measurement: Measurement): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.updateMeasurement(measurement)
-            }
+            store.updateMeasurement(measurement)
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update measurement failed!") else throw it }
         )
 
-    private suspend fun listChemicals(poolId: Id): Event =
+    private fun listChemicals(poolId: Id): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.listChemicals(poolId)
-            }
+            store.listChemicals(poolId)
         }.fold(
             { ChemicalsListed(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "List chemicals failed!") else throw it }
         )
 
-    private suspend fun addChemical(chemical: Chemical): Event =
+    private fun addChemical(chemical: Chemical): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.addChemical(chemical)
-            }
+            store.addChemical(chemical)
         }.fold(
             { ChemicalAdded(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
         )
 
-    private suspend fun updateChemical(chemical: Chemical): Event =
+    private fun updateChemical(chemical: Chemical): Event =
         runCatching {
-            withContext(Dispatchers.IO) {
-                store.updateChemical(chemical)
-            }
+            store.updateChemical(chemical)
         }.fold(
             { Updated(it) },
             { if( it.nonFatal() )  Fault(it.message ?: "Update chemical failed!") else throw it }
