@@ -2,6 +2,7 @@ package objektwerks
 
 import com.sksamuel.aedile.core.cacheBuilder
 import com.sksamuel.hoplite.ConfigLoader
+import com.zaxxer.hikari.HikariConfig
 
 import java.util.UUID
 
@@ -84,6 +85,12 @@ class Store(config: StoreConfig) {
     }
 
     init {
+        val hikariConfig = HikariConfig().apply {
+            jdbcUrl = config.url
+            driverClassName = config.driver
+            username = config.user
+            password = config.password
+        }
         Database.connect(
             url = config.url,
             driver = config.driver,
