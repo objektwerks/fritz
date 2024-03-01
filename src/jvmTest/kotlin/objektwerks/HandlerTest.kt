@@ -17,7 +17,7 @@ class HandlerTest {
                 .start()
                 .also { it.waitFor(30, TimeUnit.SECONDS) }
                 .inputStream.bufferedReader().readText()
-            println( "results: $results" ) // A one-liner in Scala --- 2 if you check the exit code!
+            println( results ) // A one-liner in Scala --- 2 if you check the exit code!
 
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
