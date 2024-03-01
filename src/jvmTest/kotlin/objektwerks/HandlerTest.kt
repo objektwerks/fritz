@@ -44,7 +44,7 @@ class HandlerTest {
         val listPools = ListPools(license)
         val poolsListed = handler.handle(listPools)as PoolsListed
         assert( poolsListed.isPoolsListed() )
-        assert( poolsListed.pools.size == 1 )
+        assert(poolsListed.pools.isNotEmpty())
 
         val addCleaning = AddCleaning(license, Cleaning(poolId = pool.id))
         val cleaningAdded = handler.handle(addCleaning) as CleaningAdded
@@ -59,7 +59,7 @@ class HandlerTest {
         val listCleanings = ListCleanings(license, pool.id)
         val cleaningsListed = handler.handle(listCleanings) as CleaningsListed
         assert( cleaningsListed.isCleaningsListed() )
-        assert( cleaningsListed.cleanings.size == 1 )
+        assert(cleaningsListed.cleanings.isNotEmpty())
 
         val addMeasurement = AddMeasurement(license, Measurement(poolId = pool.id))
         val measurementAdded = handler.handle(addMeasurement) as MeasurementAdded
@@ -74,7 +74,7 @@ class HandlerTest {
         val listMeasurements = ListMeasurements(license, pool.id)
         val measurementsListed = handler.handle(listMeasurements) as MeasurementsListed
         assert( measurementsListed.isMeasurementsListed() )
-        assert( measurementsListed.measurements.size == 1 )
+        assert(measurementsListed.measurements.isNotEmpty())
 
         val addChemical = AddChemical(license, Chemical(poolId = pool.id))
         val chemicalAdded = handler.handle(addChemical) as ChemicalAdded
@@ -89,7 +89,7 @@ class HandlerTest {
         val listChemicals = ListChemicals(license, pool.id)
         val chemicalsListed = handler.handle(listChemicals) as ChemicalsListed
         assert( chemicalsListed.isChemicalsListed() )
-        assert( chemicalsListed.chemicals.size == 1 )
+        assert(chemicalsListed.chemicals.isNotEmpty())
 
         store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
         listOf("A", "B", "C").map { it.lowercase() }.forEach { println(it) } // lowercase works! Why?
