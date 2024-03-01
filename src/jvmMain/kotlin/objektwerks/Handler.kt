@@ -109,7 +109,7 @@ class Handler(private val store: Store) {
             store.listMeasurements(poolId)
         }.fold(
             { MeasurementsListed(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "List measurements failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("List measurements", it) else throw it }
         )
 
     private fun addMeasurement(measurement: Measurement): Event =
@@ -117,7 +117,7 @@ class Handler(private val store: Store) {
             store.addMeasurement(measurement)
         }.fold(
             { MeasurementAdded(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Add measurement failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Add measurement", it) else throw it }
         )
 
     private fun updateMeasurement(measurement: Measurement): Event =
@@ -125,7 +125,7 @@ class Handler(private val store: Store) {
             store.updateMeasurement(measurement)
         }.fold(
             { Updated(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Update measurement failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Update measurement", it) else throw it }
         )
 
     private fun listChemicals(poolId: Id): Event =
