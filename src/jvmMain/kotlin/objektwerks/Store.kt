@@ -96,11 +96,6 @@ class Store(config: StoreConfig) {
         }
     }
 
-    fun ddl(): List<String> =
-        transaction {
-            SchemaUtils.statementsRequiredToActualizeScheme( Accounts, Pools, Cleanings, Measurements, Chemicals )
-        }
-
     suspend fun isLicensed(license: License): Boolean =
         if ( licenseCache.contains(license) ) true
         else if ( hasLicense(license) == 1L ) licenseCache.put(license, license).let { true }
