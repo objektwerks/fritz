@@ -3,11 +3,22 @@ package objektwerks
 import kotlinx.coroutines.runBlocking
 
 import org.junit.Test
+import java.io.File
+import java.util.concurrent.TimeUnit
 
 class HandlerTest {
     @Test
     fun handle() {
         runBlocking {
+            val results = ProcessBuilder("psql", "-d", "fritz", "-f", "ddl.sql")
+                .directory( File(System.getProperty("user.dir")) )
+                .redirectOutput(ProcessBuilder.Redirect.PIPE)
+                .redirectError(ProcessBuilder.Redirect.PIPE)
+                .start()
+                .also { it.waitFor(30, TimeUnit.SECONDS) }
+                .inputStream.bufferedReader().readText()
+            println( "results: $results" ) // A one-liner in Scala --- 2 if you check the exit code!
+
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
             test(handler)
