@@ -133,7 +133,7 @@ class Handler(private val store: Store) {
             store.listChemicals(poolId)
         }.fold(
             { ChemicalsListed(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "List chemicals failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("List chemicals", it) else throw it }
         )
 
     private fun addChemical(chemical: Chemical): Event =
@@ -141,7 +141,7 @@ class Handler(private val store: Store) {
             store.addChemical(chemical)
         }.fold(
             { ChemicalAdded(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Add cleaning", it) else throw it }
         )
 
     private fun updateChemical(chemical: Chemical): Event =
@@ -149,6 +149,6 @@ class Handler(private val store: Store) {
             store.updateChemical(chemical)
         }.fold(
             { Updated(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Update chemical failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Update chemical", it) else throw it }
         )
 }
