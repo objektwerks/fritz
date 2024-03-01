@@ -64,6 +64,7 @@ kotlin {
                 implementation("com.sksamuel.aedile:aedile-core:1.3.1")
 
                 implementation("org.postgresql:postgresql:42.7.2")
+                implementation("com.zaxxer:HikariCP:5.1.0")
 
                 implementation("ch.qos.logback:logback-classic:1.5.0")
             }
