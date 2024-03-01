@@ -92,6 +92,5 @@ class HandlerTest {
         assert(chemicalsListed.chemicals.isNotEmpty())
 
         store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
-        listOf("A", "B", "C").map { it.lowercase() }.forEach { println(it) } // lowercase works! Why?
     }
 }
