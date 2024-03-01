@@ -45,7 +45,7 @@ class Handler(private val store: Store) {
             store.register(register.email)
         }.fold(
             { Registered(it) },
-            { if( it.nonFatal() ) Fault.build(it, "Register failed!", register) else throw it }
+            { if( it.nonFatal() ) Fault.build(it, "Register failed!") else throw it }
         )
 
     private fun login(login: Login): Event =
@@ -53,7 +53,7 @@ class Handler(private val store: Store) {
             store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
-            { if( it.nonFatal() )  Fault.build(it, "Login failed!", login) else throw it }
+            { if( it.nonFatal() )  Fault.build(it, "Login failed!") else throw it }
         )
 
     private fun listPools(): Event =
