@@ -41,7 +41,7 @@ data class ChemicalAdded(val chemical: Chemical) : Event
 @Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
-        fun build(error: String, throwable: Throwable): Fault = Fault("$error : ${throwable.message ?: ""}")
+        fun build(command: String, throwable: Throwable): Fault = Fault("$command failed with: ${throwable.message ?: "n/a."}")
         fun build(error: String, command: Command): Fault = Fault("$error : $command")
         fun build(error: String, event: Event): Fault = Fault("$error : $event")
     }
