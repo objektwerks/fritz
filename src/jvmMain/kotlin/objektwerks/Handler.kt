@@ -28,16 +28,16 @@ class Handler(private val store: Store) {
 
     private fun Throwable.nonFatal(): Boolean =
         when(this) {
-            is Error -> false
+            is Error                -> false
             is InterruptedException -> false
-            else -> true
+            else                    -> true
         }
 
     private suspend fun Command.isLicensed(): Boolean =
         when(this) {
             is Licensed -> store.isLicensed(this.license)
             is Register -> true
-            is Login -> true
+            is Login    -> true
         }
 
     private fun register(register: Register): Event =
