@@ -7,14 +7,16 @@ class HandlerTest {
     @Test
     fun handle() {
         runBlocking {
-            test()
+            val store = Store( StoreConfig.load("/store.yaml") )
+            val handler = Handler(store)
+
+            test(handler)
+
+            store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
         }
     }
 
-    private suspend fun test() {
-        val store = Store( StoreConfig.load("/store.yaml") )
-        val handler = Handler(store)
-
+    private suspend fun test(handler: Handler) {
         val register = Register("my@email.com")
         val registered = handler.handle(register) as Registered
         assert( register.isRegister() )
@@ -90,7 +92,5 @@ class HandlerTest {
         val chemicalsListed = handler.handle(listChemicals) as ChemicalsListed
         assert( chemicalsListed.isChemicalsListed() )
         assert(chemicalsListed.chemicals.isNotEmpty())
-
-        store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
     }
 }
