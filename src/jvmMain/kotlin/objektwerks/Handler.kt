@@ -53,7 +53,7 @@ class Handler(private val store: Store) {
             store.login(login.email, login.pin)
         }.fold(
             { LoggedIn(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Login failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build(it, "Login failed!", login) else throw it }
         )
 
     private fun listPools(): Event =
