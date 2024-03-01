@@ -10,7 +10,6 @@ class HandlerTest {
         runBlocking {
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
-
             test(handler)
         }
     }
