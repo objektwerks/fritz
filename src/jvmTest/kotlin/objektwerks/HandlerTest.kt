@@ -1,6 +1,9 @@
 package objektwerks
 
+import java.util.logging.Logger
+
 import kotlinx.coroutines.runBlocking
+
 import org.junit.Test
 
 class HandlerTest {
@@ -12,7 +15,8 @@ class HandlerTest {
 
             test(handler)
 
-            store.ddl().map { it.lowercase() }.forEach { println(it) } // lowercase fails! Why?
+            val logger = Logger.getLogger(this.javaClass.name)
+            store.ddl().map { it.lowercase() }.forEach { logger.info(it) } // lowercase fails! Why?
         }
     }
 
