@@ -85,7 +85,7 @@ class Handler(private val store: Store) {
             store.listCleanings(poolId)
         }.fold(
             { CleaningsListed(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "List cleanings failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("List cleanings", it) else throw it }
         )
 
     private fun addCleaning(cleaning: Cleaning): Event =
@@ -93,7 +93,7 @@ class Handler(private val store: Store) {
             store.addCleaning(cleaning)
         }.fold(
             { CleaningAdded(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Add cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Add cleaning", it) else throw it }
         )
 
     private fun updateCleaning(cleaning: Cleaning): Event =
@@ -101,7 +101,7 @@ class Handler(private val store: Store) {
             store.updateCleaning(cleaning)
         }.fold(
             { Updated(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Update cleaning failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build("Update cleaning", it) else throw it }
         )
 
     private fun listMeasurements(poolId: Id): Event =
