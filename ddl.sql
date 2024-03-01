@@ -1,7 +1,7 @@
 drop schema public cascade;
 create schema public;
 
-create table if not exists accounts (
+create table accounts (
     id bigserial,
     license varchar(36) not null,
     pin varchar(7) not null,
@@ -12,7 +12,7 @@ create table if not exists accounts (
 
 alter table accounts add constraint license_idx unique (license);
 
-create table if not exists pools (
+create table pools (
     id bigserial,
     license varchar(36) not null,
     "name" varchar(128) not null,
@@ -21,7 +21,7 @@ create table if not exists pools (
     constraint pool_pk primary key (id)
 );
 
-create table if not exists cleanings (
+create table cleanings (
     id bigserial,
     pool_id bigint not null,
     brush boolean not null,
@@ -35,7 +35,7 @@ create table if not exists cleanings (
     constraint fk_cleanings_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
 
-create table if not exists measurements (
+create table measurements (
     id bigserial,
     pool_id bigint not null,
     total_chlorine int not null,
@@ -53,7 +53,7 @@ create table if not exists measurements (
     constraint fk_measurements_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
 
-create table if not exists chemicals (
+create table chemicals (
     id bigserial,
     pool_id bigint not null,
     additive varchar(16) not null,
