@@ -11,7 +11,7 @@ class Handler(private val store: Store) {
             when(command) {
                 is Register -> register(command)
                 is Login -> login(command)
-                is ListPools -> listPools(command)
+                is ListPools -> listPools()
                 is AddPool -> addPool(command.pool)
                 is UpdatePool -> updatePool(command.pool)
                 is ListCleanings -> listCleanings(command.poolId)
@@ -56,12 +56,12 @@ class Handler(private val store: Store) {
             { if( it.nonFatal() )  Fault.build(it, "Login failed!", login) else throw it }
         )
 
-    private fun listPools(listPools: ListPools): Event =
+    private fun listPools(): Event =
         runCatching {
             store.listPools()
         }.fold(
             { PoolsListed(it) },
-            { if( it.nonFatal() )  Fault.build(it, "List pools failed!", listPools) else throw it }
+            { if( it.nonFatal() )  Fault.build(it, "List pools failed!") else throw it }
         )
 
     private fun addPool(pool: Pool): Event =
@@ -69,7 +69,7 @@ class Handler(private val store: Store) {
             store.addPool(pool)
         }.fold(
             { PoolAdded(it) },
-            { if( it.nonFatal() )  Fault(it.message ?: "Add pool failed!") else throw it }
+            { if( it.nonFatal() )  Fault.build(it,"Add pool failed!") else throw it }
         )
 
     private fun updatePool(pool: Pool): Event =
