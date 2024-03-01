@@ -6,8 +6,8 @@ import kotlinx.coroutines.withContext
 class Handler(private val store: Store) {
     suspend fun handle(command: Command): Event =
         withContext(Dispatchers.IO) {
-            if (!command.isValid()) return@withContext Fault.build("Invalid Command", command)
-            if (!command.isLicensed()) return@withContext Fault.build("Invalid License", command)
+            if (!command.isValid()) return@withContext Fault.build("Invalid command!", command)
+            if (!command.isLicensed()) return@withContext Fault.build("Invalid license!", command)
             when(command) {
                 is Register -> register(command)
                 is Login -> login(command)
