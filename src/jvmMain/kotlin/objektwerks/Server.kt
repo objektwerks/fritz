@@ -8,6 +8,8 @@ import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 import java.time.Instant
 
@@ -33,7 +35,9 @@ class Server {
                 }
                 post ("/command") {
                     val command = call.receive<Command>()
-                    val event = handler.handle(command)
+                    val event = withContext(Dispatchers.IO) {
+                        handler.handle(command)
+                    }
                     if (event.isValid()) call.respond<Event>(event)
                     else call.respond<Event>( Fault.build("Invalid Event", event) )
                 }
