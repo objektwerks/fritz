@@ -45,7 +45,7 @@ class Handler(private val store: Store) {
             store.register(register.email)
         }.fold(
             { Registered(it) },
-            { if( it.nonFatal() ) Fault(it.message ?: "Register failed!") else throw it }
+            { if( it.nonFatal() ) Fault.build(it, "Register failed!", register) else throw it }
         )
 
     private fun login(login: Login): Event =
