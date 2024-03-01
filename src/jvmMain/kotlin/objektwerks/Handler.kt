@@ -6,24 +6,24 @@ import kotlinx.coroutines.withContext
 class Handler(private val store: Store) {
     suspend fun handle(command: Command): Event =
         withContext(Dispatchers.IO) {
-            if (command.isValid() && command.isLicensed())
-                when(command) {
-                    is Register -> register(command)
-                    is Login -> login(command)
-                    is ListPools -> listPools()
-                    is AddPool -> addPool(command.pool)
-                    is UpdatePool -> updatePool(command.pool)
-                    is ListCleanings -> listCleanings(command.poolId)
-                    is AddCleaning -> addCleaning(command.cleaning)
-                    is UpdateCleaning -> updateCleaning(command.cleaning)
-                    is ListChemicals -> listChemicals(command.poolId)
-                    is AddChemical -> addChemical(command.chemical)
-                    is UpdateChemical -> updateChemical(command.chemical)
-                    is ListMeasurements -> listMeasurements(command.poolId)
-                    is AddMeasurement -> addMeasurement(command.measurement)
-                    is UpdateMeasurement -> updateMeasurement(command.measurement)
-                }
-            else Fault.build("Invalid Command or License", command)
+            if (!command.isValid()) return@withContext Fault.build("Invalid Command", command)
+            if (!command.isLicensed()) return@withContext Fault.build("Invalid License", command)
+            when(command) {
+                is Register -> register(command)
+                is Login -> login(command)
+                is ListPools -> listPools()
+                is AddPool -> addPool(command.pool)
+                is UpdatePool -> updatePool(command.pool)
+                is ListCleanings -> listCleanings(command.poolId)
+                is AddCleaning -> addCleaning(command.cleaning)
+                is UpdateCleaning -> updateCleaning(command.cleaning)
+                is ListChemicals -> listChemicals(command.poolId)
+                is AddChemical -> addChemical(command.chemical)
+                is UpdateChemical -> updateChemical(command.chemical)
+                is ListMeasurements -> listMeasurements(command.poolId)
+                is AddMeasurement -> addMeasurement(command.measurement)
+                is UpdateMeasurement -> updateMeasurement(command.measurement)
+            }
         }
 
     private fun Throwable.nonFatal(): Boolean =
