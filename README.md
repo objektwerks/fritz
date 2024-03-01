@@ -51,27 +51,27 @@ Postgresql
 
 Database
 --------
->Example database url: postgresql://localhost:5432/poolbalance?user=mycomputername&password=poolbalance"
+>Example database url: postgresql://localhost:5432/fritz?user=mycomputername&password=fritz"
 1. psql postgres
-2. CREATE DATABASE poolbalance OWNER [your computer name];
-3. GRANT ALL PRIVILEGES ON DATABASE poolbalance TO [your computer name];
+2. CREATE DATABASE fritz OWNER [your computer name];
+3. GRANT ALL PRIVILEGES ON DATABASE fritz TO [your computer name];
 4. \l
 5. \q
-6. psql poolbalance
+6. psql fritz
 7. \i ddl.sql
 8. \q
 
 DDL
 ---
->Alternatively run: psql -d poolbalance -f ddl.sql
-1. psql poolbalance
+>Alternatively run: psql -d fritz -f ddl.sql
+1. psql fritz
 2. \i ddl.sql
 3. \q
 
 Drop
 ----
 1. psql postgres
-2. drop database poolbalance;
+2. drop database fritz;
 3. \q
 
 Environment
@@ -91,7 +91,7 @@ Resources
 
 License
 -------
->Copyright (c) [2024] [Objektwerks]
+>Copyright (c) [2024] Objektwerks
 
 >Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
