@@ -42,3 +42,13 @@ Resources
 ---------
 * [Fritz2 Github](https://github.com/jwstegemann/fritz2)
 * [Fritz2 Docs](https://www.fritz2.dev/docs/)
+
+Environment
+-----------
+>The following environment variables must be defined:
+```
+export FRITZ_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/fritz"
+export FRITZ_POSTGRESQL_DRIVER="org.postgresql.Driver"
+export FRITZ_POSTGRESQL_USER="tripletail"
+export FRITZ_POSTGRESQL_PASSWORD="fritz"
+```
