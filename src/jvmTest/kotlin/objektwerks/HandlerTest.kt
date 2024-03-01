@@ -11,7 +11,7 @@ class HandlerTest {
     fun handle() {
         runBlocking {
             val results = ProcessBuilder("psql", "-d", "fritz", "-f", "ddl.sql")
-                .directory( File(System.getProperty("user.dir")) )
+                .directory( File( System.getProperty("user.dir") ) )
                 .redirectOutput(ProcessBuilder.Redirect.PIPE)
                 .redirectError(ProcessBuilder.Redirect.PIPE)
                 .start()
