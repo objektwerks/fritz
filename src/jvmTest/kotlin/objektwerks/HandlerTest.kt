@@ -8,10 +8,10 @@ class HandlerTest {
     @Test
     fun handle() {
         runBlocking {
-            val results = ProcessBuilder("psql", "-d", "fritz", "-f", "ddl.sql")
+            ProcessBuilder("psql", "-d", "fritz", "-f", "ddl.sql")
                 .start()
                 .inputStream.bufferedReader().readText()
-            println( results )
+                .also { println(it) }
 
             val store = Store( StoreConfig.load("/store.yaml") )
             val handler = Handler(store)
