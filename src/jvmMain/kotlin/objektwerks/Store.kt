@@ -82,7 +82,7 @@ class Store(config: StoreConfig) {
 
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
-        fun newPin(): String = UUID.randomUUID().toString().substring(0, 7)
+        fun newPin(): String = UUID.randomUUID().toString().substring(0, 7).lowercase()
     }
 
     init {
