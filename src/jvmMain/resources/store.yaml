@@ -2,5 +2,5 @@ url: ${FRITZ_POSTGRESQL_URL}
 driver: ${FRITZ_POSTGRESQL_DRIVER}
 user: ${FRITZ_POSTGRESQL_USER}
 password: ${FRITZ_POSTGRESQL_PASSWORD}
-maximumSize: 100
-initialCapacity: 10
+maximumSize: ${FRITZ_CACHE_MAX_SIZE}
+initialCapacity: ${FRITZ_CACHE_INITIAL_CAPACITY}
