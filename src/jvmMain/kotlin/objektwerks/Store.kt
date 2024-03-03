@@ -71,7 +71,9 @@ object Chemicals : Table("chemicals") {
 data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
-                       val password: String) {
+                       val password: String,
+                       val maximumSize: Int,
+                       val initialCapacity: Int) {
     companion object {
         fun load(resource: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(resource)
     }
