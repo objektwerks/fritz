@@ -82,6 +82,8 @@ export FRITZ_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/fritz"
 export FRITZ_POSTGRESQL_DRIVER="org.postgresql.Driver"
 export FRITZ_POSTGRESQL_USER="tripletail"
 export FRITZ_POSTGRESQL_PASSWORD="fritz"
+export FRITZ_CACHE_MAX_SIZE=100
+export FRITZ_CACHE_INITIAL_CAPACITY=10
 ```
 
 Resources
