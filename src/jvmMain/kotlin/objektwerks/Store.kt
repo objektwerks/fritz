@@ -78,7 +78,10 @@ data class StoreConfig(val url: String,
 }
 
 class Store(config: StoreConfig) {
-    private val licenseCache = cacheBuilder<License, License>().build()
+    private val licenseCache = cacheBuilder<License, License> {
+        maximumSize = 100
+        initialCapacity = 10
+    }.build()
 
     companion object {
         fun newLicense(): String = UUID.randomUUID().toString()
