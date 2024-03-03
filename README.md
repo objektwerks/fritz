@@ -84,6 +84,10 @@ export FRITZ_POSTGRESQL_USER="tripletail"
 export FRITZ_POSTGRESQL_PASSWORD="fritz"
 export FRITZ_CACHE_MAX_SIZE=100
 export FRITZ_CACHE_INITIAL_CAPACITY=10
+
+export FRITZ_EMAIL_HOST="your.mail.com"
+export FRITZ_EMAIL_ADDRESS="you@mail.com"
+export FRITZ_EMAIL_PASSWORD="your-password"
 ```
 
 Resources
