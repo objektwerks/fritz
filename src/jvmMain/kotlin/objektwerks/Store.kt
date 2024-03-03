@@ -72,7 +72,7 @@ data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
                        val password: String,
-                       val maximumSize: Int,
+                       val maximumSize: Long,
                        val initialCapacity: Int) {
     companion object {
         fun load(resource: String): StoreConfig = ConfigLoader().loadConfigOrThrow<StoreConfig>(resource)
@@ -81,8 +81,8 @@ data class StoreConfig(val url: String,
 
 class Store(config: StoreConfig) {
     private val licenseCache = cacheBuilder<License, License> {
-        maximumSize = 100
-        initialCapacity = 10
+        maximumSize = config.maximumSize
+        initialCapacity = config.initialCapacity
     }.build()
 
     companion object {
