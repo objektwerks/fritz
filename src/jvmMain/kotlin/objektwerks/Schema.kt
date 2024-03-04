@@ -48,7 +48,7 @@ object Measurements : Table("measurements") {
     val totalBromine: Column<TotalBromine> = integer("total_bromine")
     val salt: Column<Salt> = integer("salt")
     val temperature: Column<Temperature> = integer("temperature")
-    val measured: Column<EpochSeconds> = long("measured")
+    val measured: Column<EpochSeconds> = long("measured").index("measured_idx", false)
     override val primaryKey = PrimaryKey(id, name = "measurement_pk")
 }
 
