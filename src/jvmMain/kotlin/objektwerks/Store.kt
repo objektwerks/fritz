@@ -70,7 +70,7 @@ object Chemicals : Table("chemicals") {
 
 object Faults : Table("faults") {
     val error: Column<Error> = varchar("error", 256)
-    val occured: Column<EpochSeconds> = long("occured")
+    val occurred: Column<EpochSeconds> = long("occurred")
 }
 
 data class StoreConfig(val url: String,
@@ -351,5 +351,18 @@ class Store(config: StoreConfig) {
                 it[uom] = chemical.uom
                 it[added] = chemical.added
             }
+        }
+
+    fun listFaults(): List<Fault> =
+        transaction {
+            Faults
+                .selectAll()
+                .orderBy(Faults.occurred to SortOrder.DESC)
+                .map { row ->
+                    Fault(
+                        error = row[Faults.error],
+                        occurred = row[Faults.occurred]
+                    )
+                }
         }
 }
