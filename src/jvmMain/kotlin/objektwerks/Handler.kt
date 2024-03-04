@@ -48,6 +48,12 @@ class Handler(private val store: Store,
             is Login    -> true
         }
 
+    private fun email(email: String, pin: String): Unit {
+        val recipients = listOf(email)
+        val message = "<p>Save this pin: <b>$pin</b> in a safe place; then delete this email.</p>"
+        emailer.send(recipients, message)
+    }
+
     private fun register(register: Register): Event =
         runCatching {
             // TODO("Emailer")
