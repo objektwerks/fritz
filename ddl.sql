@@ -68,3 +68,5 @@ create table faults (
   cause varchar(256) not null,
   occurred bigint not null
 );
+
+create index occurred_idx on faults (occurred desc);
