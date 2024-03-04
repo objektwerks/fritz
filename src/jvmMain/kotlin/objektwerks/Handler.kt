@@ -30,7 +30,7 @@ class Handler(private val store: Store) {
     /**
      * See Arrow Throwable.nonFatalOrThrow or Scala NonFatal
      * for more details on this well established pattern to
-     * not consume fatal exceptions.
+     * 'not' consume fatal exceptions.
      */
     private fun Throwable.nonFatal(): Boolean =
         when(this) {
