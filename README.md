@@ -9,7 +9,7 @@ Todo
 Notes
 -----
 1. Fritz2 lenses do not work. Neither do Arrow lenses. Is it a Ksp configuration issue or defect?
-2. This project mimics [Pool Balance](https://github.com/objektwerks/pool.balance.w), less JoddMail.
+2. This project mimics [Pool Balance](https://github.com/objektwerks/pool.balance.w).
 
 Build
 -----
