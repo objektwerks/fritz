@@ -1,5 +1,6 @@
 package objektwerks
 
+import objektwerks.Faults.index
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
 
@@ -57,7 +58,7 @@ object Chemicals : Table("chemicals") {
     val additive: Column<Additive> = varchar("additive", 16)
     val amount: Column<Amount> = double( "amount")
     val uom: Column<UoM> = varchar("uom", 6)
-    val added: Column<EpochSeconds> = long("added")
+    val added: Column<EpochSeconds> = long("added").index("added_idx", false)
     override val primaryKey = PrimaryKey(id, name = "chemical_pk")
 }
 
