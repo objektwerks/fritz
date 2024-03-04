@@ -16,7 +16,7 @@ object Accounts : Table("accounts") {
 object Pools : Table("pools") {
     val id: Column<Id> = long("id").autoIncrement()
     val license: Column<License> = varchar("license", 36)
-    val name: Column<Name> = varchar("name", 128)
+    val name: Column<Name> = varchar("name", 128).index("name_idx", false)
     val volume: Column<Volume> = integer("volume")
     val uom: Column<UoM> = varchar("uom", 6)
     override val primaryKey = PrimaryKey(id, name = "pool_pk")
