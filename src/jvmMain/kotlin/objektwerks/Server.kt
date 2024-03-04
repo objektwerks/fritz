@@ -46,6 +46,7 @@ class Server {
                         call.respond<Event>(event)
                     else {
                         val fault = Fault.build("Invalid event", event)
+                        call.application.environment.log.error(fault.toString())
                         store.addFault(fault)
                         call.respond<Event>(fault)
                     }
