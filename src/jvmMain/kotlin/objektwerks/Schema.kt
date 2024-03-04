@@ -31,7 +31,7 @@ object Cleanings : Table("cleanings") {
     val pumpBasket: Column<Boolean> = bool("pump_basket")
     val pumpFilter: Column<Boolean> = bool("pump_filter")
     val vacuum: Column<Boolean> = bool("vacuum")
-    val cleaned: Column<EpochSeconds> = long("cleaned")
+    val cleaned: Column<EpochSeconds> = long("cleaned").index("cleaned_idx", false)
     override val primaryKey = PrimaryKey(id, name = "cleaning_pk")
 }
 
