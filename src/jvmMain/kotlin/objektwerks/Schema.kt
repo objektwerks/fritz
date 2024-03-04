@@ -63,5 +63,5 @@ object Chemicals : Table("chemicals") {
 
 object Faults : Table("faults") {
     val cause: Column<Cause> = varchar("cause", 256)
-    val occurred: Column<EpochSeconds> = long("occurred")
+    val occurred: Column<EpochSeconds> = long("occurred").index("occurred_idx", false)
 }
