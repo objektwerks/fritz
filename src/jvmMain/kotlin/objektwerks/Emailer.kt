@@ -34,4 +34,8 @@ class Emailer(config: EmailerConfig) {
                 session.open()
                 session.sendMail(email)
         }
+
+    fun send(recipients: List<String>,
+             subject: String,
+             message: String): Unit = sendEmail(recipients, subject, message)
 }
