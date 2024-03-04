@@ -44,7 +44,7 @@ typealias Cause = String
 data class Fault(val cause: Cause, val occurred: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
         fun build(command: String, error: Throwable): Fault = Fault("$command failed with: ${error.message ?: "unknown error."}")
-        fun build(error: String, command: Command): Fault = Fault("$error: $command")
-        fun build(error: String, event: Event): Fault = Fault("$error: $event")
+        fun build(cause: String, command: Command): Fault = Fault("$cause: $command")
+        fun build(cause: String, event: Event): Fault = Fault("$cause: $event")
     }
 }
