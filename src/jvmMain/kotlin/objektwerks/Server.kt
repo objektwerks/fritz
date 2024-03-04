@@ -17,7 +17,7 @@ class Server {
         fun main(args: Array<String>) {
             val store = Store( StoreConfig.load("/store.yaml") )
             val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
-            val handler = Handler(store)
+            val handler = Handler(store, emailer)
             val port = args[0].toIntOrNull() ?: 7979
             Server().run(port, handler)
         }
