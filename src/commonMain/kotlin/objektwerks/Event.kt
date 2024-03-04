@@ -38,6 +38,8 @@ data class ChemicalsListed(val chemicals: List<Chemical>) : Event
 @Serializable
 data class ChemicalAdded(val chemical: Chemical) : Event
 
+typealias Error = String
+
 @Serializable
 data class Fault(val error: String, val datetime: Long = Clock.System.now().epochSeconds) : Event {
     companion object {
