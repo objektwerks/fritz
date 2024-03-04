@@ -48,15 +48,12 @@ class Handler(private val store: Store,
             is Login    -> true
         }
 
-    private fun email(address: String, pin: String): Unit =
-        emailer.send(
-            recipient = address,
-            message = "<p>Save this pin: <b>$pin</b> in a safe place; then delete this email.</p>"
-        )
-
     private fun register(register: Register): Event =
         runCatching {
-            email(register.email, Store.newPin())
+            emailer.send(
+                recipient = register.email,
+                message = "<p>Save this pin: <b>${Store.newPin()}</b> in a safe place; then delete this email.</p>"
+            )
             store.register(register.email)
         }.fold(
             { Registered(it) },
