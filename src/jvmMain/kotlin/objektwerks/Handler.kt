@@ -2,6 +2,7 @@ package objektwerks
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.cancellation.CancellationException
 
 class Handler(private val store: Store) {
     suspend fun handle(command: Command): Event =
@@ -28,9 +29,10 @@ class Handler(private val store: Store) {
 
     private fun Throwable.nonFatal(): Boolean =
         when(this) {
-            is Error                -> false
-            is InterruptedException -> false
-            else                    -> true
+            is Error                 -> false
+            is CancellationException -> false
+            is InterruptedException  -> false
+            else                     -> true
         }
 
     private suspend fun Command.isLicensed(): Boolean =
