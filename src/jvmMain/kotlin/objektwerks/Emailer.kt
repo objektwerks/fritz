@@ -10,5 +10,5 @@ data class EmailerConfig(val host: String,
     }
 }
 
-class Emailer() {
+class Emailer(config: EmailerConfig) {
 }
