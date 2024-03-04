@@ -191,4 +191,5 @@ fun ChemicalAdded.isChemicalAdded(): Boolean =
     chemical.isChemical()
 
 fun Fault.isFault(): Boolean =
-    error.isNotEmpty()
+    error.isNotEmpty() &&
+    occurred > 0
