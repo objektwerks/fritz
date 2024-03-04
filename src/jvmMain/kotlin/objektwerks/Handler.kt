@@ -50,6 +50,7 @@ class Handler(private val store: Store,
 
     private fun register(register: Register): Event =
         runCatching {
+            // TODO("Emailer")
             store.register(register.email)
         }.fold(
             { Registered(it) },
