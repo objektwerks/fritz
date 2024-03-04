@@ -63,3 +63,8 @@ create table chemicals (
     constraint chemical_pk primary key (id),
     constraint fk_chemicals_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
+
+create table faults (
+  error varchar(256) not null,
+  occurred bigint not null
+);
