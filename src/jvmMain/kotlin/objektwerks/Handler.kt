@@ -4,7 +4,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.cancellation.CancellationException
 
-class Handler(private val store: Store) {
+class Handler(private val store: Store,
+              private val emailer: Emailer) {
     suspend fun handle(command: Command): Event =
         withContext(Dispatchers.IO) {
             if (!command.isValid()) return@withContext Fault.build("Invalid command", command)
