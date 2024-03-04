@@ -65,6 +65,6 @@ create table chemicals (
 );
 
 create table faults (
-  error varchar(256) not null,
+  cause varchar(256) not null,
   occurred bigint not null
 );
