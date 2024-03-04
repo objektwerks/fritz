@@ -36,10 +36,10 @@ class Server {
                     val command = call.receive<Command>()
                     val event = handler.handle(command)
 
-                    val isEventValid = event.isValid()
-                    if (isEventValid && event is Fault) store.addFault(event)
+                    val eventIsValid = event.isValid()
+                    if (eventIsValid && event is Fault) store.addFault(event)
 
-                    if (isEventValid)
+                    if (eventIsValid)
                         call.respond<Event>(event)
                     else {
                         val fault = Fault.build("Invalid event", event)
