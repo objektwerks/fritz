@@ -16,8 +16,14 @@ class HandlerTest {
             val store = Store( StoreConfig.load("/store.yaml") )
             val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
             val handler = Handler(store, emailer)
+
+            test(store)
             test(handler)
         }
+    }
+
+    private fun test(store: Store) {
+        assert( store.addFault( Fault("test") ) > 0 )
     }
 
     private suspend fun test(handler: Handler) {
