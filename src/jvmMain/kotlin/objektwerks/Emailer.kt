@@ -1,0 +1,4 @@
+package objektwerks
+
+class Emailer() {
+}
