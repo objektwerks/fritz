@@ -1,6 +1,5 @@
 package objektwerks
 
-import objektwerks.Faults.index
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Table
 
