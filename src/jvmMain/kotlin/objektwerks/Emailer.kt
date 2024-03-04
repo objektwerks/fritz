@@ -7,7 +7,8 @@ import jodd.mail.MailServer
 
 data class EmailerConfig(val host: String,
                          val sender: String,
-                         val password: String) {
+                         val password: String,
+                         val subject: String) {
     companion object {
         fun load(resource: String): EmailerConfig = ConfigLoader().loadConfigOrThrow<EmailerConfig>(resource)
     }
@@ -15,15 +16,14 @@ data class EmailerConfig(val host: String,
 
 class Emailer(config: EmailerConfig) {
     private val sender = config.sender
+    private val subject = config.subject
     private val smtpServer = MailServer.create()
         .host(config.host)
         .ssl(true)
         .auth(sender, config.password)
         .buildSmtpMailServer()
 
-    private fun sendEmail(recipients: List<String>,
-                          subject: String,
-                          message: String): Unit =
+    fun send(recipients: List<String>, message: String): Unit =
         smtpServer.createSession().use { session ->
             val email = Email.create()
                 .from(sender)
@@ -34,8 +34,4 @@ class Emailer(config: EmailerConfig) {
                 session.open()
                 session.sendMail(email)
         }
-
-    fun send(recipients: List<String>,
-             subject: String,
-             message: String): Unit = sendEmail(recipients, subject, message)
 }
