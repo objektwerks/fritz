@@ -2,6 +2,9 @@ package objektwerks
 
 import com.sksamuel.hoplite.ConfigLoader
 
+import jodd.mail.MailServer
+import jodd.mail.SmtpServer
+
 data class EmailerConfig(val host: String,
                          val address: String,
                          val password: String) {
@@ -11,4 +14,9 @@ data class EmailerConfig(val host: String,
 }
 
 class Emailer(config: EmailerConfig) {
+    private val smtpServer: SmtpServer = MailServer.create()
+        .host(config.host)
+        .ssl(true)
+        .auth(config.address, config.password)
+        .buildSmtpMailServer()
 }
