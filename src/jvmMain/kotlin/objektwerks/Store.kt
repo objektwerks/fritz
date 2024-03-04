@@ -8,6 +8,7 @@ import com.zaxxer.hikari.HikariDataSource
 import java.util.UUID
 
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.statements.InsertStatement
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object Accounts : Table("accounts") {
@@ -364,5 +365,13 @@ class Store(config: StoreConfig) {
                         occurred = row[Faults.occurred]
                     )
                 }
+        }
+
+    fun addFault(fault: Fault): EpochSeconds =
+        transaction {
+            Faults.insert {
+                it[error] = fault.error
+                it[occurred] = fault.occurred
+            } get Faults.occurred
         }
 }
