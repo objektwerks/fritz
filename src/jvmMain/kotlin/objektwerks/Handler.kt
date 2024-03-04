@@ -48,7 +48,7 @@ class Handler(private val store: Store,
             is Login    -> true
         }
 
-    private fun email(email: String, pin: String): Unit {
+    private fun email(email: String, pin: String) {
         val recipients = listOf(email)
         val message = "<p>Save this pin: <b>$pin</b> in a safe place; then delete this email.</p>"
         emailer.send(recipients, message)
