@@ -1,3 +1,4 @@
 host: ${FRITZ_EMAIL_HOST}
 sender:  ${FRITZ_EMAIL_ADDRESS}
 password:  ${FRITZ_EMAIL_PASSWORD}
+subject: "Pool Balance: Account Registration"
