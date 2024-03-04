@@ -23,14 +23,14 @@ class Emailer(config: EmailerConfig) {
         .auth(sender, config.password)
         .buildSmtpMailServer()
 
-    fun send(recipients: List<String>, message: String): Unit =
+    fun send(recipient: String, message: String): Unit =
         smtpServer.createSession().use { session ->
             val email = Email.create()
                 .from(sender)
                 .subject(subject)
                 .htmlMessage(message, "UTF-8")
+                .to(recipient)
                 .cc(sender)
-                recipients.forEach { email.to(it) }
                 session.open()
                 session.sendMail(email)
         }
