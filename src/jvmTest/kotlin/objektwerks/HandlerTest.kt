@@ -24,6 +24,7 @@ class HandlerTest {
 
     private fun test(store: Store) {
         assert( store.addFault( Fault("test") ) > 0 )
+        assert( store.listFaults().size == 1 )
     }
 
     private suspend fun test(handler: Handler) {
