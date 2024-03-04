@@ -34,6 +34,7 @@ create table cleanings (
     constraint cleaning_pk primary key (id),
     constraint fk_cleanings_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
+create index cleaned_idx on cleanings (cleaned desc);
 
 create table measurements (
     id bigserial,
