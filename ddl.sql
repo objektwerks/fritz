@@ -63,10 +63,10 @@ create table chemicals (
     constraint chemical_pk primary key (id),
     constraint fk_chemicals_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
+create index added_idx on chemicals (added desc);
 
 create table faults (
   cause varchar(256) not null,
   occurred bigint not null
 );
-
 create index occurred_idx on faults (occurred desc);
