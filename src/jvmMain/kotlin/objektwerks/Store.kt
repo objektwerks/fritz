@@ -68,6 +68,11 @@ object Chemicals : Table("chemicals") {
     override val primaryKey = PrimaryKey(id, name = "chemical_pk")
 }
 
+object Faults : Table("faults") {
+    val error: Column<Error> = varchar("error", 256)
+    val occured: Column<EpochSeconds> = long("occured")
+}
+
 data class StoreConfig(val url: String,
                        val driver: String,
                        val user: String,
