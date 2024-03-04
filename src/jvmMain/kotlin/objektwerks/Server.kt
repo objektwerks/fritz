@@ -34,13 +34,13 @@ class Server {
                 }
                 post ("/command") {
                     val command = call.receive<Command>()
+                    call.application.environment.log.error(command.toString())
+
                     val event = handler.handle(command)
+                    call.application.environment.log.error(event.toString())
 
                     val eventIsValid = event.isValid()
-                    if (eventIsValid && event is Fault) {
-                        call.application.environment.log.error(event.toString())
-                        store.addFault(event)
-                    }
+                    if (eventIsValid && event is Fault) store.addFault(event)
 
                     if (eventIsValid)
                         call.respond<Event>(event)
