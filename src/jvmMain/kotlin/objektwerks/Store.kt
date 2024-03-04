@@ -8,7 +8,6 @@ import com.zaxxer.hikari.HikariDataSource
 import java.util.UUID
 
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.statements.InsertStatement
 import org.jetbrains.exposed.sql.transactions.transaction
 
 object Accounts : Table("accounts") {
@@ -108,7 +107,7 @@ class Store(config: StoreConfig) {
 
         transaction {
             addLogger(StdOutSqlLogger)
-            SchemaUtils.create( Accounts, Pools, Cleanings, Measurements, Chemicals )
+            SchemaUtils.create( Accounts, Pools, Cleanings, Measurements, Chemicals, Faults )
         }
     }
 
