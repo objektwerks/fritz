@@ -20,6 +20,7 @@ create table pools (
     uom varchar(6) not null,
     constraint pool_pk primary key (id)
 );
+create index name_idx on pools ("name" asc);
 
 create table cleanings (
     id bigserial,
