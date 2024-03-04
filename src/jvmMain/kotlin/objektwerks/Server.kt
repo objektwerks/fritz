@@ -19,11 +19,11 @@ class Server {
             val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
             val handler = Handler(store, emailer)
             val port = args[0].toIntOrNull() ?: 7979
-            Server().run(port, handler)
+            Server().run(port, handler, store)
         }
     }
 
-    fun run (port: Int, handler: Handler): ApplicationEngine =
+    fun run (port: Int, handler: Handler, store: Store): ApplicationEngine =
         embeddedServer(CIO, port = port) {
             install(ContentNegotiation) {
                 json()
@@ -35,8 +35,17 @@ class Server {
                 post ("/command") {
                     val command = call.receive<Command>()
                     val event = handler.handle(command)
-                    if (event.isValid()) call.respond<Event>(event)
-                    else call.respond<Event>( Fault.build("Invalid event", event) )
+
+                    val isEventValid = event.isValid()
+                    if (isEventValid && event is Fault) store.addFault(event)
+
+                    if (isEventValid)
+                        call.respond<Event>(event)
+                    else {
+                        val fault = Fault.build("Invalid event", event)
+                        store.addFault(fault)
+                        call.respond<Event>(fault)
+                    }
                 }
             }
         }.start(wait = true)
