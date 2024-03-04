@@ -9,7 +9,6 @@ create table accounts (
     created bigint not null,
     constraint account_pk primary key (id)
 );
-
 alter table accounts add constraint license_idx unique (license);
 
 create table pools (
