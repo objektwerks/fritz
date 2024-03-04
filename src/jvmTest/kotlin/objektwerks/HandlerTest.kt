@@ -14,7 +14,8 @@ class HandlerTest {
                 .also { println(it) }
 
             val store = Store( StoreConfig.load("/store.yaml") )
-            val handler = Handler(store)
+            val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
+            val handler = Handler(store, emailer)
             test(handler)
         }
     }
