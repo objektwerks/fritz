@@ -14,7 +14,7 @@ data class EmailerConfig(val host: String,
 }
 
 class Emailer(config: EmailerConfig) {
-    private val smtpServer: SmtpServer = MailServer.create()
+    private val smtpServer = MailServer.create()
         .host(config.host)
         .ssl(true)
         .auth(config.sender, config.password)
