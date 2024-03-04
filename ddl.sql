@@ -52,6 +52,7 @@ create table measurements (
     constraint measurement_pk primary key (id),
     constraint fk_measurements_pool_id__id foreign key (pool_id) references pools(id) on delete restrict on update restrict
 );
+create index measured_idx on measurements (measured desc);
 
 create table chemicals (
     id bigserial,
