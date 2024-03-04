@@ -21,7 +21,7 @@ class HandlerTest {
     }
 
     private suspend fun test(handler: Handler) {
-        val register = Register("my@email.com")
+        val register = Register(EmailerConfig.load("/emailer.yaml").sender)
         val registered = handler.handle(register) as Registered
         assert( register.isRegister() )
         assert( registered.isRegistered() )
