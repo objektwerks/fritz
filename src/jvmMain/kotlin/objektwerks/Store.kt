@@ -69,7 +69,7 @@ object Chemicals : Table("chemicals") {
 }
 
 object Faults : Table("faults") {
-    val error: Column<Error> = varchar("error", 256)
+    val cause: Column<Cause> = varchar("cause", 256)
     val occurred: Column<EpochSeconds> = long("occurred")
 }
 
@@ -360,7 +360,7 @@ class Store(config: StoreConfig) {
                 .orderBy(Faults.occurred to SortOrder.DESC)
                 .map { row ->
                     Fault(
-                        error = row[Faults.error],
+                        cause = row[Faults.cause],
                         occurred = row[Faults.occurred]
                     )
                 }
@@ -369,7 +369,7 @@ class Store(config: StoreConfig) {
     fun addFault(fault: Fault): EpochSeconds =
         transaction {
             Faults.insert {
-                it[error] = fault.error
+                it[cause] = fault.cause
                 it[occurred] = fault.occurred
             } get Faults.occurred
         }
