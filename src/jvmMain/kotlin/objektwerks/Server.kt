@@ -37,7 +37,10 @@ class Server {
                     val event = handler.handle(command)
 
                     val eventIsValid = event.isValid()
-                    if (eventIsValid && event is Fault) store.addFault(event)
+                    if (eventIsValid && event is Fault) {
+                        call.application.environment.log.error(event.toString())
+                        store.addFault(event)
+                    }
 
                     if (eventIsValid)
                         call.respond<Event>(event)
