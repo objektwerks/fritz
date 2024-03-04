@@ -86,6 +86,7 @@ typealias Salt = Int
 typealias Temperature = Int
 typealias Additive = String
 typealias Amount = Double
+typealias Cause = String
 typealias EpochSeconds = Long
 
 @Serializable
