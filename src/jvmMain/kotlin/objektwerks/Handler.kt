@@ -53,7 +53,7 @@ class Handler(private val store: Store,
         runCatching {
             emailer.send(
                 recipient = register.email,
-                message = "<p>Save this pin: <b>${Store.newPin()}</b> in a safe place; then delete this email.</p>"
+                message = "<p>Account Registration: Your new pin is: <b>${Store.newPin()}</b> Welcome!</p>"
             )
             store.register(register.email)
         }.fold(
