@@ -51,11 +51,12 @@ class Handler(private val store: Store,
 
     private fun register(register: Register): Event =
         runCatching {
+            val pin = Store.newPin()
             emailer.send(
                 recipient = register.email,
-                message = "<p>Account Registration: Your new pin is: <b>${Store.newPin()}</b> Welcome!</p>"
+                message = "<p>Account Registration: Your new pin is: <b>$pin</b> Welcome!</p>"
             )
-            store.register(register.email)
+            store.register(register.email, pin)
         }.fold(
             { Registered(it) },
             { if( it.nonFatal() ) Fault.build("Register", it) else throw it }
