@@ -73,12 +73,12 @@ class Store(config: StoreConfig) {
             )
         }
 
-    fun register(email: String): Account =
+    fun register(email: Email, pin: Pin): Account =
         registerAccount(
             Account(
                 id = 0,
                 license = newLicense(),
-                pin = newPin(),
+                pin = pin,
                 email = email
             )
         )
