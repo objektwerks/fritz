@@ -54,7 +54,7 @@ class Handler(private val store: Store,
             val pin = Store.newPin()
             emailer.send(
                 recipient = register.email,
-                message = "<p>Account Registration: Your new pin is: <b>$pin</b> Welcome!</p>"
+                message = "<p><b>Account Registration:</b> Your new pin is: <b>$pin</b> Welcome aboard!</p>"
             )
             store.register(register.email, pin)
         }.fold(
