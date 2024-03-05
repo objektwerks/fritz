@@ -17,14 +17,9 @@ class HandlerTest {
             val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
             val handler = Handler(store, emailer)
 
-            test(store)
             test(handler)
+            test(store)
         }
-    }
-
-    private fun test(store: Store) {
-        assert( store.addFault( Fault("test") ) > 0 )
-        assert( store.listFaults().size == 1 )
     }
 
     private suspend fun test(handler: Handler) {
@@ -103,5 +98,10 @@ class HandlerTest {
         val chemicalsListed = handler.handle(listChemicals) as ChemicalsListed
         assert( chemicalsListed.isChemicalsListed() )
         assert(chemicalsListed.chemicals.isNotEmpty())
+    }
+
+    private fun test(store: Store) {
+        assert( store.addFault( Fault("test") ) > 0 )
+        assert( store.listFaults().size == 1 )
     }
 }
