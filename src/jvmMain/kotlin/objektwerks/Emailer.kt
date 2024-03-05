@@ -31,7 +31,7 @@ class Emailer(config: EmailerConfig) {
                 .htmlMessage(message, "UTF-8")
                 .to(recipient)
                 .cc(sender)
-                session.open()
-                session.sendMail(email)
+            session.open()
+            session.sendMail(email)
         }
 }
