@@ -1,8 +1,9 @@
 package objektwerks
 
+import kotlin.coroutines.cancellation.CancellationException
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlin.coroutines.cancellation.CancellationException
 
 class Handler(private val store: Store,
               private val emailer: Emailer) {
