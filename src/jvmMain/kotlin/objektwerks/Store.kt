@@ -40,9 +40,9 @@ class Store(config: StoreConfig) {
             password = config.password
         }
         val dataSource = HikariDataSource(hikariConfig)
-        Database.connect(dataSource)
+        val database = Database.connect(dataSource)
 
-        transaction {
+        transaction(database) {
             addLogger(StdOutSqlLogger)
             SchemaUtils.create( Accounts, Pools, Cleanings, Measurements, Chemicals, Faults )
         }
