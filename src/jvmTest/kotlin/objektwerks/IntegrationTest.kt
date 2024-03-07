@@ -4,7 +4,7 @@ import kotlinx.coroutines.runBlocking
 
 import org.junit.Test
 
-class HandlerTest {
+class IntegrationTest {
     @Test
     fun handle() {
         runBlocking {
