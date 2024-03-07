@@ -23,23 +23,13 @@ class Exchanger {
 
     private fun validateCommand(command: Command): Fault? {
         logger.info(command.toString())
-        return if (command.isValid())
-            null
-        else {
-            logAndStoreFault( Fault.build("Invalid command", command) )
-        }
+        return if (command.isValid()) null
+        else logAndStoreFault( Fault.build("Invalid command", command) )
     }
 
-    private suspend fun validateLicense(command: Command): Fault? {
-        if (command.isLicensed())
-            return null
-        else {
-            val fault = Fault.build("Invalid license", command)
-            store.addFault(fault)
-            logger.error(fault.toString())
-            return fault
-        }
-    }
+    private suspend fun validateLicense(command: Command): Fault? =
+        if (command.isLicensed()) null
+        else logAndStoreFault( Fault.build("Invalid license", command) )
 
     private fun validateEvent(event: Event): Fault? {
         logger.info(event.toString())
