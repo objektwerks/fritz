@@ -1,6 +1,9 @@
 package objektwerks
 
+import org.slf4j.LoggerFactory
+
 class Exchange {
+    private val logger = LoggerFactory.getLogger("Exchange")
     private val store = Store( StoreConfig.load("/store.yaml") )
     private val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
     private val handler = Handler(store, emailer)
@@ -13,10 +16,12 @@ class Exchange {
         }
 
     suspend fun exchange(command: Command): Event {
+        logger.info(command.toString())
         if (!command.isValid()) return Fault.build("Invalid command", command)
         if (!command.isLicensed()) return Fault.build("Invalid license", command)
 
         val event = handler.handle(command)
+        logger.info(event.toString())
 
         val eventIsValid = event.isValid()
         if (eventIsValid && event is Fault) store.addFault(event)
@@ -25,6 +30,7 @@ class Exchange {
             return event
         else {
             val fault = Fault.build("Invalid event", event)
+            logger.error(fault.toString())
             store.addFault(fault)
             return fault
         }
