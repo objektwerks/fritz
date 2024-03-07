@@ -15,13 +15,12 @@ class Server {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val exchange = Exchange()
             val port = args[0].toIntOrNull() ?: 7979
-            Server().run(port, exchange)
+            Server().run( port, Exchanger() )
         }
     }
 
-    fun run (port: Int, exchange: Exchange): ApplicationEngine =
+    fun run (port: Int, exchanger: Exchanger): ApplicationEngine =
         embeddedServer(CIO, port = port) {
             install(ContentNegotiation) {
                 json()
@@ -32,7 +31,7 @@ class Server {
                 }
                 post ("/command") {
                     val command = call.receive<Command>()
-                    val event = exchange.exchange(command)
+                    val event = exchanger.exchange(command)
                     call.respond<Event>(event)
                 }
             }
