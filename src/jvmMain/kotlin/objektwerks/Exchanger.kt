@@ -17,12 +17,14 @@ class Exchanger {
 
     private fun validateCommand(command: Command): Fault? {
         logger.info(command.toString())
-        if (!command.isValid()) {
+        if (command.isValid())
+            return null
+        else {
             val fault = Fault.build("Invalid command", command)
             store.addFault(fault)
             logger.error(fault.toString())
             return fault
-        } else return null
+        }
     }
 
     private suspend fun validateLicense(command: Command): Fault? {
