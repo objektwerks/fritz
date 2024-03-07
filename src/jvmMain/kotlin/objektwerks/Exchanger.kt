@@ -32,7 +32,7 @@ class Exchanger {
         else logAndStoreFault( Fault.build("Invalid license", command) )
 
     private fun validateEvent(event: Event): Fault? {
-        logger.info(event.toString())
+        logger.info( event.toString() )
         val eventIsValid = event.isValid()
         if (eventIsValid && event is Fault) store.addFault(event)
         return if (eventIsValid) null
