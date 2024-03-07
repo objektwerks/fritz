@@ -35,14 +35,8 @@ class Exchanger {
         logger.info(event.toString())
         val eventIsValid = event.isValid()
         if (eventIsValid && event is Fault) store.addFault(event)
-        if (eventIsValid)
-            return null
-        else {
-            val fault = Fault.build("Invalid event", event)
-            logger.error(fault.toString())
-            store.addFault(fault)
-            return fault
-        }
+        return if (eventIsValid) null
+        else logAndStoreFault( Fault.build("Invalid event", event) )
     }
 
     suspend fun exchange(command: Command): Event {
