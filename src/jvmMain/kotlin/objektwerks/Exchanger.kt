@@ -23,13 +23,10 @@ class Exchanger {
 
     private fun validateCommand(command: Command): Fault? {
         logger.info(command.toString())
-        if (command.isValid())
-            return null
+        return if (command.isValid())
+            null
         else {
-            val fault = Fault.build("Invalid command", command)
-            store.addFault(fault)
-            logger.error(fault.toString())
-            return fault
+            logAndStoreFault( Fault.build("Invalid command", command) )
         }
     }
 
