@@ -13,8 +13,7 @@ class IntegrationTest {
                 .inputStream.bufferedReader().readText()
                 .also { println(it) }
 
-            val exchange = Exchange()
-            test(exchange)
+            test( Exchange() )
         }
     }
 
