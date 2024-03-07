@@ -15,15 +15,13 @@ class Server {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val store = Store( StoreConfig.load("/store.yaml") )
-            val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
-            val handler = Handler(store, emailer)
+            val exchange = Exchange()
             val port = args[0].toIntOrNull() ?: 7979
-            Server().run(port, handler, store)
+            Server().run(port, exchange)
         }
     }
 
-    fun run (port: Int, handler: Handler, store: Store): ApplicationEngine =
+    fun run (port: Int, exchange: Exchange): ApplicationEngine =
         embeddedServer(CIO, port = port) {
             install(ContentNegotiation) {
                 json()
@@ -36,20 +34,9 @@ class Server {
                     val command = call.receive<Command>()
                     call.application.environment.log.info(command.toString())
 
-                    val event = handler.handle(command)
+                    val event = exchange.exchange(command)
                     call.application.environment.log.info(event.toString())
-
-                    val eventIsValid = event.isValid()
-                    if (eventIsValid && event is Fault) store.addFault(event)
-
-                    if (eventIsValid)
-                        call.respond<Event>(event)
-                    else {
-                        val fault = Fault.build("Invalid event", event)
-                        call.application.environment.log.error(fault.toString())
-                        store.addFault(fault)
-                        call.respond<Event>(fault)
-                    }
+                    call.respond<Event>(event)
                 }
             }
         }.start(wait = true)
