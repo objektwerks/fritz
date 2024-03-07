@@ -17,8 +17,18 @@ class Exchanger {
 
     suspend fun exchange(command: Command): Event {
         logger.info(command.toString())
-        if (!command.isValid()) return Fault.build("Invalid command", command)
-        if (!command.isLicensed()) return Fault.build("Invalid license", command)
+
+        if (!command.isValid()) {
+            val fault = Fault.build("Invalid command", command)
+            logger.error(fault.toString())
+            return fault
+        }
+
+        if (!command.isLicensed()) {
+            val fault = Fault.build("Invalid license", command)
+            logger.error(fault.toString())
+            return fault
+        }
 
         val event = handler.handle(command)
         logger.info(event.toString())
