@@ -9,8 +9,6 @@ class Handler(private val store: Store,
               private val emailer: Emailer) {
     suspend fun handle(command: Command): Event =
         withContext(Dispatchers.IO) {
-            if (!command.isValid()) return@withContext Fault.build("Invalid command", command)
-            if (!command.isLicensed()) return@withContext Fault.build("Invalid license", command)
             when(command) {
                 is Register          -> register(command)
                 is Login             -> login(command)
@@ -40,13 +38,6 @@ class Handler(private val store: Store,
             is CancellationException -> false
             is InterruptedException  -> false
             else                     -> true
-        }
-
-    private suspend fun Command.isLicensed(): Boolean =
-        when(this) {
-            is Licensed -> store.isLicensed(this.license)
-            is Register -> true
-            is Login    -> true
         }
 
     private fun register(register: Register): Event =
