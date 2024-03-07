@@ -43,7 +43,6 @@ class Exchanger {
         validateCommand(command)?.let { return it }
         validateLicense(command)?.let { return it }
         val event = handler.handle(command)
-        validateEvent(event)?.let { return it }
-        return event
+        validateEvent(event)?.let { return it } ?: return event
     }
 }
