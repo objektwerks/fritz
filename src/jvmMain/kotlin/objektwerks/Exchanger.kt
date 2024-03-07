@@ -15,14 +15,25 @@ class Exchanger {
             is Login    -> true
         }
 
-    private fun validate(command: Command): Fault? =
+    private fun validateCommand(command: Command): Fault? {
+        logger.info(command.toString())
         if (!command.isValid()) {
             val fault = Fault.build("Invalid command", command)
             logger.error(fault.toString())
-            fault
-        } else null
+            return fault
+        } else return null
+    }
 
-    private fun validate(event: Event): Fault? {
+    private suspend fun validateLicense(command: Command): Fault? {
+        if (!command.isLicensed()) {
+            val fault = Fault.build("Invalid license", command)
+            logger.error(fault.toString())
+            return fault
+        } else return null
+    }
+
+    private fun validateEvent(event: Event): Fault? {
+        logger.info(event.toString())
         val eventIsValid = event.isValid()
         if (eventIsValid && event is Fault) store.addFault(event)
         if (!eventIsValid) {
@@ -33,35 +44,11 @@ class Exchanger {
         } else return null
     }
 
-
     suspend fun exchange(command: Command): Event {
-        logger.info(command.toString())
-
-        if (!command.isValid()) {
-            val fault = Fault.build("Invalid command", command)
-            logger.error(fault.toString())
-            return fault
-        }
-
-        if (!command.isLicensed()) {
-            val fault = Fault.build("Invalid license", command)
-            logger.error(fault.toString())
-            return fault
-        }
-
+        validateCommand(command)?.let { return it }
+        validateLicense(command)?.let { return it }
         val event = handler.handle(command)
-        logger.info(event.toString())
-
-        val eventIsValid = event.isValid()
-        if (eventIsValid && event is Fault) store.addFault(event)
-
-        if (eventIsValid)
-            return event
-        else {
-            val fault = Fault.build("Invalid event", event)
-            logger.error(fault.toString())
-            store.addFault(fault)
-            return fault
-        }
+        validateEvent(event)?.let { return it }
+        return event
     }
 }
