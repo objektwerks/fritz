@@ -15,6 +15,12 @@ class Exchanger {
             is Login    -> true
         }
 
+    private fun logAndStoreFault(fault: Fault): Fault {
+        logger.error(fault.toString())
+        store.addFault(fault)
+        return fault
+    }
+
     private fun validateCommand(command: Command): Fault? {
         logger.info(command.toString())
         if (command.isValid())
