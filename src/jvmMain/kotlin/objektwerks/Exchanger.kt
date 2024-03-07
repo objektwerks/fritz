@@ -19,6 +19,7 @@ class Exchanger {
         logger.info(command.toString())
         if (!command.isValid()) {
             val fault = Fault.build("Invalid command", command)
+            store.addFault(fault)
             logger.error(fault.toString())
             return fault
         } else return null
@@ -27,6 +28,7 @@ class Exchanger {
     private suspend fun validateLicense(command: Command): Fault? {
         if (!command.isLicensed()) {
             val fault = Fault.build("Invalid license", command)
+            store.addFault(fault)
             logger.error(fault.toString())
             return fault
         } else return null
