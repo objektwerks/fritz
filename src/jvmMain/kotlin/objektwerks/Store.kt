@@ -290,19 +290,6 @@ class Store(config: StoreConfig) {
             }
         }
 
-    fun listFaults(): List<Fault> =
-        transaction {
-            Faults
-                .selectAll()
-                .orderBy(Faults.occurred to SortOrder.DESC)
-                .map { row ->
-                    Fault(
-                        cause = row[Faults.cause],
-                        occurred = row[Faults.occurred]
-                    )
-                }
-        }
-
     fun addFault(fault: Fault): EpochSeconds =
         transaction {
             Faults.insert {
