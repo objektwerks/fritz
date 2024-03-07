@@ -32,10 +32,7 @@ class Server {
                 }
                 post ("/command") {
                     val command = call.receive<Command>()
-                    call.application.environment.log.info(command.toString())
-
                     val event = exchange.exchange(command)
-                    call.application.environment.log.info(event.toString())
                     call.respond<Event>(event)
                 }
             }
