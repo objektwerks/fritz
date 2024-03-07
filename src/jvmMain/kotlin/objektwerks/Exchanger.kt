@@ -28,12 +28,14 @@ class Exchanger {
     }
 
     private suspend fun validateLicense(command: Command): Fault? {
-        if (!command.isLicensed()) {
+        if (command.isLicensed())
+            return null
+        else {
             val fault = Fault.build("Invalid license", command)
             store.addFault(fault)
             logger.error(fault.toString())
             return fault
-        } else return null
+        }
     }
 
     private fun validateEvent(event: Event): Fault? {
