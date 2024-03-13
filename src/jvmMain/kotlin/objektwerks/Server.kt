@@ -28,7 +28,7 @@ class Server {
                 json()
             }
             install(CORS) {
-                allowHost("0.0.0.0:$port")
+                anyHost()
                 allowHeader(HttpHeaders.ContentType)
             }
             routing {
