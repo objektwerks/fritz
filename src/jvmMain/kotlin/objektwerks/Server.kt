@@ -1,5 +1,6 @@
 package objektwerks
 
+import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -28,6 +29,7 @@ class Server {
             }
             install(CORS) {
                 allowHost("0.0.0.0:$port")
+                allowHeader(HttpHeaders.ContentType)
             }
             routing {
                 get ("/now") {
