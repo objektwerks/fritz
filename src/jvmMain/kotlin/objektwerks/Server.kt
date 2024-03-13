@@ -27,7 +27,7 @@ class Server {
                 json()
             }
             install(CORS) {
-
+                allowHost("0.0.0.0:$port")
             }
             routing {
                 get ("/now") {
