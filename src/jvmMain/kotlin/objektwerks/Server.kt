@@ -30,6 +30,7 @@ class Server {
             install(CORS) {
                 anyHost()
                 allowHeader(HttpHeaders.ContentType)
+                allowMethod(HttpMethod.Options)
             }
             routing {
                 get ("/now") {
