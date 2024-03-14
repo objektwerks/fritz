@@ -3,7 +3,7 @@ package objektwerks
 import org.slf4j.LoggerFactory
 
 class Exchanger {
-    private val logger = LoggerFactory.getLogger("Exchange")
+    private val logger = LoggerFactory.getLogger(this.javaClass.name)
     private val store = Store( StoreConfig.load("/store.yaml") )
     private val emailer = Emailer( EmailerConfig.load("/emailer.yaml") )
     private val handler = Handler(store, emailer)
