@@ -48,7 +48,7 @@ class IntegrationTest {
 
         val listPools = ListPools(license)
         assert( listPools.isListPools() )
-        val poolsListed = exchanger.exchange(listPools)as PoolsListed
+        val poolsListed = exchanger.exchange(listPools) as PoolsListed
         assert( poolsListed.isPoolsListed() )
         assert(poolsListed.pools.isNotEmpty())
 
