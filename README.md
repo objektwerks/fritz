@@ -79,7 +79,7 @@ Environment
 >The following environment variables must be defined:
 ```
 export FRITZ_POSTGRESQL_URL="jdbc:postgresql://localhost:5432/fritz"
-export FRITZ_POSTGRESQL_DRIVER="org.postgresql.Driver"
+export WALKER_POSTGRESQL_DRIVER="org.postgresql.ds.PGSimpleDataSource"
 export FRITZ_POSTGRESQL_USER="tripletail"
 export FRITZ_POSTGRESQL_PASSWORD="fritz"
 export FRITZ_CACHE_MAX_SIZE=100
