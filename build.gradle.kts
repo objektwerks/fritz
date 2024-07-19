@@ -25,7 +25,7 @@ java {
 val kotlinVersion = "2.0.10-RC"
 val kotlinxSerializationVersion = "1.7.1"
 val fritz2Version = "1.0-RC18"
-val ktorVersion = "2.3.12"
+val ktorVersion = "3.0.0-beta-1"
 val exposedVersion = "0.52.0"
 val hopliteVersion = "2.7.5"
 
