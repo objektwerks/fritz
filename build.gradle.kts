@@ -50,7 +50,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 
                 implementation("io.ktor:ktor-server-core:$ktorVersion")
                 implementation("io.ktor:ktor-server-cio:$ktorVersion")
