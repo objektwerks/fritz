@@ -65,7 +65,7 @@ kotlin {
                 implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
                 implementation("org.yaml:snakeyaml:2.2")
 
-                implementation("com.sksamuel.aedile:aedile-core:1.3.1")
+                implementation("com.sksamuel.aedile:aedile-core:2.0.0")
 
                 implementation("org.postgresql:postgresql:42.7.4")
                 implementation("com.zaxxer:HikariCP:5.1.0")
