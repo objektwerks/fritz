@@ -63,7 +63,7 @@ kotlin {
 
                 implementation("com.sksamuel.hoplite:hoplite-core:$hopliteVersion")
                 implementation("com.sksamuel.hoplite:hoplite-yaml:$hopliteVersion")
-                implementation("org.yaml:snakeyaml:2.2")
+                implementation("org.yaml:snakeyaml:2.3")
 
                 implementation("com.sksamuel.aedile:aedile-core:2.0.3")
 
