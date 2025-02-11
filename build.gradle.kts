@@ -44,7 +44,7 @@ kotlin {
             dependencies {
                 implementation("dev.fritz2:core:$fritz2Version")
 
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.2")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
             }
         }
