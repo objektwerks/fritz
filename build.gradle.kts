@@ -5,11 +5,11 @@ group = "objektwerks"
 version = "0.6-SNAPSHOT"
 
 plugins {
-    kotlin("multiplatform") version "2.2.0-RC"
-    kotlin("plugin.serialization") version "2.2.0-RC"
+    kotlin("multiplatform") version "2.2.0-RC2"
+    kotlin("plugin.serialization") version "2.2.0-RC2"
     id("application")
     id("com.adarshr.test-logger") version "4.0.0"
-    id("com.google.devtools.ksp") version "2.2.0-RC-2.0.1"
+    id("com.google.devtools.ksp") version "2.2.0-RC2-2.0.1"
 }
 
 repositories {
@@ -22,7 +22,7 @@ java {
     }
 }
 
-val kotlinVersion = "2.2.0-RC"
+val kotlinVersion = "2.2.0-RC2"
 val kotlinxSerializationVersion = "1.8.1"
 val fritz2Version = "1.0-RC20"
 val ktorVersion = "3.2.0"
