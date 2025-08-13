@@ -68,7 +68,7 @@ kotlin {
                 implementation("com.sksamuel.aedile:aedile-core:3.0.0")
 
                 implementation("org.postgresql:postgresql:42.7.7")
-                implementation("com.zaxxer:HikariCP:6.3.0")
+                implementation("com.zaxxer:HikariCP:6.3.1")
 
                 implementation("org.jodd:jodd-mail:7.1.0")
 
