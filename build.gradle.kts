@@ -9,7 +9,7 @@ plugins {
     kotlin("plugin.serialization") version "2.2.21"
     id("application")
     id("com.adarshr.test-logger") version "4.0.0"
-    id("com.google.devtools.ksp") version "2.2.21-2.0.3"
+    id("com.google.devtools.ksp") version "2.3.0"
 }
 
 repositories {
