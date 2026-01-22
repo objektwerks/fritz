@@ -66,7 +66,7 @@ kotlin {
 
                 implementation("org.jodd:jodd-mail:7.1.0")
 
-                implementation("ch.qos.logback:logback-classic:1.5.24")
+                implementation("ch.qos.logback:logback-classic:1.5.25")
             }
         }
         val jvmTest by getting {
