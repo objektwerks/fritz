@@ -19,7 +19,7 @@ repositories {
 val kotlinVersion = "2.3.20"
 val kotlinxSerializationVersion = "1.10.0"
 val fritz2Version = "1.0-RC20"
-val ktorVersion = "3.4.1"
+val ktorVersion = "3.4.2"
 val exposedVersion = "0.61.0" // Don't upgrade!
 val hopliteVersion = "3.0.0.RC2"
 
